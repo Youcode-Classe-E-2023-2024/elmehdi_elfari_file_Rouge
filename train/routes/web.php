@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 });
+Route::get('/dashboard', [DashboardController::class ,'index'])->name('dashboard');
+
+Route::get('/dashboard/table', [DashboardController::class ,'table'])->name('table');
