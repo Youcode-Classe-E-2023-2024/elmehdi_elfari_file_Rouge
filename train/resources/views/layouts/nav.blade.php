@@ -12,18 +12,18 @@
 <body>
 
 <!-- component -->
-<header class="bg-gray-700">
+<header class="bg-gray-25 bg-opacity-20">
     <nav class="container mx-auto py-2">
         <div class="flex items-center justify-between">
-            <div class="flex text-white font-bold text-xl">
-                <a href="{{ url('/') }} " class="flex items-center"><img class="w-24 h-16"  src="{{ asset('img/15.png') }}" alt="Train">Train</a>
+            <div class="flex text-black-50 font-bold text-xl">
+                <a href="{{ url('/') }} " class="flex items-center"><img class="w-24 h-16"  src="{{ asset('img/16.png') }}" alt="Train">Train</a>
             </div>
             <div class="hidden md:block">
                 <ul class="flex items-center space-x-8">
-                    <li><a href="{{ url('/') }}" class="text-white">Home</a></li>
-                    <li><a href="#" class="text-white">About</a></li>
-                    <li><a href="#" class="text-white">Services</a></li>
-                    <li><a href="{{ route('Form-register') }}" class="text-white">Contact</a></li>
+                    <li><a href="{{ url('/') }}" class="text-black-50">Home</a></li>
+                    <li><a href="#" class="text-black-50">About</a></li>
+                    <li><a href="#" class="text-black-50">Services</a></li>
+                    <li><a href="{{ route('Form-register') }}" class="text-black-50">Contact</a></li>
                 </ul>
             </div>
             <div class="md:hidden">
