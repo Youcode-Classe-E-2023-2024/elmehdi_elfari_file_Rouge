@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-<footer class="bg-black mt-20 py-12 px-16 font-[sans-serif]">
+<footer class="bg-black py-12 px-16 font-[sans-serif]">
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
         <div>
             <h3 class="text-gray-200 text-lg font-bold mb-6">Company</h3>
