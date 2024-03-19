@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+/*use App\Providers\RouteServiceProvider;*/
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
@@ -23,36 +23,47 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $request->validate([
             "name" => 'required|min:3',
-            "email" => ['required', 'email', Rule::unique('users', 'email')],
+            "email" => ['required', 'email', 'unique:users,email'],
             "password" => 'required|min:6'
         ]);
 
-        if ($request->input('ogranisator')) {
-            $role = 'organisateur';
-        } else {
-            $role = 'client';
+        // Default role is 'user'
+        $role = 'user';
+
+        // Determine the role based on the checkbox value
+        if ($request->has('admin')) {
+            $role = 'admin';
         }
 
+        // Create a new user record
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        $user->assignRole($role);
+
+        // Assign the role to the user
+        $user->role = $role;
+        $user->save();
+
+        // Log in the user
         Auth::login($user);
 
-        if ($user->hasRole('client')) {
-            // Do something specific for clients if needed
-        } elseif ($user->hasRole('admin')) {
-            return redirect('admin/dashboard')->with("login", 'true');
-        } elseif ($user->hasRole('organisateur')) {
-            return redirect()->route('clients')->with("login", 'true');
-        } else {
-            return redirect('login');
+        // Redirect the user based on their role
+        if ($role === 'user') {
+            // Redirect users to a specific route if needed
+        } elseif ($role === 'admin') {
+            // Redirect admins to a specific route if needed
         }
+
+        // Redirect to a default route if no specific redirect is needed
+        return redirect('login');
     }
+
+
 }
