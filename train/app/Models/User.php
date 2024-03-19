@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,4 +45,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+     * Assign a role to the user.
+     *
+     * @param string $role
+     * @return void
+     */
+    public function assignRole($role)
+    {
+        $this->role = $role;
+        $this->save();
+    }
+
+
 }
