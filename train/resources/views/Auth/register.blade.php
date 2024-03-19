@@ -9,26 +9,102 @@
 </head>
 
 <body>
-<div class="font-[sans-serif] text-[#333] bg-gray-50 flex items-center md:h-screen p-4">
-    <div class="w-full max-w-4xl mx-auto">
-        <div class="bg-white grid md:grid-cols-2 lg:gap-24 gap-16 w-full sm:p-8 p-6 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded overflow-hidden">
-            <div class="max-md:order-1 space-y-6">
-                <div class="md:mb-16 mb-8">
-                    <h3 class="text-2xl font-extrabold">Instant Access</h3>
+<div class="flex justify-center items-center font-[sans-serif] text-[#333] h-full min-h-screen p-4"
+     style="background-image: url(https://readymadeui.com/background-image.webp); background-repeat: no-repeat; background-size: cover;">
+    <div class="max-w-md w-full mx-auto">
+        <div class="bg-opacity-70 bg-white rounded-2xl p-6 shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]">
+            <div class="mb-10">
+                <h3 class="text-3xl font-extrabold">Sign Up</h3>
+            </div>
+            <!-- Display success message if registration is successful -->
+            @if (!empty(session('success')))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                     role="alert">
+                    <strong class="font-bold">Successfully:)</strong>
+                    <span class="block sm:inline">{{ session('success') }}</span>
                 </div>
-                <div class="space-y-6">
-                    <button type="button"
-                            class="w-full px-4 py-3 flex items-center justify-center rounded text-white text-base tracking-wider font-semibold border-none outline-none bg-blue-600 hover:bg-blue-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" class="inline shrink-0 mr-4" viewBox="0 0 167.657 167.657">
-                            <path
-                                d="M83.829.349C37.532.349 0 37.881 0 84.178c0 41.523 30.222 75.911 69.848 82.57v-65.081H49.626v-23.42h20.222V60.978c0-20.037 12.238-30.956 30.115-30.956 8.562 0 15.92.638 18.056.919v20.944l-12.399.006c-9.72 0-11.594 4.618-11.594 11.397v14.947h23.193l-3.025 23.42H94.026v65.653c41.476-5.048 73.631-40.312 73.631-83.154 0-46.273-37.532-83.805-83.828-83.805z"
-                                data-original="#010002" />
+            @endif
+            <!-- Form starts here -->
+            <form class="space-y-4 md:space-y-6" action="{{ route('register') }}" method="post">
+                @csrf
+                <div>
+                    <!-- Input field for name -->
+                    <div class="relative flex items-center">
+                        <input name="name" type="text" required
+                               class="bg-transparent w-full text-sm border-b border-[#333] px-2 py-3 outline-none placeholder:text-[#333]"
+                               placeholder="Enter name" />
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#333" stroke="#333" class="w-[18px] h-[18px] absolute right-2" viewBox="0 0 24 24">
+                            <path d="M12 2c-2.2 0-4 1.8-4 4s1.8 4 4 4s4-1.8 4-4S14.2 2 12 2zM12 10c-2.2 0-6 1.1-6 3v1c0 0.6 0.4 1 1 1h10c0.6 0 1-0.4 1-1v-1C18 11.1 14.2 10 12 10zM6 17c0-0.6 0.4-1 1-1h10c0.6 0 1 0.4 1 1v2c0 0.6-0.4 1-1 1H7c-0.6 0-1-0.4-1-1V17z"></path>
                         </svg>
-                        Continue with Facebook
+
+                        <!-- Display validation errors for name field -->
+                        @error('name')
+                        <p class="text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <!-- Input field for email -->
+                <div class="mt-8">
+                    <div class="relative flex items-center">
+                        <input name="email" type="text" required
+                               class="bg-transparent w-full text-sm border-b border-[#333] px-2 py-3 outline-none placeholder:text-[#333]"
+                               placeholder="Enter email" />
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#333" stroke="#333" class="w-[18px] h-[18px] absolute right-2"
+                             viewBox="0 0 682.667 682.667">
+                            <defs>
+                                <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                                    <path d="M0 512h512V0H0Z" data-original="#000000"></path>
+                                </clipPath>
+                            </defs>
+                            <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
+                                <path fill="none" stroke-miterlimit="10" stroke-width="40"
+                                      d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
+                                      data-original="#000000"></path>
+                                <path
+                                    d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
+                                    data-original="#000000"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <!-- Display validation errors for email field -->
+                    @error('email')
+                    <p class="text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <!-- Input field for password -->
+                <div class="mt-8">
+                    <div class="relative flex items-center">
+                        <input name="password" type="password" required
+                               class="bg-transparent w-full text-sm border-b border-[#333] px-2 py-3 outline-none placeholder:text-[#333]"
+                               placeholder="Enter password" />
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#333" stroke="#333"
+                             class="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128">
+                            <path
+                                d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
+                                data-original="#000000"></path>
+                        </svg>
+                    </div>
+                    <!-- Display validation errors for password field -->
+                    @error('password')
+                    <p class="text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <!-- Submit button -->
+                <div class="mt-14">
+                    <button type="submit"
+                            class="w-full py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-[#333] hover:bg-[#222] focus:outline-none">
+                        Sign Up
                     </button>
-                    <button type="button"
-                            class="w-full px-4 py-3 flex items-center justify-center rounded text-[#333] text-base tracking-wider font-semibold border-none outline-none bg-gray-100 hover:bg-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" class="inline shrink-0 mr-4" viewBox="0 0 512 512">
+                    <p class="text-sm text-center mt-6">Don't have an account <a href="{{ route('Form-login') }}"
+                                                                                 class="font-semibold hover:underline ml-1 whitespace-nowrap">Login here</a></p>
+                </div>
+                <hr class="my-6 border-gray-500" />
+                <div class="space-x-8 flex justify-center">
+                    <button type="button" class="border-none outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" class="inline" viewBox="0 0 512 512">
                             <path fill="#fbbd00"
                                   d="M120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308H52.823C18.568 144.703 0 198.922 0 256s18.568 111.297 52.823 155.785h86.308v-86.308C126.989 305.13 120 281.367 120 256z"
                                   data-original="#fbbd00" />
@@ -48,171 +124,27 @@
                                   d="M256 120V0C187.62 0 123.333 26.629 74.98 74.98a259.849 259.849 0 0 0-22.158 25.235l86.308 86.308C162.883 146.72 206.376 120 256 120z"
                                   data-original="#eb4132" />
                         </svg>
-                        Continue with Google
                     </button>
-                    <button type="button"
-                            class="w-full px-4 py-3 flex items-center justify-center rounded text-white text-base tracking-wider font-semibold border-none outline-none bg-black hover:bg-[#333]">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" class="inline shrink-0 mr-4" viewBox="0 0 22.773 22.773">
+                    <button type="button" class="border-none outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" fill="#000" viewBox="0 0 22.773 22.773">
                             <path
                                 d="M15.769 0h.162c.13 1.606-.483 2.806-1.228 3.675-.731.863-1.732 1.7-3.351 1.573-.108-1.583.506-2.694 1.25-3.561C13.292.879 14.557.16 15.769 0zm4.901 16.716v.045c-.455 1.378-1.104 2.559-1.896 3.655-.723.995-1.609 2.334-3.191 2.334-1.367 0-2.275-.879-3.676-.903-1.482-.024-2.297.735-3.652.926h-.462c-.995-.144-1.798-.932-2.383-1.642-1.725-2.098-3.058-4.808-3.306-8.276v-1.019c.105-2.482 1.311-4.5 2.914-5.478.846-.52 2.009-.963 3.304-.765.555.086 1.122.276 1.619.464.471.181 1.06.502 1.618.485.378-.011.754-.208 1.135-.347 1.116-.403 2.21-.865 3.652-.648 1.733.262 2.963 1.032 3.723 2.22-1.466.933-2.625 2.339-2.427 4.74.176 2.181 1.444 3.457 3.028 4.209z"
-                                data-original="#000000" />
+                                data-original="#000000"></path>
                         </svg>
-                        Continue with Apple
+                    </button>
+                    <button type="button" class="border-none outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" fill="#007bff" viewBox="0 0 167.657 167.657">
+                            <path
+                                d="M83.829.349C37.532.349 0 37.881 0 84.178c0 41.523 30.222 75.911 69.848 82.57v-65.081H49.626v-23.42h20.222V60.978c0-20.037 12.238-30.956 30.115-30.956 8.562 0 15.92.638 18.056.919v20.944l-12.399.006c-9.72 0-11.594 4.618-11.594 11.397v14.947h23.193l-3.025 23.42H94.026v65.653c41.476-5.048 73.631-40.312 73.631-83.154 0-46.273-37.532-83.805-83.828-83.805z"
+                                data-original="#010002"></path>
+                        </svg>
                     </button>
                 </div>
-            </div>
-            <div class="w-full">
-                <div class="mb-8">
-                    <h3 class="text-2xl font-extrabold">Register</h3>
-                </div>
-                @if (!empty(session('success')))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
-                         role="alert">
-                        <strong class="font-bold">Successfully:)</strong>
-                        <span class="block sm:inline">{{ session('success') }}</span>
-                    </div>
-                @endif
-            <form class="space-y-4 md:space-y-6" action="{{ route('register') }}" method="post">
-                    @csrf
-                <div class="space-y-6">
-                    <div>
-                        <label class="text-sm mb-2 block">Name</label>
-                        <div class="relative flex items-center">
-                            <input name="name" type="text" required class="bg-white border border-gray-300 w-full text-sm pl-4 pr-10 py-2.5 rounded outline-blue-500" placeholder="Enter name" />
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
-                                <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
-                                <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
-                            </svg>
-                            @error('name')
-                            <p class="text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-sm mb-2 block">Email Id</label>
-                        <div class="relative flex items-center">
-                            <input name="email" type="email" required class="bg-white border border-gray-300 w-full text-sm pl-4 pr-10 py-2.5 rounded outline-blue-500" placeholder="Enter email" />
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 682.667 682.667">
-                                <defs>
-                                    <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                                        <path d="M0 512h512V0H0Z" data-original="#000000"></path>
-                                    </clipPath>
-                                </defs>
-                                <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
-                                    <path fill="none" stroke-miterlimit="10" stroke-width="40" d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z" data-original="#000000"></path>
-                                    <path d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z" data-original="#000000"></path>
-                                </g>
-                            </svg>
-                            @error('email')
-                            <p class="text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-sm mb-2 block">Password</label>
-                        <div class="relative flex items-center">
-                            <input name="password" type="password" required class="bg-white border border-gray-300 w-full text-sm pl-4 pr-10 py-2.5 rounded outline-blue-500" placeholder="Enter password" />
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
-                                <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
-                            </svg>
-                        </div>
-                        @error('password')
-                        <p class="text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="flex items-center">
-                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
-                        <label for="remember-me" class="ml-3 block text-sm">
-                            I accept the <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">Terms and Conditions</a>
-                        </label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" name="ogranisator" class="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                        <label for="is_admin" class="ml-3 text-sm font-medium text-gray-900 dark:text-sm">
-                            Register as Ogranisator
-                        </label>
-                    </div>
-                </div>
-                <div class="!mt-10">
-                    <button type=submit" class="w-full py-3 px-4 text-sm font-semibold rounded bg-blue-600 hover:bg-blue-700 text-white focus:outline-none">
-                        Create Account
-                    </button>
-                </div>
-                <p class="text-sm mt-6 text-center">Already have an account? <a href="{{ route('Form-login') }}" class="text-blue-600 font-semibold hover:underline ml-1">Login here</a></p>
             </form>
         </div>
     </div>
 </div>
-{{--<section class="bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div
-            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1
-                    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                    Create and account
-                </h1>
-                @if (!empty(session('success')))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
-                         role="alert">
-                        <strong class="font-bold">Successfully:)</strong>
-                        <span class="block sm:inline">{{ session('success') }}</span>
-                    </div>
-                @endif
-                <form class="space-y-4 md:space-y-6" action="{{ route('register') }}" method="post">
-                    @csrf
-                    <div>
-                        <label for="text"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                        <input type="text" name="name" id="username"
-                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               placeholder="Username" required="">
-                        @error('name')
-                        <p class="text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div>
-                        <label for="email"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                        <input type="email" name="email" id="password_confirmation"
-                               placeholder="name@company.com"
-                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               required="">
-                        @error('email')
-                        <p class="text-red-600">{{ $message }}</p>
-                        @enderror
 
-                    </div>
-                    <div>
-                        <label for="password"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••"
-                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               required="">
-                        @error('password')
-                        <p class="text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" name="ogranisator" class="text-primary-600">
-                        <label for="is_admin" class="ml-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Register as Ogranisator
-                        </label>
-                    </div>
-
-                    <button type="submit"
-                            class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Register</button>
-                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Already have an account? <a href="{{ route('Form-login') }}"
-                                                    class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login
-                            here</a>
-                    </p>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</section>--}}
 </body>
 
 </html>
