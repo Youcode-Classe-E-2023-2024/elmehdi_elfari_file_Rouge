@@ -22,14 +22,18 @@ Route::get("login", [LoginController::class, 'create'])->name('Form-login');
 Route::post("login", [LoginController::class, 'authenticate'])->name('login');
 
 Route::middleware('guest')->group(function () {
-    Route::get('/request', [ForgotPasswordLinkController::class, 'create']);
+    Route::get('/request', [ForgotPasswordLinkController::class, 'create'])->name('request');
 
-    Route::post('/request', [ForgotPasswordLinkController::class, 'store']);
+    Route::post('/request/store', [ForgotPasswordLinkController::class, 'store'])->name('request.store');
 
     Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create'])->name('password.reset');
 
     Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 });
-Route::get('/dashboard', [DashboardController::class ,'index'])->name('dashboard');
 
-Route::get('/dashboard/table', [DashboardController::class ,'table'])->name('table');
+
+Route::middleware(['Auth','role:admin'])->group(function(){
+    Route::get('/dashboard', [DashboardController::class ,'index'])->name('dashboard');
+
+    Route::get('/dashboard/table', [DashboardController::class ,'table'])->name('table');
+});
