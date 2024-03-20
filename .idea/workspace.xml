@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="495b24d2-fc1a-4977-8fd9-ea48928f87b6" name="Changes" comment="" />
+    <list default="true" id="495b24d2-fc1a-4977-8fd9-ea48928f87b6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +61,7 @@
       <workItem from="1710592284701" duration="45803000" />
       <workItem from="1710859293779" duration="44000" />
       <workItem from="1710859340214" duration="2612000" />
-      <workItem from="1710862405309" duration="16709000" />
+      <workItem from="1710862405309" duration="21740000" />
     </task>
     <servers />
   </component>
@@ -75,5 +78,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/project_file_rouge/resources/views/pages/reservation.blade.php</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
