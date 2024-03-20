@@ -10,7 +10,6 @@ class City extends Model
 {
     use HasFactory , SoftDeletes;
     protected $fillable = [
-        'name_gare_depart',
-        'name_gare_arriver',
+        'name',
     ];
 }
