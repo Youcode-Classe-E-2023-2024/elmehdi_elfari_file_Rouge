@@ -34,19 +34,30 @@
           <span class="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
             ×
           </span>
-                        </button>
-                    </div>
+    </button>
+</div>
                     <!--body-->
                     <div class="relative p-6 flex-auto">
                         <form action="#" method="post">
-                            <!-- Input fields for reservation -->
+                            <!-- Select dropdown for departure station -->
                             <div class="mb-4">
                                 <label for="departure" class="block text-gray-700 text-sm font-bold mb-2">Departure Station:</label>
-                                <input type="text" id="departure" name="departure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <select id="departure" name="departure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="" disabled selected>Select Departure Station</option>
+                                    @foreach($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            <!-- Select dropdown for arrival station -->
                             <div class="mb-4">
                                 <label for="arrival" class="block text-gray-700 text-sm font-bold mb-2">Arrival Station:</label>
-                                <input type="text" id="arrival" name="arrival" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <select id="arrival" name="arrival" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="" disabled selected>Select Arrival Station</option>
+                                    @foreach($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-4">
                                 <label for="departure_date" class="block text-gray-700 text-sm font-bold mb-2">Departure Date:</label>
@@ -63,6 +74,7 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -70,7 +82,6 @@
 
         <!-- Trigger Button -->
         <button class="fixed bottom-10 right-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="openReservationModal()">Make Reservation</button>
-
         <div class="container relative mx-auto">
             <div class="items-center flex flex-wrap">
                 <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
