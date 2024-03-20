@@ -1,0 +1,16 @@
+#popupContainer {
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(100%);
+}
+
+#popupBackground {
+    transition: opacity 0.3s ease-in-out;
+}
+
+#popupContainer.show {
+    transform: translateY(0%);
+}
+
+#popupBackground.show {
+    opacity: 0.5;
+}
