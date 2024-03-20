@@ -22,8 +22,7 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name_gare_depart' => 'required|string|max:255',
-            'name_gare_arriver' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         City::create($request->all());
@@ -39,8 +38,7 @@ class CityController extends Controller
     public function update(Request $request, City $city)
     {
         $request->validate([
-            'name_gare_depart' => 'required|string|max:255',
-            'name_gare_arriver' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         $city->update($request->all());
