@@ -77,6 +77,16 @@
                     </a>
                 </li>
                 <li>
+                    <a class="" href="{{ route('Parcours') }}">
+                        <button class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-inherit">
+                                <path fill-rule="evenodd" d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 18.375V5.625zM21 9.375A.375.375 0 0020.625 9h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zM10.875 18.75a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5zM3.375 15h7.5a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375zm0-3.75h7.5a.375.375 0 00.375-.375v-1.5A.375.375 0 0010.875 9h-7.5A.375.375 0 003 9.375v1.5c0 .207.168.375.375.375z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">Parcours</p>
+                        </button>
+                    </a>
+                </li>
+                <li>
                     <a class="" href="#">
                         <button class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-inherit">
@@ -145,7 +155,7 @@
                         <td class="border-b p-2">{{ $city->id }}</td>
                         <td class="border-b p-2">{{ $city->name}}</td>
                         <td class="border-b p-2">
-                            <a @click="openEditModal('{{ $city->id }}', '{{ $city->name }}')" class="text-blue-500 hover:underline">Edit</a>
+                            <a href="{{ route('city.edit',$city) }}" @click="openEditModal('{{ $city->id }}', '{{ $city->name }}')" class="text-blue-500 hover:underline">Edit</a>
                             <form action="{{ route('city.destroy', $city) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
@@ -179,7 +189,7 @@
                 </div>
 
                 <!-- Edit City Modal -->
-                <div x-show="isEditModalOpen" @click.away="closeEditModal" class="fixed inset-0 z-50 flex items-center justify-center">
+               {{-- <div x-show="isEditModalOpen" @click.away="closeEditModal" class="fixed inset-0 z-50 flex items-center justify-center">
                     <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
                         <h2 class="text-2xl font-semibold mb-4">Edit City</h2>
 
@@ -187,14 +197,16 @@
                             @csrf
                             @method('PUT')
 
-                            <label class="block mb-2">Name:</label>
-                            <input type="text" name="name" x-model="editCityName" class="w-full border p-2 mb-4" required>
+                            <input type="hidden" name="id" value="{{ $city->id }}">
 
-                            <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Update</button>
+                            <label class="block mb-2">Name:</label>
+                            <input type="text" name="name" class="w-full border p-2 mb-4" placeholder="Enter city name" value="{{ $city->name }}" required>
+
+                            <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Save</button>
                         </form>
                         <button @click="closeEditModal" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
                     </div>
-                </div>
+                </div>--}}
 
             </div>
 
@@ -223,14 +235,13 @@
                         closeEditModal() {
                             this.isEditModalOpen = true;
                         },
-
                     };
                 }
             </script>
+
         </div>
     </div>
 </div>
 </body>
 </html>
-
 
