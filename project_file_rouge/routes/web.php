@@ -8,12 +8,26 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ParcoursController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', [HomeController::class ,'welcome'])->name('home');
 
-Route::post('logout', [LogoutController::class, 'destroy'])
-    ->middleware('auth');
+
+Route::middleware('auth')->group(function (){
+    Route::post('logout', [LogoutController::class, 'destroy']);
+
+    Route::get('/dashboard', [DashboardController::class ,'index'])->name('dashboard');
+
+    Route::get('/dashboard/table', [DashboardController::class ,'table'])->name('table');
+
+    Route::get('/dashboard/reservation', [DashboardController::class ,'reservation'])->name('reservation');
+
+
+});
+
+
 Route::get("register", [RegisterController::class, 'create'])->name('Form-register');
 
 Route::post("register", [RegisterController::class, 'store'])->name('register');
@@ -21,7 +35,6 @@ Route::post("register", [RegisterController::class, 'store'])->name('register');
 Route::get("login", [LoginController::class, 'create'])->name('Form-login');
 
 Route::post("login", [LoginController::class, 'authenticate'])->name('login');
-
 
 Route::get('/request', [ForgotPasswordLinkController::class, 'create']);
 
@@ -33,24 +46,30 @@ Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset')
 
 
 
+Route::get('/Parcours', [ParcoursController::class, 'index'])->name('Parcours');
 
-Route::get('/dashboard', [DashboardController::class ,'index'])->name('dashboard');
+Route::post('/Parcours', [ParcoursController::class, 'store'])->name('Parcours.store');
 
-Route::get('/dashboard/table', [DashboardController::class ,'table'])->name('table');
+Route::get('/dashboard/parcour/create', [ParcoursController::class, 'create'])->name('create.parcours');
 
-Route::get('/dashboard/reservation', [DashboardController::class ,'reservation'])->name('reservation');
+Route::get('/parcours/{parcour}', [ParcoursController::class, 'show'])->name('show.parcours');
 
-/*Route::get('/dashboard/city', [CityController::class ,'city'])->name('city');*/
-Route::get('/dashboard/city', [CityController::class, 'index'])->name('city');
+Route::get('/parcours/{parcours}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
 
-Route::get('/dashboard/city/create', [CityController::class, 'create'])->name('create.city');
+Route::put('/parcours/{parcours}', [ParcoursController::class, 'update'])->name('update.parcours');
 
-Route::post('/dashboard/city', [CityController::class, 'store'])->name('city');
+Route::delete('/parcours/{parcours}', [ParcoursController::class, 'destroy'])->name('parcours.destroy');
 
-Route::get('/dashboard/city/{city}', [CityController::class, 'show'])->name('show.city');
 
-Route::get('/dashboard/city/{city}/edit', [CityController::class, 'edit'])->name('city.edit');
+Route::get('/cities', [CityController::class, 'index'])->name('city');
 
-Route::put('/dashboard/city/{city}', [CityController::class, 'update'])->name('update.city');
+Route::get('/cities/create', [CityController::class, 'create'])->name('city.create');
 
-Route::delete('/dashboard/city/{city}', [CityController::class, 'destroy'])->name('city.destroy');
+Route::post('/cities', [CityController::class, 'store'])->name('city.store');
+
+Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('city.edit');
+
+Route::put('/cities/{city}', [CityController::class, 'update'])->name('city.update');
+
+Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
+
