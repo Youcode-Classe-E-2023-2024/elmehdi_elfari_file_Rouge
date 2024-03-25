@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Parcours;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index(){
 
-        $cities = City::count();
-        return view('pages.dashboard' ,compact('cities'));
+        $parcours = Parcours::count();
+        $city = City::count();
+        return view('pages.dashboard' ,compact('parcours','city'));
     }
 
     public function table(){
