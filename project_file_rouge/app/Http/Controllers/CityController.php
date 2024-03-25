@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\City;
 use Illuminate\Http\Request;
 
@@ -11,7 +10,7 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::all();
-        return view('pages.city', compact('cities'));
+        return view('pages.city', ['cities' => $cities]);
     }
 
     public function create()
@@ -32,7 +31,7 @@ class CityController extends Controller
 
     public function edit(City $city)
     {
-        return view('pages.city', compact('city'));
+        return view('pages.city', ['city' => $city]);
     }
 
     public function update(Request $request, City $city)
