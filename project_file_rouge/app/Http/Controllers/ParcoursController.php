@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Parcours;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class ParcoursController extends Controller
 {
@@ -40,12 +42,12 @@ class ParcoursController extends Controller
         return redirect()->back()->with('success', 'Parcours created successfully.');
     }
 
-    public function edit(Parcours $parcours)
+    public function edit(Parcours $parcour)
     {
-        return view('pages.Parcours', compact('parcours'));
+        return view('pages.Parcours', compact('parcour'));
     }
 
-    public function update(Request $request, Parcours $parcours)
+    public function update(Request $request, Parcours $parcour)
     {
         $request->validate([
             'depart_id' => 'required',
@@ -56,8 +58,7 @@ class ParcoursController extends Controller
             'image' => 'image|mimes:png,jpg,jpeg,svg|max:10240',
         ]);
 
-        // Update only the fillable fields
-        $parcours->fill($request->only([
+        $parcour->fill($request->only([
             'depart_id',
             'arrive_id',
             'longeur_Parcour',
@@ -68,16 +69,16 @@ class ParcoursController extends Controller
         // Handle image upload
         if ($request->hasFile('image')) {
             // Delete previous image if exists
-            if ($parcours->image && Storage::disk('public')->exists($parcours->image)) {
-                Storage::disk('public')->delete($parcours->image);
+            if ($parcour->image && Storage::disk('public')->exists($parcour->image)) {
+                Storage::disk('public')->delete($parcour->image);
             }
 
             // Store new image
-            $parcours->image = $request->file('image')->store('EventsImg', 'public');
+            $parcour->image = $request->file('image')->store('EventsImg', 'public');
         }
 
         // Save the updated Parcours
-        $parcours->save();
+        $parcour->save();
 
         return redirect()->back()->with('success', 'Parcours updated successfully.');
     }

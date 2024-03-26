@@ -150,13 +150,13 @@
                 </thead>
                 <tbody>
 
-                @foreach($cities as $city)
+                @foreach($ville as $city)
                     <tr>
                         <td class="border-b p-2">{{ $city->id }}</td>
-                        <td class="border-b p-2">{{ $city->name}}</td>
+                        <td class="border-b p-2">{{ $city->name }}</td>
                         <td class="border-b p-2">
-                            <a href="{{ route('city.edit',$city) }}" @click="openEditModal('{{ $city->id }}', '{{ $city->name }}')" class="text-blue-500 hover:underline">Edit</a>
-                            <form action="{{ route('city.destroy', $city) }}" method="POST" class="inline-block">
+                            <a href="{{ route('city.edit', $city->id) }}" class="text-blue-500 hover:underline">Edit</a>
+                            <form action="{{ route('city.destroy', $city->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:underline">Delete</button>
@@ -164,6 +164,7 @@
                         </td>
                     </tr>
                 @endforeach
+
                 </tbody>
             </table>
 
@@ -189,11 +190,11 @@
                 </div>
 
                 <!-- Edit City Modal -->
-               {{-- <div x-show="isEditModalOpen" @click.away="closeEditModal" class="fixed inset-0 z-50 flex items-center justify-center">
+                <div x-show="isEditModalOpen" @click.away="closeEditModal" class="fixed inset-0 z-50 flex items-center justify-center">
                     <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
                         <h2 class="text-2xl font-semibold mb-4">Edit City</h2>
 
-                        <form action="{{ route('update.city', $city) }}" method="POST">
+                        <form action="{{ route('city.update', $city) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -206,8 +207,7 @@
                         </form>
                         <button @click="closeEditModal" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
                     </div>
-                </div>--}}
-
+                </div>
             </div>
 
             <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>

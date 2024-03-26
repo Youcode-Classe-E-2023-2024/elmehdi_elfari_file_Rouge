@@ -235,71 +235,43 @@
 
 
 </section>
-    <div class="flex flex-wrap justify-center mx-5">
-        <div class="relative my-20 mx-4 flex-wrap text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
-            <!-- Card 1 -->
-            <div class="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-                <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="card-image" />
-            </div>
-            <div class="p-6">
-                <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                    UI/UX Review Check
-                </h5>
-                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                    The place is close to Barceloneta Beach and bus stop just 2 min by walk
-                    and near to "Naviglio" where you can enjoy the main night life in
-                    Barcelona.
-                </p>
-            </div>
-            <div class="p-6 pt-0">
-                <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
-                    Read More
-                </button>
+<div class="flex flex-wrap justify-center mx-5">
+    @foreach($parcours as $parcour)
+    <div class="relative my-20 mx-4 flex-wrap text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-1/4	">
+        <div class="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
+            <img src="{{ Storage::url($parcour->image) }}" alt="card-image" />
+        </div>
+        <div class="p-6">
+            <h4 class="block mb-2 font-sans text-xl antialiased font-bold leading-snug tracking-normal text-blue-gray-900">
+                Prix :  {{ $parcour->Prix_Parcour }} DH.
+            </h4>
+            <h5>
+                Gare de depart : {{ $parcour->City_depart->name }} .
+            </h5>
+            <h5>
+                Gare de arrivee : {{ $parcour->City_arrive->name }} .
+            </h5>
+            <h4>Available Places: {{ $parcour->nbr_place }}</h4>
+        </div>
+        <div class="space-x-6 flex ml-20 mb-5">
+            <div class="flex items-center">
+                <input id="radio" type="radio" name="value1" class="w-5 h-5 hidden peer" checked />
+                <label for="radio"
+                       class="relative flex items-center justify-center p-1 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-white w-6 h-6 cursor-pointer border-2 border-green-500 rounded-full overflow-hidden">
+                    <span class="bg-green-500 rounded-full w-3 h-3"></span>
+                </label>
             </div>
         </div>
-        <div class="relative my-20 mx-4 flex-wrap text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
-            <!-- Card 1 -->
-            <div class="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-                <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="card-image" />
-            </div>
-            <div class="p-6">
-                <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                    UI/UX Review Check
-                </h5>
-                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                    The place is close to Barceloneta Beach and bus stop just 2 min by walk
-                    and near to "Naviglio" where you can enjoy the main night life in
-                    Barcelona.
-                </p>
-            </div>
-            <div class="p-6 pt-0">
-                <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
-                    Read More
-                </button>
-            </div>
-        </div>
-        <div class="relative my-20 mx-4 flex-wrap text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
-            <!-- Card 1 -->
-            <div class="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-                <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="card-image" />
-            </div>
-            <div class="p-6">
-                <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                    UI/UX Review Check
-                </h5>
-                <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                    The place is close to Barceloneta Beach and bus stop just 2 min by walk
-                    and near to "Naviglio" where you can enjoy the main night life in
-                    Barcelona.
-                </p>
-            </div>
-            <div class="p-6 pt-0">
-                <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
-                    Read More
-                </button>
-            </div>
+
+        <div class="p-6 pt-0">
+            <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="submit">
+                Acheter
+            </button>
         </div>
     </div>
+    @endforeach
+</div>
+
 
 </section>
 

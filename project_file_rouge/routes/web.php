@@ -54,9 +54,9 @@ Route::get('/dashboard/parcour/create', [ParcoursController::class, 'create'])->
 
 Route::get('/parcours/{parcour}', [ParcoursController::class, 'show'])->name('show.parcours');
 
-Route::get('/parcours/{parcours}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
+Route::get('/parcours/{parcour}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
 
-Route::put('/parcours/{parcours}', [ParcoursController::class, 'update'])->name('update.parcours');
+Route::put('/parcours/{parcour}', [ParcoursController::class, 'update'])->name('parcours.update');
 
 Route::delete('/parcours/{parcours}', [ParcoursController::class, 'destroy'])->name('parcours.destroy');
 

@@ -9,9 +9,10 @@ class CityController extends Controller
 {
     public function index()
     {
-        $cities = City::all();
-        return view('pages.city', ['cities' => $cities]);
+        $ville = City::all();
+        return view('pages.city', ['ville' => $ville]);
     }
+
 
     public function create()
     {
@@ -29,25 +30,29 @@ class CityController extends Controller
         return redirect()->back()->with('success', 'City created successfully.');
     }
 
-    public function edit(City $city)
+    public function edit($id)
     {
-        return view('pages.city', ['city' => $city]);
+        $city = City::find($id);
+
+        return view('pages.city', compact('city'));
     }
 
-    public function update(Request $request, City $city)
+
+
+    public function update(Request $request, City $cities)
     {
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        $city->update($request->all());
+        $cities->update($request->all());
 
         return redirect()->back()->with('success', 'City updated successfully.');
     }
 
-    public function destroy(City $city)
+    public function destroy(City $cities)
     {
-        $city->delete();
+        $cities->delete();
 
         return redirect()->back()->with('success', 'City deleted successfully.');
     }

@@ -196,10 +196,10 @@
                 <button onclick="openModal()" class="bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">+ Add Parcours</button>
             </div>
 
-            <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+            <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
                 <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
                     <h2 class="text-2xl font-semibold mb-4">Add Parcour</h2>
-                    <form id="editForm" action="{{ route('Parcours') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('Parcours') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
@@ -262,7 +262,7 @@
     <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
         <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
             <h2 class="text-2xl font-semibold mb-4">Edit Parcours</h2>
-            <form id="editForm" action="{{ route('update.parcours', $parcour->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('parcours.update', $parcour->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <!-- Selecteur pour la ville de départ -->
@@ -302,7 +302,6 @@
                 {{ $message }}
                 @enderror
 
-                <!-- Champ pour le téléchargement de l'image -->
                 <label for="uploadFile1" class="bg-gray-800 hover:bg-gray-700 text-white text-sm px-4 py-2.5 outline-none rounded w-max cursor-pointer mx-auto block font-[sans-serif]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-2 fill-white inline" viewBox="0 0 32 32">
                         <path d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z" data-original="#000000" />
@@ -315,48 +314,103 @@
                 {{ $message }}
                 @enderror
 
-                <!-- Bouton de sauvegarde -->
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Update</button>
             </form>
+
             <button onclick="closeEditModal()" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
         </div>
     </div>
 
 
+    <!-- JavaScript -->
+
     <script>
+        // Function to open the edit modal and populate data
         function openEditModal(id, name) {
             document.getElementById('editModal').classList.remove('hidden');
-            document.getElementById('editCategoryId').value = id;
             document.getElementById('editCategoryName').value = name;
+            document.getElementById('editCategoryId').value = id;
         }
 
+        // Function to close the edit modal
         function closeEditModal() {
             document.getElementById('editModal').classList.add('hidden');
         }
 
+        // Function to open the add modal
         function openModal() {
             document.getElementById('modal').classList.remove('hidden');
         }
 
+        // Function to close the add modal
         function closeModal() {
             document.getElementById('modal').classList.add('hidden');
         }
 
+        // Function to handle form submission in the edit modal
         function saveEditModalForm() {
+            // Get the form element
             const form = document.getElementById('editForm');
 
+            // Add an event listener to the form submission
             form.addEventListener('submit', function(event) {
+                // Prevent the default form submission
+                console.log('ndifso');
                 event.preventDefault();
 
+                // Perform any client-side validation here if needed
+
+                // Submit the form asynchronously using JavaScript's Fetch API or other method
+                // Replace the URL with your form submission endpoint
                 fetch(form.action, {
                     method: 'POST',
                     body: new FormData(form),
                 })
                     .then(response => {
+                        // Handle the response here (e.g., show success message, close modal, etc.)
                         console.log('Form submitted successfully');
+                        // Optionally, close the modal after successful submission
                         closeEditModal();
                     })
                     .catch(error => {
+                        // Handle any errors here
+                        console.error('Error submitting form:', error);
+                        // Optionally, display an error message to the user
+                    });
+            });
+        }
+    </script>
+
+    <script>
+        // Function to handle form submission in the edit modal
+        function saveEditModalForm() {
+            // Get the form element
+            const form = document.getElementById('editForm');
+
+            // Add an event listener to the form submission
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                // Submit the form asynchronously using JavaScript's Fetch API or other method
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                })
+                    .then(response => {
+                        // Check if the response indicates a successful update
+                        if (response.ok) {
+                            // Handle success response here (e.g., show success message)
+                            console.log('Form submitted successfully');
+                            // Optionally, close the modal after successful submission
+                            closeEditModal();
+                        } else {
+                            // Handle error response here (e.g., display error message)
+                            console.error('Error submitting form:', response.statusText);
+                        }
+                    })
+                    .catch(error => {
+                        // Handle any network errors here
                         console.error('Error submitting form:', error);
                     });
             });
