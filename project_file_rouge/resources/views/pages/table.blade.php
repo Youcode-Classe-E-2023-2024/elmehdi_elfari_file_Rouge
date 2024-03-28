@@ -128,27 +128,67 @@
         <div class="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-2">
             <div class="relative flex flex-col bg-clip-border rounded-xl mt-20 bg-gray-200 text-gray-700 shadow-md overflow-hidden xl:col-span-2">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white font-[sans-serif]">
-                        <thead class="bg-gray-800 whitespace-nowrap">
+                    <table class="min-w-full bg-white font-sans">
+                        <thead class="bg-gray-700 whitespace-nowrap my-2">
                         <tr>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">
-                                Name
-                            </th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">
-                                Email
-                            </th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">
-                                Role
-                            </th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">
-                                Created At
-                            </th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">
-                                Actions
-                            </th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">Name</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">Email</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">Role</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">Created At</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold text-white">Actions</th>
                         </tr>
                         </thead>
                         <tbody class="whitespace-nowrap">
+                        @if(session('success'))
+                            <div class="bg-green-100 text-green-800 pl-4 pr-10 py-4 rounded relative" role="alert">
+                                <div class="inline-block max-sm:mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-green-500 inline mr-4" viewBox="0 0 512 512">
+                                        <ellipse cx="256" cy="256" fill="#32bea6" data-original="#32bea6" rx="256" ry="255.832" />
+                                        <path fill="#fff" d="m235.472 392.08-121.04-94.296 34.416-44.168 74.328 57.904 122.672-177.016 46.032 31.888z"
+                                              data-original="#ffffff" />
+                                    </svg>
+                                    <strong class="font-bold text-base">Success!</strong>
+                                </div>
+                                <span class="block sm:inline text-sm mx-4 max-sm:ml-0 max-sm:mt-1">{{ session('success') }}</span>
+                            </div>
+                        @elseif(session('error'))
+                            <div class="bg-red-100 text-red-800 pl-4 pr-10 py-4 rounded relative" role="alert">
+                                <div class="inline-block max-sm:mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 inline mr-4" viewBox="0 0 32 32">
+                                        <path
+                                            d="M16 1a15 15 0 1 0 15 15A15 15 0 0 0 16 1zm6.36 20L21 22.36l-5-4.95-4.95 4.95L9.64 21l4.95-5-4.95-4.95 1.41-1.41L16 14.59l5-4.95 1.41 1.41-5 4.95z"
+                                            data-original="#ea2d3f" />
+                                    </svg>
+                                    <strong class="font-bold text-base">Error!</strong>
+                                </div>
+                                <span class="block sm:inline text-sm mx-4 max-sm:ml-0 max-sm:mt-1">{{ session('error') }}</span>
+                            </div>
+                        @endif
+                        @foreach($users as $user)
+                            <tr>
+                                <td class="px-6 py-3 text-left text-sm font-semibold">{{ $user->name }}</td>
+                                <td class="px-6 py-3 text-left text-sm font-semibold">{{ $user->email }}</td>
+                                <td class="px-6 py-3 text-left text-sm font-semibold">{{ $user->role }}</td>
+                                <td class="px-6 py-3 text-left text-sm font-semibold">{{ $user->created_at }}</td>
+                                <td class="px-6 py-3 text-left text-bold text-sm font-semibold">
+                                    <form action="{{ route('users.toggleStatus', $user) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        @if ($user->status === 'ban')
+                                            <button type="submit"
+                                                    class="px-6 py-2 rounded-full text-black text-sm tracking-wider font-medium outline-none border-2 border-green-600 hover:bg-green-600 hover:text-white transition-all duration-300">
+                                                Unban
+                                            </button>
+                                        @else
+                                            <button type="submit"
+                                                    class="px-6 py-2 rounded-full text-black text-sm tracking-wider font-medium outline-none border-2 border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300">
+                                                Ban
+                                            </button>
+                                        @endif
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
