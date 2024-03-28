@@ -11,6 +11,7 @@
 <body  class="bg-blueGray-200">
 @include('layouts.nav')
 <!-- component -->
+<link type="text/css" rel="stylesheet" href=" {{ asset('css/style.css') }}" />
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
@@ -42,120 +43,6 @@
         </svg>
     </div>
 </div>
-<!-- Add Category Button -->
-{{--<div class="fixed bottom-8 right-8">
-    <button onclick="openModal()" class="bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">+ Add Reservation</button>
-</div>
-
-<div id="modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-    <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
-        <h2 class="text-2xl font-semibold mb-4">Add Parcour</h2>
-        <form action="{{ route('Parcours') }}" method="POST">
-            @csrf
-
-            <label class="block mb-2">Gare de depart:</label>
-            <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
-                <option value="" selected disabled>Choisissez une ville</option>
-                @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-
-            <label class="block mb-2">Gare d'arrivee:</label>
-            <select id="city" name="arrive_id" class="form-select w-full border p-2 mb-4">
-                <option value="" selected disabled>Choisissez une ville</option>
-                @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-
-            <label class="block mb-2">longeur_Parcour:</label>
-            <input type="text" name="longeur_Parcour" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
-
-            <label class="block mb-2">Prix_Parcour:</label>
-            <input type="text" name="Prix_Parcour" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
-
-            <label class="block mb-2">nbr_place:</label>
-            <input type="text" name="nbr_place" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
-
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Acheter</button>
-        </form>
-        <button @click="closeModal" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">ferme</button>
-    </div>
-</div>
-
-<!-- Add Parcour Modal -->
-<div id="modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-    <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
-        <h2 class="text-2xl font-semibold mb-4">Add Parcour</h2>
-        <form action="{{ route('Parcours') }}" method="POST">
-            @csrf
-
-            <select id="depart_city" name="depart_id" class="form-select">
-                <option value="" selected disabled>Choisissez une ville</option>
-                @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-
-            <select id="arrive_city" name="arrive_id" class="form-select">
-                <option value="" selected disabled>Choisissez une ville</option>
-                @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-
-            <label class="block mb-2">longeur_Parcour:</label>
-            <input type="text" name="longeur_Parcour" class="w-full border p-2 mb-4" placeholder="Enter length of parcour" required>
-
-            <label class="block mb-2">Prix_Parcour:</label>
-            <input type="text" name="Prix_Parcour" class="w-full border p-2 mb-4" placeholder="Enter price of parcour" required>
-
-            <label class="block mb-2">nbr_place:</label>
-            <input type="text" name="nbr_place" class="w-full border p-2 mb-4" placeholder="Enter number of places" required>
-
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Save</button>
-        </form>
-        <button onclick="closeModal()" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
-    </div>
-</div>
-
-<!-- Edit Parcour Modal -->
-<div id="modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-    <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
-        <h2 class="text-2xl font-semibold mb-4">Add Parcour</h2>
-        <form id="reservationForm" action="{{ route('Parcours') }}" method="POST">
-            @csrf
-
-            <label for="depart_id" class="block mb-2">Départ:</label>
-            <select id="depart_id" name="depart_id" class="form-select w-full border p-2 mb-4" onchange="fetchLengthAndPrice()">
-                <option value="" selected disabled>Choisissez une ville de départ</option>
-                @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-
-            <label for="arrive_id" class="block mb-2">Arrivée:</label>
-            <select id="arrive_id" name="arrive_id" class="form-select w-full border p-2 mb-4" onchange="fetchLengthAndPrice()">
-                <option value="" selected disabled>Choisissez une ville d'arrivée</option>
-                @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-
-            <input type="hidden" id="Prix_id" name="Prix_id">
-            <input type="hidden" id="longeur_id" name="longeur_id">
-
-            <label for="nbr_place" class="block mb-2">Nombre de Places:</label>
-            <input type="text" id="nbr_place" name="nbr_place" class="w-full border p-2 mb-4" placeholder="Entrez le nombre de places" required>
-
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Acheter</button>
-        </form>
-
-        <button @click="closeModal" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Fermer</button>
-    </div>
-</div>--}}
-
 <section class="pb-10 bg-blueGray-200 ">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
@@ -203,8 +90,9 @@
             </div>
         </div>
 </section>
+@include('layouts.filter')
 <section>
-    <div class="sliderAx h-auto mt-20">
+<div class="sliderAx h-auto mt-5">
         <div id="slider-1" class="container mx-auto">
             <div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1422&q=80)">
                 <div class="md:w-1/2">
@@ -232,8 +120,6 @@
         <button id="sButton1" onclick="sliderButton1()" class="bg-purple-400 rounded-full w-4 pb-2 " ></button>
         <button id="sButton2" onclick="sliderButton2() " class="bg-purple-400 rounded-full w-4 p-2"></button>
     </div>
-
-
 </section>
 <div class="flex flex-wrap justify-center mx-5">
     @foreach($parcours as $parcour)
