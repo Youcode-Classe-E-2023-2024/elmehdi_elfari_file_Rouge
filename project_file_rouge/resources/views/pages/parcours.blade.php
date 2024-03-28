@@ -287,7 +287,7 @@
     <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
         <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
             <h2 class="text-2xl font-semibold mb-4">Edit Parcours</h2>
-            <form action="{{ route('parcours.update', $parcour) }}" method="POST" enctype="multipart/form-data">
+            {{--<form action="{{ route('parcours.update', $parcour) }}" method="POST" enctype="multipart/form-data">--}}
                 @csrf
                 @method('PUT')
                 <!-- Selecteur pour la ville de départ -->
