@@ -21,9 +21,10 @@
             <div class="hidden md:block">
                 <ul class="flex items-center space-x-8">
                     <li><a href="{{ url('/') }}" class="text-black-50">Home</a></li>
+                    <li><a href="{{ route('dashboard') }}" class="text-black-50">Dashboard</a></li>
                     <li><a href="#" class="text-black-50">About</a></li>
                     <li><a href="#" class="text-black-50">Services</a></li>
-                    <li><a href="{{ route('Form-register') }}" class="text-black-50">Contact</a></li>
+                    <li><a href="{{ route('Form-register') }}" class="block px-4 py-2 text-white bg-gray-700 rounded">Contact</a></li>
                 </ul>
             </div>
             <div class="md:hidden">
@@ -38,11 +39,9 @@
             <ul class="mt-4 space-y-4">
                 <li><a href="{{ url('/') }}" class="block px-4 py-2 text-white bg-gray-900 rounded">Home</a></li>
                 <li><a href="#" class="block px-4 py-2 text-white bg-gray-900 rounded">About</a></li>
-                @role('admin')
-                <li><a href="{{ route('dashboard') }}" class="block px-4 py-2 text-white bg-gray-900 rounded">Dashboard</a></li>
-                @endrole
                 <li><a href="#" class="block px-4 py-2 text-white bg-gray-900 rounded">Services</a></li>
                 <li><a href="{{ route('Form-register') }}" class="block px-4 py-2 text-white bg-gray-900 rounded">Contact</a></li>
+
             </ul>
         </div>
 
