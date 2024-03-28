@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/dashboard/table', [DashboardController::class ,'table'])->name('table');
 
+    Route::put('/dashboard/users/{user}/toggleStatus', [DashboardController::class ,'toggleStatus'])->name('users.toggleStatus');
+
     Route::get('/dashboard/reservation', [DashboardController::class ,'reservation'])->name('reservation');
 
 
