@@ -32,9 +32,13 @@ class CityController extends Controller
 
     public function edit($id)
     {
-        $city = City::find($id);
+        $ville = City::find($id);
 
-        return view('pages.city', compact('city'));
+        if (!$ville) {
+            return redirect()->back()->with('error', 'City not found.');
+        }
+
+        return view('pages.city', compact('ville'));
     }
 
 
@@ -50,9 +54,9 @@ class CityController extends Controller
         return redirect()->back()->with('success', 'City updated successfully.');
     }
 
-    public function destroy(City $cities)
+    public function destroy(City $city)
     {
-        $cities->delete();
+        $city->delete();
 
         return redirect()->back()->with('success', 'City deleted successfully.');
     }
