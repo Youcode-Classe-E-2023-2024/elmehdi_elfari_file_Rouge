@@ -166,7 +166,32 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!-- Loop through parcours -->
+                @if(session('success'))
+                    <div class="bg-green-100 text-green-800 pl-4 pr-10 py-4 rounded relative" role="alert">
+                        <div class="inline-block max-sm:mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-green-500 inline mr-4" viewBox="0 0 512 512">
+                                <ellipse cx="256" cy="256" fill="#32bea6" data-original="#32bea6" rx="256" ry="255.832" />
+                                <path fill="#fff" d="m235.472 392.08-121.04-94.296 34.416-44.168 74.328 57.904 122.672-177.016 46.032 31.888z"
+                                      data-original="#ffffff" />
+                            </svg>
+                            <strong class="font-bold text-base">Success!</strong>
+                        </div>
+                        <span class="block sm:inline text-sm mx-4 max-sm:ml-0 max-sm:mt-1">{{ session('success') }}</span>
+                    </div>
+                @elseif(session('error'))
+                    <div class="bg-red-100 text-red-800 pl-4 pr-10 py-4 rounded relative" role="alert">
+                        <div class="inline-block max-sm:mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 inline mr-4" viewBox="0 0 32 32">
+                                <path
+                                    d="M16 1a15 15 0 1 0 15 15A15 15 0 0 0 16 1zm6.36 20L21 22.36l-5-4.95-4.95 4.95L9.64 21l4.95-5-4.95-4.95 1.41-1.41L16 14.59l5-4.95 1.41 1.41-5 4.95z"
+                                    data-original="#ea2d3f" />
+                            </svg>
+                            <strong class="font-bold text-base">Error!</strong>
+                        </div>
+                        <span class="block sm:inline text-sm mx-4 max-sm:ml-0 max-sm:mt-1">{{ session('error') }}</span>
+                    </div>
+                @endif
+                <br>
                 @foreach($parcours as $parcour)
                     <tr>
                         <td class="border-b p-2">{{ $parcour->id }}</td>
@@ -183,7 +208,7 @@
                             <form action="{{ route('parcours.destroy', $parcour->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Delete</button>
+                                <button type="submit" class="bg-red-500 text-white p-2 rounded-full hover:bg-red-600 focus:outline-none focus:ring focus:border-red-300">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -253,7 +278,7 @@
 
                         <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Save</button>
                     </form>
-                    <button type="button" onclick="closeEditModal()" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
+                    <button onclick="closeModal()" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
                 </div>
             </div>
         </div>
@@ -262,7 +287,7 @@
     <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
         <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
             <h2 class="text-2xl font-semibold mb-4">Edit Parcours</h2>
-            <form action="{{ route('parcours.update', $parcour->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('parcours.update', $parcour) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <!-- Selecteur pour la ville de départ -->
@@ -302,17 +327,23 @@
                 {{ $message }}
                 @enderror
 
-                <label for="uploadFile1" class="bg-gray-800 hover:bg-gray-700 text-white text-sm px-4 py-2.5 outline-none rounded w-max cursor-pointer mx-auto block font-[sans-serif]">
+                <label for="uploadFile1"
+                       class="bg-gray-800 hover:bg-gray-700 text-white text-sm px-4 py-2.5 outline-none rounded w-max cursor-pointer mx-auto block font-[sans-serif]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-2 fill-white inline" viewBox="0 0 32 32">
-                        <path d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z" data-original="#000000" />
-                        <path d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z" data-original="#000000" />
+                        <path
+                            d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
+                            data-original="#000000" />
+                        <path
+                            d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
+                            data-original="#000000" />
                     </svg>
                     Upload
-                    <input type="file" name="image" id="uploadFile1" accept=".png, .jpg, .jpeg, .svg" class="hidden" required>
+                    <input type="file" name="image" id="uploadFile1" accept=".png, .jpg, .jpeg, .svg" class="hidden" />
                 </label>
                 @error('image')
-                {{ $message }}
+                {{$message}}
                 @enderror
+
 
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Update</button>
             </form>
