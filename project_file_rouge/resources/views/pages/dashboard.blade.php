@@ -152,11 +152,6 @@
                         <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
                             {{ $city }}</h4>
                     </div>
-                    <div class="border-t border-blue-gray-50 p-4">
-                        <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                            <strong class="text-green-500"></strong>&nbsp;
-                        </p>
-                    </div>
                 </div>
                 <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                     <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -168,11 +163,6 @@
                         <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total the Parcours</p>
                         <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{ $parcours }}</h4>
                     </div>
-                    <div class="border-t border-blue-gray-50 p-4">
-                        <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                            <strong class="text-green-500">+3%</strong>&nbsp;than last month
-                        </p>
-                    </div>
                 </div>
                 <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                     <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -181,13 +171,8 @@
                         </svg>
                     </div>
                     <div class="p-4 text-right">
-                        <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">New Clients</p>
-                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">3,462</h4>
-                    </div>
-                    <div class="border-t border-blue-gray-50 p-4">
-                        <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                            <strong class="text-red-500">-2%</strong>&nbsp;than yesterday
-                        </p>
+                        <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total number of banned users</p>
+                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{{$bannedUsersCount}}</h4>
                     </div>
                 </div>
                 <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
@@ -197,13 +182,9 @@
                         </svg>
                     </div>
                     <div class="p-4 text-right">
-                        <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Sales</p>
-                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$103,430</h4>
-                    </div>
-                    <div class="border-t border-blue-gray-50 p-4">
-                        <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                            <strong class="text-green-500">+5%</strong>&nbsp;than yesterday
-                        </p>
+                        <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total number of unbanned users</p>
+                        <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+                            {{$unbannedUsersCount}}</h4>
                     </div>
                 </div>
             </div>
@@ -212,5 +193,5 @@
 </div>
 </body>
 </html>
-<!-- component -->
+
 
