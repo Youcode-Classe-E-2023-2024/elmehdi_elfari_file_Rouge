@@ -4,11 +4,11 @@
     <list default="true" id="495b24d2-fc1a-4977-8fd9-ea48928f87b6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/CityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/CityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/ParcoursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/ParcoursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/parcours.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/parcours.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/table.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,19 +32,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/elmehdi_elfari_file_Rouge&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/elmehdi_elfari_file_Rouge",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MTConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\project_file_rouge\public\js" />
@@ -69,7 +69,8 @@
       <workItem from="1710862405309" duration="25969000" />
       <workItem from="1711026129047" duration="33928000" />
       <workItem from="1711299998788" duration="3602000" />
-      <workItem from="1711312881031" duration="28591000" />
+      <workItem from="1711312881031" duration="28609000" />
+      <workItem from="1711553090535" duration="8110000" />
     </task>
     <servers />
   </component>
