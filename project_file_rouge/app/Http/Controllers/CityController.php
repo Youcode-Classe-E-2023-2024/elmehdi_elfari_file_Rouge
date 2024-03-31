@@ -60,4 +60,15 @@ class CityController extends Controller
 
         return redirect()->back()->with('success', 'City deleted successfully.');
     }
+
+    public function filterByName(Request $request)
+    {
+        $name = $request->input('name');
+
+
+        $cities = City::where('name', 'like', '%' . $name . '%')->get();
+
+        return redirect()->back();
+    }
+
 }

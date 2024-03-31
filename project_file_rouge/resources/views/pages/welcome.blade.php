@@ -10,15 +10,11 @@
 </head>
 <body  class="bg-blueGray-200">
 @include('layouts.nav')
-<!-- component -->
-<link type="text/css" rel="stylesheet" href=" {{ asset('css/style.css') }}" />
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
 <div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
-    <div class="absolute top-0 w-full h-full bg-center bg-cover" {{--style="
-        background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80');
-      "--}}>
+    <div class="absolute top-0 w-full h-full bg-center bg-cover" >
         <img class="w-full h-full"  src="{{ asset('img/14.jpg') }}" alt="Paris">
     </div>
     <div class="container relative mb-20 mx-auto">
@@ -90,8 +86,74 @@
             </div>
         </div>
 </section>
-@include('layouts.filter')
 <section>
+    <div class="rounded-lg shadow-lg p-8 mb-4 bg-gray-50 mx-auto">
+        <form action="{{ route('cities.filter') }}" method="get">
+            @csrf
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <!-- Departure Station Input -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-medium mb-2" for="departure-station">Gare de départ</label>
+                    <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
+                        <option value="" selected disabled>Choisissez une ville</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Arrival Station Input -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-medium mb-2" for="arrival-station">Gare de d'arrive</label>
+                    <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
+                        <option value="" selected disabled>Choisissez une ville</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <!-- Departure Date Picker -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-medium mb-2" for="departure-date">Departure Date</label>
+                    <input class="appearance-none bg-transparent border-b-2 border-purple-600 w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none" type="date" id="departure-date">
+                </div>
+
+                <!-- Return Date Picker -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-medium mb-2" for="return-date">Return Date</label>
+                    <input class="appearance-none bg-transparent border-b-2 border-purple-600 w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none" type="date" id="return-date">
+                </div>
+
+                <!-- Travelers Dropdown -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-medium mb-2" for="travelers">Travelers</label>
+                    <select class="block appearance-none w-full bg-white border border-purple-600 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-purple-600" id="travelers">
+                        <option>1 Adult</option>
+                        <!-- Additional options here -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <!-- Class Toggle -->
+                <div class="mb-4 inline-flex">
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded-l-full uppercase font-bold text-sm">1st Class</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-r-full uppercase font-bold text-sm">2nd Class</button>
+                </div>
+            </div>
+
+            <!-- Search Button -->
+            <div class="flex justify-center mt-6">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-lg">Search</button>
+            </div>
+        </form>
+    </div>
+</section>
+{{--<section>
 <div class="sliderAx h-auto mt-5">
         <div id="slider-1" class="container mx-auto">
             <div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1422&q=80)">
@@ -120,91 +182,74 @@
         <button id="sButton1" onclick="sliderButton1()" class="bg-purple-400 rounded-full w-4 pb-2 " ></button>
         <button id="sButton2" onclick="sliderButton2() " class="bg-purple-400 rounded-full w-4 p-2"></button>
     </div>
-</section>
-<div class="flex flex-wrap justify-center mx-5">
-    @foreach($parcours as $parcour)
-    <div class="relative my-20 mx-4 flex-wrap text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-1/4	">
-        <div class="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-            <img src="{{ Storage::url($parcour->image) }}" alt="card-image" />
-        </div>
-        <div class="p-6">
-            <h4 class="block mb-2 font-sans text-xl antialiased font-bold leading-snug tracking-normal text-blue-gray-900">
-                Prix :  {{ $parcour->Prix_Parcour }} DH.
-            </h4>
-            <h5>
-                Gare de depart : {{ $parcour->City_depart->name }} .
-            </h5>
-            <h5>
-                Gare de arrivee : {{ $parcour->City_arrive->name }} .
-            </h5>
-            <h4>Available Places: {{ $parcour->nbr_place }}</h4>
-        </div>
-        <div class="space-x-6 flex ml-20 mb-5">
-            <div class="flex items-center">
-                <input id="radio" type="radio" name="value1" class="w-5 h-5 hidden peer" checked />
-                <label for="radio"
-                       class="relative flex items-center justify-center p-1 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-white w-6 h-6 cursor-pointer border-2 border-green-500 rounded-full overflow-hidden">
-                    <span class="bg-green-500 rounded-full w-3 h-3"></span>
-                </label>
+</section>--}}
+@foreach($cards as $card)
+    <div class="card hidden" data-departure-city="{{ $card->departure_city }}" data-arrival-city="{{ $card->arrival_city }}">
+        <div class="flex flex-wrap justify-center mx-5">
+            @foreach($parcours as $parcour)
+            <div class="relative my-20 mx-4 flex-wrap text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-1/4	">
+                <div class="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
+                    <img src="{{ Storage::url($parcour->image) }}" alt="card-image" />
+                </div>
+                <div class="p-6">
+                    <h4 class="block mb-2 font-sans text-xl antialiased font-bold leading-snug tracking-normal text-blue-gray-900">
+                        Prix :  {{ $parcour->Prix_Parcour }} DH.
+                    </h4>
+                    <h5>
+                        Gare de depart : {{ $parcour->City_depart->name }} .
+                    </h5>
+                    <h5>
+                        Gare de arrivee : {{ $parcour->City_arrive->name }} .
+                    </h5>
+                    <h4>Available Places: {{ $parcour->nbr_place }}</h4>
+                </div>
+                <div class="space-x-6 flex ml-20 mb-5">
+                    <div class="flex items-center">
+                        <input id="radio" type="radio" name="value1" class="w-5 h-5 hidden peer" checked />
+                        <label for="radio"
+                               class="relative flex items-center justify-center p-1 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-white w-6 h-6 cursor-pointer border-2 border-green-500 rounded-full overflow-hidden">
+                            <span class="bg-green-500 rounded-full w-3 h-3"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="p-6 pt-0">
+                    <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="submit">
+                        Acheter
+                    </button>
+                </div>
             </div>
+            @endforeach
         </div>
-
-        <div class="p-6 pt-0">
-            <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="submit">
-                Acheter
-            </button>
-        </div>
-    </div>
-    @endforeach
 </div>
-
+@endforeach
 
 </section>
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-{{--<script>
-    function openModal() {
-        document.getElementById('modal').classList.remove('hidden');
-    }
 
-    function closeModal() {
-        document.getElementById('modal').classList.add('hidden');
-    }
+    <script>
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
 
-    function openEditModal(id, name) {
-        document.getElementById('editModal').classList.remove('hidden');
-        // Set values for editing
-        document.getElementById('editCategoryName').value = name;
-        document.getElementById('editCategoryId').value = id;
-    }
+            // Get selected departure and arrival cities
+            const departureCity = document.getElementById('departure-city').value;
+            const arrivalCity = document.getElementById('arrival-city').value;
 
-    function closeEditModal() {
-        document.getElementById('editModal').classList.add('hidden');
-    }
-</script>--}}
-{{--
-<script>
-    function fetchLengthAndPrice() {
-        var departId = document.getElementById('depart_id').value;
-        var arriveId = document.getElementById('arrive_id').value;
+            // Filter cards based on selected cities
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardDepartureCity = card.dataset.departureCity;
+                const cardArrivalCity = card.dataset.arrivalCity;
 
-        // You may want to add additional logic here to handle cases where departId or arriveId is not selected
-
-        // Assuming you have a route to fetch length and price IDs based on departId and arriveId
-        fetch(`/get-length-and-price?depart_id=${departId}&arrive_id=${arriveId}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('Prix_id').value = data.prix_id;
-                document.getElementById('longeur_id').value = data.longeur_id;
-            })
-            .catch(error => console.error('Error:', error));
-    }
-</script>
---}}
-
-
-
-
+                if (cardDepartureCity == departureCity && cardArrivalCity == arrivalCity) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 <script>
     // Functions to open and close the modal
     function openReservationModal() {
