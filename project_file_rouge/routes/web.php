@@ -9,6 +9,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ParcoursController;
+use App\Http\Controllers\TicketBookingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -74,4 +75,6 @@ Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('city.e
 Route::put('/cities/{city}', [CityController::class, 'update'])->name('city.update');
 
 Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
+
+Route::get('/cities/filter', [CityController::class, 'filterByName'])->name('cities.filter');
 

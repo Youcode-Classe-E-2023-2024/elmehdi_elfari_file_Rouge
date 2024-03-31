@@ -299,12 +299,12 @@
                 </select>
 
                 <!-- Selecteur pour la ville d'arrivée -->
-                <select id="city" name="arrive_id" class="form-select w-full border p-2 mb-4">
-                    <option value="" selected disabled>Choisissez une ville</option>
-                    @foreach($cities as $city)
-                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                    @endforeach
-                </select>
+            <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
+                <option value="" selected disabled>Choisissez une ville</option>
+                @foreach($cities as $city)
+                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                @endforeach
+            </select>
 
                 <!-- Champ pour la longueur du parcours -->
                 <label class="block mb-2">Longueur du Parcours:</label>

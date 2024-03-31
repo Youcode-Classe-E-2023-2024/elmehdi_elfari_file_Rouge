@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body class="container mx-auto">
 
 <!-- component -->
 <header class="bg-gray-25 bg-opacity-20">
