@@ -8,14 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body  class="bg-blueGray-200">
+<body class="bg-blueGray-200">
 @include('layouts.nav')
+
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
 <div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
-    <div class="absolute top-0 w-full h-full bg-center bg-cover" >
-        <img class="w-full h-full"  src="{{ asset('img/14.jpg') }}" alt="Paris">
+    <div class="absolute top-0 w-full h-full bg-center bg-cover">
+        <img class="w-full h-full" src="{{ asset('img/14.jpg') }}" alt="Paris">
     </div>
     <div class="container relative mb-20 mx-auto">
         <div class="items-center flex flex-wrap">
@@ -85,148 +86,160 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
+
 <section>
-    <div class="rounded-lg shadow-lg p-8 mb-4 bg-gray-50 mx-auto">
-        <form action="{{ route('cities.filter') }}" method="get">
-            @csrf
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-                <!-- Departure Station Input -->
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-medium mb-2" for="departure-station">Gare de départ</label>
-                    <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
-                        <option value="" selected disabled>Choisissez une ville</option>
-                        @foreach($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+    <div class="container mx-auto rounded-lg shadow-lg p-8 mb-4 bg-gray-50 mx-auto w-9/12">
+        <form method="GET" action='/search' class="flex justify-between gap-6">
+            <div class="flex w-full mb-4">
+                <select name="depart_id" class="form-select rounded-2xl w-full border p-3 mb-4 mr-4">
+                    <option value="" selected disabled>Gare de départ</option>
+                    @foreach($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
 
-                <!-- Arrival Station Input -->
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-medium mb-2" for="arrival-station">Gare de d'arrive</label>
-                    <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
-                        <option value="" selected disabled>Choisissez une ville</option>
-                        @foreach($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <select name="arrive_id" class="form-select rounded-2xl w-full border p-3 mb-4">
+                    <option value="" selected disabled>Gare d'arrivée</option>
+                    @foreach($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
             </div>
+            <!-- Search Button -->
+            <div class="mt-1">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full text-lg">Search</button>
+            </div>
+        </form>
 
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <!-- Departure Date Picker -->
+        <form action="/filter" method="GET" class="flex flex-col items-center w-full mb-4">
+            <!-- Departure Date Picker -->
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="departure-date">Departure Date</label>
-                    <input class="appearance-none bg-transparent border-b-2 border-purple-600 w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none" type="date" id="departure-date">
+                    <input name="start_date" class="appearance-none rounded-2xl bg-transparent border-b-2 border-purple-600 w-full text-gray-700 p-3 leading-tight focus:outline-none" type="date" id="departure-date">
                 </div>
-
                 <!-- Return Date Picker -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="return-date">Return Date</label>
-                    <input class="appearance-none bg-transparent border-b-2 border-purple-600 w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none" type="date" id="return-date">
-                </div>
-
-                <!-- Travelers Dropdown -->
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-medium mb-2" for="travelers">Travelers</label>
-                    <select class="block appearance-none w-full bg-white border border-purple-600 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-purple-600" id="travelers">
-                        <option>1 Adult</option>
-                        <!-- Additional options here -->
-                    </select>
+                    <input name="end_date" class="appearance-none rounded-2xl bg-transparent border-b-2 border-purple-600 w-full text-gray-700 p-3 leading-tight focus:outline-none" type="date" id="return-date">
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <!-- Class Toggle -->
-                <div class="mb-4 inline-flex">
-                    <button class="bg-purple-600 text-white px-6 py-2 rounded-l-full uppercase font-bold text-sm">1st Class</button>
-                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-r-full uppercase font-bold text-sm">2nd Class</button>
-                </div>
-            </div>
-
-            <!-- Search Button -->
-            <div class="flex justify-center mt-6">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-lg">Search</button>
+            <div class="flex flex-col md:flex-row items-center gap-3 py-2 mb-4 ">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 font-bold px-4 rounded-full text-lg" type="submit">Filter</button>
+                <a href="{{ route('home') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full text-lg">Back</a>
             </div>
         </form>
-    </div>
-</section>
-{{--<section>
-<div class="sliderAx h-auto mt-5">
-        <div id="slider-1" class="container mx-auto">
-            <div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1422&q=80)">
-                <div class="md:w-1/2">
-                    <p class="font-bold text-sm uppercase">Services</p>
-                    <p class="text-3xl font-bold">Hello world</p>
-                    <p class="text-2xl mb-10 leading-none">Carousel with TailwindCSS and jQuery</p>
-                    <a href="#" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Contact us</a>
-                </div>
-            </div> <!-- container -->
-            <br>
-        </div>
 
-        <div id="slider-2" class="container mx-auto">
-            <div class="bg-cover bg-top  h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1544144433-d50aff500b91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)">
-
-                <p class="font-bold text-sm uppercase">Services</p>
-                <p class="text-3xl font-bold">Hello world</p>
-                <p class="text-2xl mb-10 leading-none">Carousel with TailwindCSS and jQuery</p>
-                <a href="#" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Contact us</a>
-
-            </div> <!-- container -->
-        </div>
-    </div>
-    <div  class="flex justify-between w-12 mx-auto pb-2">
-        <button id="sButton1" onclick="sliderButton1()" class="bg-purple-400 rounded-full w-4 pb-2 " ></button>
-        <button id="sButton2" onclick="sliderButton2() " class="bg-purple-400 rounded-full w-4 p-2"></button>
-    </div>
-</section>--}}
-@foreach($cards as $card)
-    <div class="card hidden" data-departure-city="{{ $card->departure_city }}" data-arrival-city="{{ $card->arrival_city }}">
-        <div class="flex flex-wrap justify-center mx-5">
-            @foreach($parcours as $parcour)
-            <div class="relative my-20 mx-4 flex-wrap text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-1/4	">
-                <div class="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-                    <img src="{{ Storage::url($parcour->image) }}" alt="card-image" />
+        <div class="flex justify-center gap-10 mb-4">
+                <!-- Class Toggle -->
+                <div>
+                    <button class="bg-purple-600 text-white px-6 py-3 rounded-l-full uppercase font-bold text-sm">1st Class</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-3 rounded-r-full uppercase font-bold text-sm">2nd Class</button>
                 </div>
-                <div class="p-6">
-                    <h4 class="block mb-2 font-sans text-xl antialiased font-bold leading-snug tracking-normal text-blue-gray-900">
-                        Prix :  {{ $parcour->Prix_Parcour }} DH.
-                    </h4>
-                    <h5>
-                        Gare de depart : {{ $parcour->City_depart->name }} .
-                    </h5>
-                    <h5>
-                        Gare de arrivee : {{ $parcour->City_arrive->name }} .
-                    </h5>
-                    <h4>Available Places: {{ $parcour->nbr_place }}</h4>
-                </div>
-                <div class="space-x-6 flex ml-20 mb-5">
-                    <div class="flex items-center">
-                        <input id="radio" type="radio" name="value1" class="w-5 h-5 hidden peer" checked />
-                        <label for="radio"
-                               class="relative flex items-center justify-center p-1 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-white w-6 h-6 cursor-pointer border-2 border-green-500 rounded-full overflow-hidden">
-                            <span class="bg-green-500 rounded-full w-3 h-3"></span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="p-6 pt-0">
-                    <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="submit">
-                        Acheter
-                    </button>
+                <!-- Number of Seats Input -->
+                <div>
+                    <input class="appearance-none rounded-2xl bg-transparent border-b-2 border-purple-600 w-full text-gray-700 p-3 leading-tight focus:outline-none" type="number" placeholder="Number de reservation">
                 </div>
             </div>
-            @endforeach
-        </div>
-</div>
-@endforeach
 
+    </div>
 </section>
 
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<section>
+    <div id="default-carousel" class="relative h-full w-10/12 mx-auto my-20" data-carousel="slide">
+        <!-- Carousel wrapper -->
+        <div class="relative h-full overflow-hidden rounded-lg md:h-96">
+            <!-- Carousel items -->
+            <div data-carousel-item class="duration-700 ease-in-out">
+                <img src="{{ asset('img/14.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 1">
+            </div>
+            <div data-carousel-item class="duration-700 ease-in-out">
+                <img src="{{ asset('img/123.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 2">
+            </div>
+            <div data-carousel-item class="duration-700 ease-in-out">
+                <img src="{{ asset('img/321.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 3">
+            </div>
+            <div data-carousel-item class="duration-700 ease-in-out">
+                <img src="{{ asset('img/213.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 4">
+            </div>
+            <div data-carousel-item class="duration-700 ease-in-out">
+                <img src="{{ asset('img/14.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 5">
+            </div>
+        </div>
+        <!-- Slider controls -->
+        <button type="button" class="absolute top-1/2 transform -translate-y-1/2 left-4 z-30 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group hover:bg-white/50 dark:hover:bg-gray-800/60 focus:ring-4 focus:ring-white dark:focus:ring-gray-800/70 focus:outline-none" data-carousel-prev>
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="sr-only">Previous</span>
+        </button>
+        <button type="button" class="absolute top-1/2 transform -translate-y-1/2 right-4 z-30 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group hover:bg-white/50 dark:hover:bg-gray-800/60 focus:ring-4 focus:ring-white dark:focus:ring-gray-800/70 focus:outline-none" data-carousel-next>
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="sr-only">Next</span>
+        </button>
+    </div>
+</section>
+
+<section>
+    <div class="container flex flex-wrap justify-content-between mx-auto">
+        @if($parcours->isNotEmpty())
+            @foreach($parcours as $parcour)
+                <div class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3 mb-6 ">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-semibold text-red-600 bg-red-100 rounded-full px-3 py-1">Départ imminent</span>
+                            <span class="text-lg font-semibold text-gray-800">{{ $parcour->Prix_Parcour }} DH</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <div class="text-xs text-gray-500">Départ</div>
+                                <div class="text-xl font-bold text-gray-800">{{ $parcour->time_depart }}</div>
+                                <div class="text-xs text-gray-500">{{ $parcour->City_depart->name }}</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Durée</div>
+                                <div class="text-lg font-semibold text-gray-800">03h34min</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Arrivée</div>
+                                <div class="text-xl font-bold text-gray-800">{{ $parcour->arrive_time }}</div>
+                                <div class="text-xs text-gray-500">{{ $parcour->City_arrive->name }}</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+                                <svg class="h-6 w-6 text-gray-800 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <!-- Train icon SVG path here -->
+                                </svg>
+                                <span class="text-xs font-semibold">TL {{ $parcour->City_depart->name }} {{ $parcour->City_arrive->name }}</span>
+                            </div>
+                            <div class="text-xs text-gray-500">Direct</div>
+                        </div>
+                        <div class="flex justify-center">
+                            <button class="w-72 bg-purple-600 text-white py-2 text-bold rounded-2xl hover:bg-purple-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                                Réserver
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <p>No results found.</p>
+        @endif
+    </div>
+    <div class="mt-4">
+        {{--  {{ $parcours->links() }}--}}
+    </div>
+</section>
+
+
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 
     <script>
         document.getElementById('booking-form').addEventListener('submit', function(event) {
@@ -262,86 +275,62 @@
         document.body.classList.remove('overflow-hidden');
     }
 </script>
-<head>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-    <script>
-        var cont=0;
-        function loopSlider(){
-            var xx= setInterval(function(){
-                switch(cont)
-                {
-                    case 0:{
-                        $("#slider-1").fadeOut(400);
-                        $("#slider-2").delay(400).fadeIn(400);
-                        $("#sButton1").removeClass("bg-purple-800");
-                        $("#sButton2").addClass("bg-purple-800");
-                        cont=1;
+{{-- secript de carousel --}}
+<script>
+    const carousel = document.querySelector('[data-carousel="slide"]');
+    const prevBtn = carousel.querySelector('[data-carousel-prev]');
+    const nextBtn = carousel.querySelector('[data-carousel-next]');
+    const items = carousel.querySelectorAll('[data-carousel-item]');
+    let currentIndex = 0;
+    const intervalTime = 5000; // Temps en millisecondes entre chaque changement d'image
+    let slideInterval;
 
-                        break;
-                    }
-                    case 1:
-                    {
-
-                        $("#slider-2").fadeOut(400);
-                        $("#slider-1").delay(400).fadeIn(400);
-                        $("#sButton2").removeClass("bg-purple-800");
-                        $("#sButton1").addClass("bg-purple-800");
-
-                        cont=0;
-
-                        break;
-                    }
-
-
-                }},8000);
-
-        }
-
-        function reinitLoop(time){
-            clearInterval(xx);
-            setTimeout(loopSlider(),time);
-        }
-
-
-
-        function sliderButton1(){
-
-            $("#slider-2").fadeOut(400);
-            $("#slider-1").delay(400).fadeIn(400);
-            $("#sButton2").removeClass("bg-purple-800");
-            $("#sButton1").addClass("bg-purple-800");
-            reinitLoop(4000);
-            cont=0
-
-        }
-
-        function sliderButton2(){
-            $("#slider-1").fadeOut(400);
-            $("#slider-2").delay(400).fadeIn(400);
-            $("#sButton1").removeClass("bg-purple-800");
-            $("#sButton2").addClass("bg-purple-800");
-            reinitLoop(4000);
-            cont=1
-
-        }
-
-        $(window).ready(function(){
-            $("#slider-2").hide();
-            $("#sButton1").addClass("bg-purple-800");
-
-
-            loopSlider();
-
-
-
-
-
-
+    function showItem(index) {
+        items.forEach((item, i) => {
+            if (i === index) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
         });
+    }
 
+    function goToPrev() {
+        currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+        showItem(currentIndex);
+    }
 
-    </script>
-</head>
+    function goToNext() {
+        currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+        showItem(currentIndex);
+    }
+
+    function startSlide() {
+        slideInterval = setInterval(() => {
+            goToNext();
+        }, intervalTime);
+    }
+
+    function stopSlide() {
+        clearInterval(slideInterval);
+    }
+
+    // Événements des boutons de contrôle
+    prevBtn.addEventListener('click', () => {
+        stopSlide();
+        goToPrev();
+        startSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        stopSlide();
+        goToNext();
+        startSlide();
+    });
+
+    // Commencer le défilement automatique au chargement de la page
+    startSlide();
+</script>
 @include('layouts.footer')
 </body>
 </html>
