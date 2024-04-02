@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Parcours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 
 class ParcoursController extends Controller
@@ -24,18 +25,31 @@ class ParcoursController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'depart_id' => 'required|integer|exists:cities,id',
             'arrive_id' => 'required|integer|exists:cities,id|different:depart_id',
             'longeur_Parcour' => 'required|integer|max:255',
             'Prix_Parcour' => 'required|integer|max:255',
             'nbr_place' => 'required|integer|max:255',
+            'time_depart' => 'required|date_format:H:i:s',
+            'arrive_time' => 'required|date_format:H:i:s',
             'image' => 'required|image|mimes:png,jpg,jpeg,svg|max:10240',
         ]);
 
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('EventsImg', 'public');
-        }
+        // Parse time_depart and arrive_time into Carbon instances
+        $time_depart = Carbon::createFromFormat('H:i:s', $request->time_depart)->toTimeString();
+        $arrive_time = Carbon::createFromFormat('H:i:s', $request->arrive_time)->toTimeString();
+
+        $validated = [
+            'depart_id' => $request->depart_id,
+            'arrive_id' => $request->arrive_id,
+            'longeur_Parcour' => $request->longeur_Parcour,
+            'Prix_Parcour' => $request->Prix_Parcour,
+            'nbr_place' => $request->nbr_place,
+            'time_depart' => $time_depart,
+            'arrive_time' => $arrive_time,
+            'image' => $request->file('image')->store('EventsImg', 'public'),
+        ];
 
         Parcours::create($validated);
 
@@ -44,6 +58,7 @@ class ParcoursController extends Controller
 
     public function edit(Parcours $parcour)
     {
+
         return view('pages.Parcours', compact('parcour'));
     }
 
@@ -55,29 +70,33 @@ class ParcoursController extends Controller
             'longeur_Parcour' => 'required|integer|max:255',
             'Prix_Parcour' => 'required|integer|max:255',
             'nbr_place' => 'required|integer|max:255',
+            'time_depart' => 'required|date_format:H:i:s',
+            'arrive_time' => 'required|date_format:H:i:s',
             'image' => 'image|mimes:png,jpg,jpeg,svg|max:10240',
         ]);
 
-        $parcour->fill($request->only([
-            'depart_id',
-            'arrive_id',
-            'longeur_Parcour',
-            'Prix_Parcour',
-            'nbr_place',
-        ]));
+        // Parse time_depart and arrive_time into Carbon instances
+        $time_depart = Carbon::createFromFormat('H:i:s', $request->time_depart)->toTimeString();
+        $arrive_time = Carbon::createFromFormat('H:i:s', $request->arrive_time)->toTimeString();
 
-        // Handle image upload
+        $parcour->fill([
+            'depart_id' => $request->depart_id,
+            'arrive_id' => $request->arrive_id,
+            'longeur_Parcour' => $request->longeur_Parcour,
+            'Prix_Parcour' => $request->Prix_Parcour,
+            'nbr_place' => $request->nbr_place,
+            'time_depart' => $time_depart,
+            'arrive_time' => $arrive_time,
+        ]);
+
         if ($request->hasFile('image')) {
-            // Delete previous image if exists
             if ($parcour->image && Storage::disk('public')->exists($parcour->image)) {
                 Storage::disk('public')->delete($parcour->image);
             }
 
-            // Store new image
             $parcour->image = $request->file('image')->store('EventsImg', 'public');
         }
 
-        // Save the updated Parcours
         $parcour->save();
 
         return redirect()->back()->with('success', 'Parcours updated successfully.');
