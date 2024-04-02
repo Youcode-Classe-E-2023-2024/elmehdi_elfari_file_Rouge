@@ -16,6 +16,8 @@ class CreateParcoursTable extends Migration
             $table->integer('longeur_Parcour');
             $table->integer('Prix_Parcour');
             $table->integer('nbr_place');
+            $table->time('time_depart');
+            $table->time('arrive_time');
             $table->softDeletes();
             $table->timestamps();
         });
