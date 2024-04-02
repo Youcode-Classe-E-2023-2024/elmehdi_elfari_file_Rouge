@@ -149,7 +149,7 @@
             </div>
         @endif
 
-        <div class="max-w-7xl mt-8 mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div class="max-w-8xl mt-8 mx-auto bg-white p-6 rounded-lg shadow-md">
             <h1 class="text-2xl font-semibold mb-4">Parcour List</h1>
 
             <table class="min-w-full border border-gray-300">
@@ -161,6 +161,8 @@
                     <th class="border-b p-2">Gare_arrive</th>
                     <th class="border-b p-2">Longeur_Parcour</th>
                     <th class="border-b p-2">Prix_Parcour</th>
+                    <th class="border-b p-2">time_depart</th>
+                    <th class="border-b p-2">time_d'arrive</th>
                     <th class="border-b p-2">Nbr_Place</th>
                     <th class="border-b p-2">Action</th>
                 </tr>
@@ -200,6 +202,8 @@
                         <td class="border-b p-2">{{ $parcour->City_arrive -> name }}</td>
                         <td class="border-b p-2">{{ $parcour->longeur_Parcour }}</td>
                         <td class="border-b p-2">{{ $parcour->Prix_Parcour }}</td>
+                        <td class="border-b p-2">{{ $parcour->time_depart }}</td>
+                        <td class="border-b p-2">{{ $parcour->arrive_time }}</td>
                         <td class="border-b p-2">{{ $parcour->nbr_place }}</td>
                         <td class="border-b p-2">
                             <!-- Edit Button -->
@@ -253,6 +257,18 @@
                         {{$message}}
                         @enderror
 
+                        <label class="block mb-2">Time de depart:</label>
+                        <input type="number" name="time_depart" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
+                        @error('time_depart')
+                        {{$message}}
+                        @enderror
+
+                        <label class="block mb-2">Time d'arrive:</label>
+                        <input type="number" name="arrive_time" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
+                        @error('arrive_time')
+                        {{$message}}
+                        @enderror
+
                         <label class="block mb-2">nbr_place:</label>
                         <input type="number" name="nbr_place" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
                         @error('nbr_place')
@@ -287,7 +303,7 @@
     <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
         <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
             <h2 class="text-2xl font-semibold mb-4">Edit Parcours</h2>
-            {{--<form action="{{ route('parcours.update', $parcour) }}" method="POST" enctype="multipart/form-data">--}}
+            {{--<form action="{{ route('parcours.update', $parcours) }}" method="POST" enctype="multipart/form-data">--}}
                 @csrf
                 @method('PUT')
                 <!-- Selecteur pour la ville de départ -->
@@ -318,6 +334,18 @@
                 <input type="number" name="Prix_Parcour" class="w-full border p-2 mb-4" placeholder="Entrez le prix du parcours" value="{{ $parcour->Prix_Parcour ?? '' }}" required>
                 @error('Prix_Parcour')
                 {{ $message }}
+                @enderror
+
+                <label class="block mb-2">Time de depart:</label>
+                <input type="number" name="time_depart" class="w-full border p-2 mb-4" placeholder="Enter station name" value="{{ $parcour->time_depart ?? '' }}" required>
+                @error('time_depart')
+                {{$message}}
+                @enderror
+
+                <label class="block mb-2">Time d'arrive:</label>
+                <input type="number" name="arrive_time" class="w-full border p-2 mb-4" placeholder="Enter station name" value="{{ $parcour->arrive_time ?? '' }}" required>
+                @error('arrive_time')
+                {{$message}}
                 @enderror
 
                 <!-- Champ pour le nombre de places -->
