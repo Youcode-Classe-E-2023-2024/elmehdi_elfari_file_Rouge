@@ -16,6 +16,8 @@ class Parcours extends Model
         'longeur_Parcour',
         'Prix_Parcour',
         'nbr_place',
+        'time_depart',
+        'arrive_time',
         'image',
     ];
 
@@ -28,5 +30,6 @@ class Parcours extends Model
     {
         return $this->belongsTo(City::class, 'arrive_id');
     }
+
 
 }
