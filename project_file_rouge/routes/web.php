@@ -76,5 +76,6 @@ Route::put('/cities/{city}', [CityController::class, 'update'])->name('city.upda
 
 Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
 
-Route::get('/cities/filter', [CityController::class, 'filterByName'])->name('cities.filter');
+Route::get('/search', [HomeController::class, 'search']);
 
+Route::get('/filter',[HomeController::class,'filter']);
