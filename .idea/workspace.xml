@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="495b24d2-fc1a-4977-8fd9-ea48928f87b6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/project_file_rouge/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/CityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/CityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/filter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/filter.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/ParcoursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/ParcoursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_03_21_145404_create_parcours_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_03_21_145404_create_parcours_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/parcours.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/parcours.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,19 +35,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/elmehdi_elfari_file_Rouge",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "MTConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/elmehdi_elfari_file_Rouge&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\project_file_rouge\public\js" />
@@ -53,6 +56,16 @@
       <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\train\app\Http\Controllers\Auth" />
       <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\train\resources\views\pages" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ParcoursController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/ParcoursController.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.ParcoursController.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -72,7 +85,9 @@
       <workItem from="1711312881031" duration="28609000" />
       <workItem from="1711553090535" duration="18307000" />
       <workItem from="1711805785155" duration="8281000" />
-      <workItem from="1711888466940" duration="661000" />
+      <workItem from="1711888466940" duration="4897000" />
+      <workItem from="1711964991185" duration="16302000" />
+      <workItem from="1712007655778" duration="9675000" />
     </task>
     <servers />
   </component>
