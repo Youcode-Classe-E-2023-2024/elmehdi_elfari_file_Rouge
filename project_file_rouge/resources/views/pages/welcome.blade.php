@@ -8,9 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body class="bg-blueGray-200">
+<body class="bg-blueGray-600">
 @include('layouts.nav')
-
+<link rel="stylesheet" href=" {{ asset('css/app.css') }}">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
@@ -36,11 +36,11 @@
     </div>
     <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px)">
         <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-            <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
+            <polygon class="text-blueGray-600 fill-current" points="2560 0 2560 100 0 100"></polygon>
         </svg>
     </div>
 </div>
-<section class="pb-10 bg-blueGray-200 ">
+<section class="pb-10 bg-blueGray-600 ">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
             <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -147,42 +147,59 @@
     </div>
 </section>
 
-<section>
-    <div id="default-carousel" class="relative h-full w-10/12 mx-auto my-20" data-carousel="slide">
-        <!-- Carousel wrapper -->
-        <div class="relative h-full overflow-hidden rounded-lg md:h-96">
-            <!-- Carousel items -->
-            <div data-carousel-item class="duration-700 ease-in-out">
-                <img src="{{ asset('img/14.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 1">
-            </div>
-            <div data-carousel-item class="duration-700 ease-in-out">
-                <img src="{{ asset('img/123.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 2">
-            </div>
-            <div data-carousel-item class="duration-700 ease-in-out">
-                <img src="{{ asset('img/321.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 3">
-            </div>
-            <div data-carousel-item class="duration-700 ease-in-out">
-                <img src="{{ asset('img/213.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 4">
-            </div>
-            <div data-carousel-item class="duration-700 ease-in-out">
-                <img src="{{ asset('img/14.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 5">
-            </div>
+
+
+<div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <!-- Carousel wrapper -->
+    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+        <!-- Item 1 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-1.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
-        <!-- Slider controls -->
-        <button type="button" class="absolute top-1/2 transform -translate-y-1/2 left-4 z-30 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group hover:bg-white/50 dark:hover:bg-gray-800/60 focus:ring-4 focus:ring-white dark:focus:ring-gray-800/70 focus:outline-none" data-carousel-prev>
+        <!-- Item 2 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+        <!-- Item 3 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-3.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+        <!-- Item 4 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-4.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+        <!-- Item 5 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-5.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+    </div>
+    <!-- Slider indicators -->
+    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+    </div>
+    <!-- Slider controls -->
+    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
             </svg>
             <span class="sr-only">Previous</span>
-        </button>
-        <button type="button" class="absolute top-1/2 transform -translate-y-1/2 right-4 z-30 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group hover:bg-white/50 dark:hover:bg-gray-800/60 focus:ring-4 focus:ring-white dark:focus:ring-gray-800/70 focus:outline-none" data-carousel-next>
+        </span>
+    </button>
+    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
             </svg>
             <span class="sr-only">Next</span>
-        </button>
-    </div>
-</section>
+        </span>
+    </button>
+</div>
+
 
 <section>
     <div class="container flex flex-wrap justify-content-between mx-auto">
@@ -192,21 +209,21 @@
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <div class="flex justify-between items-center mb-4">
                             <span class="text-sm font-semibold text-red-600 bg-red-100 rounded-full px-3 py-1">Départ imminent</span>
-                            <span class="text-lg font-semibold text-gray-800">{{ $parcour->Prix_Parcour }} DH</span>
+                            <span class="text-lg font-semibold font-bold bg-gray-200 rounded-2xl p-2 text-gray-800">{{ $parcour->Prix_Parcour }} DH</span>
                         </div>
                         <div class="flex justify-between items-center mb-4">
                             <div>
                                 <div class="text-xs text-gray-500">Départ</div>
-                                <div class="text-xl font-bold text-gray-800">{{ $parcour->time_depart }}</div>
+                                <div class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->time_depart)->format('H:i') }}</div>
                                 <div class="text-xs text-gray-500">{{ $parcour->City_depart->name }}</div>
                             </div>
                             <div>
                                 <div class="text-xs text-gray-500">Durée</div>
-                                <div class="text-lg font-semibold text-gray-800">03h34min</div>
+                                <div class="text-lg font-semibold text-gray-800">{{ $parcour->duree }}</div>
                             </div>
                             <div>
                                 <div class="text-xs text-gray-500">Arrivée</div>
-                                <div class="text-xl font-bold text-gray-800">{{ $parcour->arrive_time }}</div>
+                                <div class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->arrive_time)->format('H:i') }}</div>
                                 <div class="text-xs text-gray-500">{{ $parcour->City_arrive->name }}</div>
                             </div>
                         </div>
@@ -215,12 +232,12 @@
                                 <svg class="h-6 w-6 text-gray-800 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <!-- Train icon SVG path here -->
                                 </svg>
-                                <span class="text-xs font-semibold">TL {{ $parcour->City_depart->name }} {{ $parcour->City_arrive->name }}</span>
+                                <span class="text-xs font-semibold">TL {{ $parcour->City_depart->name }} / {{ $parcour->City_arrive->name }}</span>
                             </div>
                             <div class="text-xs text-gray-500">Direct</div>
                         </div>
                         <div class="flex justify-center">
-                            <button class="w-72 bg-purple-600 text-white py-2 text-bold rounded-2xl hover:bg-purple-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                            <button class="w-72 bg-purple-600 text-white py-2 text-bold rounded-lg hover:bg-purple-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
                                 Réserver
                             </button>
                         </div>
@@ -238,99 +255,8 @@
 </section>
 
 
-
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-
-    <script>
-        document.getElementById('booking-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
-
-            // Get selected departure and arrival cities
-            const departureCity = document.getElementById('departure-city').value;
-            const arrivalCity = document.getElementById('arrival-city').value;
-
-            // Filter cards based on selected cities
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                const cardDepartureCity = card.dataset.departureCity;
-                const cardArrivalCity = card.dataset.arrivalCity;
-
-                if (cardDepartureCity == departureCity && cardArrivalCity == arrivalCity) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
-    </script>
-<script>
-    // Functions to open and close the modal
-    function openReservationModal() {
-        document.getElementById('reservationModal').style.display = 'block';
-        document.body.classList.add('overflow-hidden');
-    }
-
-    function closeReservationModal() {
-        document.getElementById('reservationModal').style.display = 'none';
-        document.body.classList.remove('overflow-hidden');
-    }
-</script>
 {{-- secript de carousel --}}
-<script>
-    const carousel = document.querySelector('[data-carousel="slide"]');
-    const prevBtn = carousel.querySelector('[data-carousel-prev]');
-    const nextBtn = carousel.querySelector('[data-carousel-next]');
-    const items = carousel.querySelectorAll('[data-carousel-item]');
-    let currentIndex = 0;
-    const intervalTime = 5000; // Temps en millisecondes entre chaque changement d'image
-    let slideInterval;
 
-    function showItem(index) {
-        items.forEach((item, i) => {
-            if (i === index) {
-                item.classList.remove('hidden');
-            } else {
-                item.classList.add('hidden');
-            }
-        });
-    }
-
-    function goToPrev() {
-        currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
-        showItem(currentIndex);
-    }
-
-    function goToNext() {
-        currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
-        showItem(currentIndex);
-    }
-
-    function startSlide() {
-        slideInterval = setInterval(() => {
-            goToNext();
-        }, intervalTime);
-    }
-
-    function stopSlide() {
-        clearInterval(slideInterval);
-    }
-
-    // Événements des boutons de contrôle
-    prevBtn.addEventListener('click', () => {
-        stopSlide();
-        goToPrev();
-        startSlide();
-    });
-
-    nextBtn.addEventListener('click', () => {
-        stopSlide();
-        goToNext();
-        startSlide();
-    });
-
-    // Commencer le défilement automatique au chargement de la page
-    startSlide();
-</script>
 @include('layouts.footer')
 </body>
 </html>
