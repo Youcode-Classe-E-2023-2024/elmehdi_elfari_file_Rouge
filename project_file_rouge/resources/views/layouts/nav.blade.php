@@ -9,11 +9,11 @@
 
 </head>
 
-<body class="container mx-auto">
+<body>
 
 <!-- component -->
-<header class="bg-blueGray-200">
-    <nav class="container mx-auto py-2">
+<header class="navbar bg-blueGray-400 fixed z-10 w-full bg-opacity-25">
+    <nav class="container mx-auto py-2 ">
         <div class="flex items-center justify-between">
             <div class="flex text-black-50 font-bold text-xl">
                 <a href="{{ url('/') }} " class="flex items-center"><img class="w-24 h-16"  src="{{ asset('img/16.png') }}" alt="Train">Train</a>
@@ -46,6 +46,19 @@
 
     </nav>
 </header>
+<script>
+    window.addEventListener('scroll', function () {
+        console.log('test')
+        var navbar = document.querySelector('.navbar');
+        if (window.scrollY > 0) {
+            navbar.classList.add('bg-blueGray-200');
+            navbar.classList.remove('bg-opacity-25');
+        } else {
+            navbar.classList.remove('bg-blueGray-200');
+            navbar.classList.add('bg-blueGray-200', 'bg-opacity-25');
+        }
+    });
+</script>
 </body>
 
 </html>

@@ -126,8 +126,8 @@
             <div class="flex justify-center gap-10 mb-4">
                 <!-- Class Toggle -->
                 <div>
-                    <button class="bg-purple-600 text-white px-6 py-3 rounded-l-full uppercase font-bold text-sm">1st Class</button>
-                    <button class="bg-gray-200 text-gray-700 px-6 py-3 rounded-r-full uppercase font-bold text-sm">2nd Class</button>
+                    <button class="bg-purple-600 text-white px-3 py-3 rounded-l-full uppercase font-bold text-sm">1st Class</button>
+                    <button class="bg-gray-200 text-gray-700 px-3 py-3 rounded-r-full uppercase font-bold text-sm">2nd Class</button>
                 </div>
                 <!-- Number of Seats Input -->
                 <div>

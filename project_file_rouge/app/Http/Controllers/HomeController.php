@@ -22,10 +22,12 @@ class HomeController extends Controller
         $searchQuery = $request->input('query');
         $departId = $request->input('depart_id');
         $arriveId = $request->input('arrive_id');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
 
         $cities = City::all();
 
-        $parcours = Parcours::query();
+        $parcours = Parcours::query()->with('City_depart', 'City_arrive');
 
         if ($searchQuery) {
             $parcours->where(function($query) use ($searchQuery) {
@@ -47,17 +49,15 @@ class HomeController extends Controller
             $parcours->where('arrive_id', $arriveId);
         }
 
-        $parcours = $parcours->with('City_depart', 'City_arrive')->paginate(6);
+        if ($start_date && $end_date) {
+            $parcours->whereBetween('created_at', [$start_date, $end_date]);
+        }
 
-        $start_date = $request->input('start_date');
-        $end_date = $request->input('end_date');
-        $cities = City::all();
-
-        $parcours = Parcours::where('created_at', '>=', $start_date)->get();
-
+        $parcours = $parcours->get();
 
         return view('pages.welcome', compact('parcours', 'cities'));
     }
+
 
 
 }

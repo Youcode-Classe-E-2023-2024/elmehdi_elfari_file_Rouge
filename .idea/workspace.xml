@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="495b24d2-fc1a-4977-8fd9-ea48928f87b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project_file_rouge/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/ParcoursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/ParcoursController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_03_21_145404_create_parcours_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_03_21_145404_create_parcours_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_03_21_182300_modify_parcours_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_03_21_182300_modify_parcours_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/parcours.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/parcours.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/routes/web.php" afterDir="false" />
     </list>
@@ -88,6 +87,9 @@
       <workItem from="1711888466940" duration="4897000" />
       <workItem from="1711964991185" duration="16302000" />
       <workItem from="1712007655778" duration="9675000" />
+      <workItem from="1712574680566" duration="276000" />
+      <workItem from="1712574979652" duration="138000" />
+      <workItem from="1712575138666" duration="607000" />
     </task>
     <servers />
   </component>

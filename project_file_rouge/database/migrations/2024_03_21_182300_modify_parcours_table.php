@@ -12,7 +12,6 @@ class ModifyParcoursTable extends Migration
     public function up()
     {
         Schema::table('parcours', function (Blueprint $table) {
-            $table->string('image');
             $table->foreignId('depart_id')->constrained('cities')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('arrive_id')->constrained('cities')->onDelete('cascade')->onUpdate('cascade');
         });

@@ -93,7 +93,6 @@ class ParcoursController extends Controller
             'duree' => $duree,
         ]);
 
-        // Exclude 'image' from fillable fields to prevent update attempt
         $parcour->save();
 
         return redirect()->back()->with('success', 'Parcours updated successfully.');

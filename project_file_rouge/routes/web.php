@@ -27,6 +27,31 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/dashboard/reservation', [DashboardController::class ,'reservation'])->name('reservation');
 
+    Route::get('/Parcours', [ParcoursController::class, 'index'])->name('Parcours');
+
+    Route::post('/Parcours', [ParcoursController::class, 'store'])->name('Parcours.store');
+
+    Route::get('/dashboard/parcour/create', [ParcoursController::class, 'create'])->name('create.parcours');
+
+    Route::get('/parcours/{id}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
+
+    Route::put('/parcours/{id}', [ParcoursController::class, 'update'])->name('parcours.update');
+
+    Route::delete('/parcours/{parcours}', [ParcoursController::class, 'destroy'])->name('parcours.destroy');
+
+    Route::get('/cities', [CityController::class, 'index'])->name('city');
+
+    Route::get('/cities/create', [CityController::class, 'create'])->name('city.create');
+
+    Route::post('/cities', [CityController::class, 'store'])->name('city.store');
+
+    Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('city.edit');
+
+    Route::put('/cities/{city}', [CityController::class, 'update'])->name('city.update');
+
+    Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
+
+
 
 });
 
@@ -49,35 +74,13 @@ Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset')
 
 
 
-Route::get('/Parcours', [ParcoursController::class, 'index'])->name('Parcours');
-
-Route::post('/Parcours', [ParcoursController::class, 'store'])->name('Parcours.store');
-
-Route::get('/dashboard/parcour/create', [ParcoursController::class, 'create'])->name('create.parcours');
-
-Route::get('/parcours/{id}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
-
-Route::put('/parcours/{id}', [ParcoursController::class, 'update'])->name('parcours.update');
-
-Route::delete('/parcours/{parcours}', [ParcoursController::class, 'destroy'])->name('parcours.destroy');
-
-
-Route::get('/cities', [CityController::class, 'index'])->name('city');
-
-Route::get('/cities/create', [CityController::class, 'create'])->name('city.create');
-
-Route::post('/cities', [CityController::class, 'store'])->name('city.store');
-
-Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('city.edit');
-
-Route::put('/cities/{city}', [CityController::class, 'update'])->name('city.update');
-
-Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
 
 Route::get('/search', [HomeController::class, 'search']);
 
 Route::get('/filter',[HomeController::class,'filter']);
 
 Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+
 Route::post('/session', [StripeController::class, 'createSession']);
+
 Route::get('/success', [StripeController::class,'success'])->name('success');
