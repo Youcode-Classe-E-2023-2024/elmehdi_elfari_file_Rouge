@@ -61,7 +61,6 @@ class RegisterController extends Controller
             // Redirect admins to a specific route if needed
         }
 
-        // Redirect to a default route if no specific redirect is needed
         return redirect('login');
     }
 

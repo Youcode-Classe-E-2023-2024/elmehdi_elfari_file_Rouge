@@ -140,12 +140,15 @@
             </div>
         </nav>
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+            <div class="container bg-red-100 text-red-800  pl-4 pr-10 py-4 rounded-md relative" role="alert">
+                <strong class="font-bold text-base">Error!</strong>
+                <div class="block text-sm sm:inline max-sm:mt-1 max-sm:ml-0 mx-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         @endif
 
@@ -156,7 +159,6 @@
                 <thead>
                 <tr>
                     <th class="border-b p-2">ID</th>
-                    <th class="border-b p-2">Image</th>
                     <th class="border-b p-2">Care_depart</th>
                     <th class="border-b p-2">Gare_arrive</th>
                     <th class="border-b p-2">Longeur_Parcour</th>
@@ -197,7 +199,6 @@
                 @foreach($parcours as $parcour)
                     <tr>
                         <td class="border-b p-2">{{ $parcour->id }}</td>
-                        <td class="border-b p-2 w-28"><img src="{{ Storage::url($parcour->image) }}" alt=""></td>
                         <td class="border-b p-2">{{ $parcour->City_depart -> name }}</td>
                         <td class="border-b p-2">{{ $parcour->City_arrive -> name }}</td>
                         <td class="border-b p-2">{{ $parcour->longeur_Parcour }}</td>
@@ -207,15 +208,81 @@
                         <td class="border-b p-2">{{ $parcour->nbr_place }}</td>
                         <td class="border-b p-2">
                             <!-- Edit Button -->
-                            <button onclick="openEditModal('parcour_id', 'parcour_name')" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Edit</button>
+                            <button onclick="openEditModal({{$parcour->id}}, 'parcour_name')" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Edit</button>
                             <!-- Delete Form -->
                             <form action="{{ route('parcours.destroy', $parcour->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-500 text-white p-2 rounded-full hover:bg-red-600 focus:outline-none focus:ring focus:border-red-300">Delete</button>
                             </form>
+                            <div id="editModal-{{$parcour->id}}" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                                <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
+                                    <h2 class="text-2xl font-semibold mb-4">Edit Parcours</h2>
+                                    <form action="{{ route('parcours.update', $parcour) }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <!-- Selecteur pour la ville de départ -->
+                                        <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
+                                            <option value="" selected disabled>Choisissez une ville</option>
+                                            @foreach($cities as $city)
+                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="text-red-500">
+                                            @error('depart_id')
+                                            {{$message}}
+                                            @enderror
+                                        </div>
+
+                                        <!-- Selecteur pour la ville d'arrivée -->
+                                        <select id="city" name="arrive_id" class="form-select w-full border p-2 mb-4">
+                                            <option value="" selected disabled>Choisissez une ville</option>
+                                            @foreach($cities as $city)
+                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <!-- Champ pour la longueur du parcours -->
+                                        <label class="block mb-2">Longueur du Parcours:</label>
+                                        <input type="number" name="longeur_Parcour" class="w-full border p-2 mb-4" placeholder="Entrez la longueur du parcours" value="{{ $parcour->longeur_Parcour ?? '' }}" required>
+                                        @error('longeur_Parcour')
+                                        {{ $message }}
+                                        @enderror
+
+                                        <!-- Champ pour le prix du parcours -->
+                                        <label class="block mb-2">Prix du Parcours:</label>
+                                        <input type="number" name="Prix_Parcour" class="w-full border p-2 mb-4" placeholder="Entrez le prix du parcours" value="{{ $parcour->Prix_Parcour ?? '' }}" required>
+                                        @error('Prix_Parcour')
+                                        {{ $message }}
+                                        @enderror
+
+                                        <label class="block mb-2">Time de depart:</label>
+                                        <input type="time" name="time_depart" class="w-full border p-2 mb-4" value="{{ $parcour->time_depart ?? '' }}" step="60" required>
+
+                                        @error('time_depart')
+                                        {{$message}}
+                                        @enderror
+
+                                        <label class="block mb-2">Time d'arrivée:</label>
+                                        <input type="time" name="arrive_time" class="w-full border p-2 mb-4" value="{{ $parcour->arrive_time ?? '' }}" step="60" required>
+                                        @error('arrive_time')
+                                        {{$message}}
+                                        @enderror
+                                        <!-- Champ pour le nombre de places -->
+                                        <label class="block mb-2">Nombre de Places:</label>
+                                        <input type="number" name="nbr_place" class="w-full border p-2 mb-4" placeholder="Entrez le nombre de places" value="{{ $parcour->nbr_place ?? '' }}" required>
+                                        @error('nbr_place')
+                                        {{ $message }}
+                                        @enderror
+
+                                        <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Update</button>
+                                    </form>
+                                    <button onclick="closeEditModal({{$parcour->id}})" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
+
                 @endforeach
                 </tbody>
             </table>
@@ -258,13 +325,14 @@
                         @enderror
 
                         <label class="block mb-2">Time de depart:</label>
-                        <input type="number" name="time_depart" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
+                        <input type="time" name="time_depart" class="w-full border p-2 mb-4" step="60" required>
+
                         @error('time_depart')
                         {{$message}}
                         @enderror
 
-                        <label class="block mb-2">Time d'arrive:</label>
-                        <input type="number" name="arrive_time" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
+                        <label class="block mb-2">Time d'arrivée:</label>
+                        <input type="time" name="arrive_time" class="w-full border p-2 mb-4" step="60" required>
                         @error('arrive_time')
                         {{$message}}
                         @enderror
@@ -272,23 +340,6 @@
                         <label class="block mb-2">nbr_place:</label>
                         <input type="number" name="nbr_place" class="w-full border p-2 mb-4" placeholder="Enter station name" required>
                         @error('nbr_place')
-                        {{$message}}
-                        @enderror
-
-                        <label for="uploadFile1"
-                               class="bg-gray-800 hover:bg-gray-700 text-white text-sm px-4 py-2.5 outline-none rounded w-max cursor-pointer mx-auto block font-[sans-serif]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-2 fill-white inline" viewBox="0 0 32 32">
-                                <path
-                                    d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                                    data-original="#000000" />
-                                <path
-                                    d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                                    data-original="#000000" />
-                            </svg>
-                            Upload
-                            <input type="file" name="image" id="uploadFile1" accept=".png, .jpg, .jpeg, .svg" class="hidden" />
-                        </label>
-                        @error('image')
                         {{$message}}
                         @enderror
 
@@ -300,85 +351,7 @@
         </div>
     </div>
     <!-- Edit Category Modal -->
-    <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-        <div class="bg-white p-8 max-w-md mx-auto rounded-md shadow-lg">
-            <h2 class="text-2xl font-semibold mb-4">Edit Parcours</h2>
-            {{--<form action="{{ route('parcours.update', $parcours) }}" method="POST" enctype="multipart/form-data">--}}
-                @csrf
-                @method('PUT')
-                <!-- Selecteur pour la ville de départ -->
-                <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
-                    <option value="" selected disabled>Choisissez une ville</option>
-                    @foreach($cities as $city)
-                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                    @endforeach
-                </select>
 
-                <!-- Selecteur pour la ville d'arrivée -->
-            <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
-                <option value="" selected disabled>Choisissez une ville</option>
-                @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-
-                <!-- Champ pour la longueur du parcours -->
-                <label class="block mb-2">Longueur du Parcours:</label>
-                <input type="number" name="longeur_Parcour" class="w-full border p-2 mb-4" placeholder="Entrez la longueur du parcours" value="{{ $parcour->longeur_Parcour ?? '' }}" required>
-                @error('longeur_Parcour')
-                {{ $message }}
-                @enderror
-
-                <!-- Champ pour le prix du parcours -->
-                <label class="block mb-2">Prix du Parcours:</label>
-                <input type="number" name="Prix_Parcour" class="w-full border p-2 mb-4" placeholder="Entrez le prix du parcours" value="{{ $parcour->Prix_Parcour ?? '' }}" required>
-                @error('Prix_Parcour')
-                {{ $message }}
-                @enderror
-
-                <label class="block mb-2">Time de depart:</label>
-                <input type="number" name="time_depart" class="w-full border p-2 mb-4" placeholder="Enter station name" value="{{ $parcour->time_depart ?? '' }}" required>
-                @error('time_depart')
-                {{$message}}
-                @enderror
-
-                <label class="block mb-2">Time d'arrive:</label>
-                <input type="number" name="arrive_time" class="w-full border p-2 mb-4" placeholder="Enter station name" value="{{ $parcour->arrive_time ?? '' }}" required>
-                @error('arrive_time')
-                {{$message}}
-                @enderror
-
-                <!-- Champ pour le nombre de places -->
-                <label class="block mb-2">Nombre de Places:</label>
-                <input type="number" name="nbr_place" class="w-full border p-2 mb-4" placeholder="Entrez le nombre de places" value="{{ $parcour->nbr_place ?? '' }}" required>
-                @error('nbr_place')
-                {{ $message }}
-                @enderror
-
-                <label for="uploadFile1"
-                       class="bg-gray-800 hover:bg-gray-700 text-white text-sm px-4 py-2.5 outline-none rounded w-max cursor-pointer mx-auto block font-[sans-serif]">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-2 fill-white inline" viewBox="0 0 32 32">
-                        <path
-                            d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                            data-original="#000000" />
-                        <path
-                            d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                            data-original="#000000" />
-                    </svg>
-                    Upload
-                    <input type="file" name="image" id="uploadFile1" accept=".png, .jpg, .jpeg, .svg" class="hidden" />
-                </label>
-                @error('image')
-                {{$message}}
-                @enderror
-
-
-                <button type="submit" class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Update</button>
-            </form>
-
-            <button onclick="closeEditModal()" class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
-        </div>
-    </div>
 
 
     <!-- JavaScript -->
@@ -386,14 +359,19 @@
     <script>
         // Function to open the edit modal and populate data
         function openEditModal(id, name) {
-            document.getElementById('editModal').classList.remove('hidden');
+            console.log(id)
+            let elm = `editModal-${id}`;
+            console.log(elm)
+
+            document.getElementById(elm).classList.remove('hidden');
             document.getElementById('editCategoryName').value = name;
             document.getElementById('editCategoryId').value = id;
         }
 
         // Function to close the edit modal
-        function closeEditModal() {
-            document.getElementById('editModal').classList.add('hidden');
+        function closeEditModal(id) {
+            let elm = `editModal-${id}`;
+            document.getElementById(elm).classList.add('hidden');
         }
 
         // Function to open the add modal

@@ -31,14 +31,14 @@ class ParcoursController extends Controller
             'longeur_Parcour' => 'required|integer|max:255',
             'Prix_Parcour' => 'required|integer|max:255',
             'nbr_place' => 'required|integer|max:255',
-            'time_depart' => 'required|date_format:H:i:s',
-            'arrive_time' => 'required|date_format:H:i:s',
-            'image' => 'required|image|mimes:png,jpg,jpeg,svg|max:10240',
+            'time_depart' => 'required|date_format:H:i',
+            'arrive_time' => 'required|date_format:H:i|after:time_depart',
         ]);
 
-        // Parse time_depart and arrive_time into Carbon instances
-        $time_depart = Carbon::createFromFormat('H:i:s', $request->time_depart)->toTimeString();
-        $arrive_time = Carbon::createFromFormat('H:i:s', $request->arrive_time)->toTimeString();
+        $time_depart = \Carbon\Carbon::createFromFormat('H:i', $request->time_depart);
+        $arrive_time = \Carbon\Carbon::createFromFormat('H:i', $request->arrive_time);
+
+        $duree = $time_depart->diff($arrive_time)->format('%Hh %Im');
 
         $validated = [
             'depart_id' => $request->depart_id,
@@ -48,7 +48,7 @@ class ParcoursController extends Controller
             'nbr_place' => $request->nbr_place,
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
-            'image' => $request->file('image')->store('EventsImg', 'public'),
+            'duree' => $duree,
         ];
 
         Parcours::create($validated);
@@ -56,28 +56,31 @@ class ParcoursController extends Controller
         return redirect()->back()->with('success', 'Parcours created successfully.');
     }
 
-    public function edit(Parcours $parcour)
-    {
 
+
+    public function edit($id)
+    {
+        $parcour = Parcours::findOrFail($id);
         return view('pages.Parcours', compact('parcour'));
     }
 
-    public function update(Request $request, Parcours $parcour)
+    public function update(Request $request, $id)
     {
+        $parcour = Parcours::findOrFail($id);
         $request->validate([
             'depart_id' => 'required',
             'arrive_id' => 'required',
             'longeur_Parcour' => 'required|integer|max:255',
             'Prix_Parcour' => 'required|integer|max:255',
             'nbr_place' => 'required|integer|max:255',
-            'time_depart' => 'required|date_format:H:i:s',
-            'arrive_time' => 'required|date_format:H:i:s',
-            'image' => 'image|mimes:png,jpg,jpeg,svg|max:10240',
+            'time_depart' => 'required|date_format:H:i',
+            'arrive_time' => 'required|date_format:H:i|after:time_depart',
         ]);
 
-        // Parse time_depart and arrive_time into Carbon instances
-        $time_depart = Carbon::createFromFormat('H:i:s', $request->time_depart)->toTimeString();
-        $arrive_time = Carbon::createFromFormat('H:i:s', $request->arrive_time)->toTimeString();
+        $time_depart = \Carbon\Carbon::createFromFormat('H:i', $request->time_depart);
+        $arrive_time = \Carbon\Carbon::createFromFormat('H:i', $request->arrive_time);
+
+        $duree = $time_depart->diff($arrive_time)->format('%Hh %Im');
 
         $parcour->fill([
             'depart_id' => $request->depart_id,
@@ -87,21 +90,14 @@ class ParcoursController extends Controller
             'nbr_place' => $request->nbr_place,
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
+            'duree' => $duree,
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($parcour->image && Storage::disk('public')->exists($parcour->image)) {
-                Storage::disk('public')->delete($parcour->image);
-            }
-
-            $parcour->image = $request->file('image')->store('EventsImg', 'public');
-        }
-
+        // Exclude 'image' from fillable fields to prevent update attempt
         $parcour->save();
 
         return redirect()->back()->with('success', 'Parcours updated successfully.');
     }
-
 
 
     public function destroy(Parcours $parcours)

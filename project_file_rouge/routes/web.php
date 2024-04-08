@@ -9,7 +9,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ParcoursController;
-use App\Http\Controllers\TicketBookingController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,11 +55,9 @@ Route::post('/Parcours', [ParcoursController::class, 'store'])->name('Parcours.s
 
 Route::get('/dashboard/parcour/create', [ParcoursController::class, 'create'])->name('create.parcours');
 
-Route::get('/parcours/{parcour}', [ParcoursController::class, 'show'])->name('show.parcours');
+Route::get('/parcours/{id}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
 
-Route::get('/parcours/{parcour}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
-
-Route::put('/parcours/{parcour}', [ParcoursController::class, 'update'])->name('parcours.update');
+Route::put('/parcours/{id}', [ParcoursController::class, 'update'])->name('parcours.update');
 
 Route::delete('/parcours/{parcours}', [ParcoursController::class, 'destroy'])->name('parcours.destroy');
 
@@ -79,3 +77,7 @@ Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.
 Route::get('/search', [HomeController::class, 'search']);
 
 Route::get('/filter',[HomeController::class,'filter']);
+
+Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::post('/session', [StripeController::class, 'createSession']);
+Route::get('/success', [StripeController::class,'success'])->name('success');

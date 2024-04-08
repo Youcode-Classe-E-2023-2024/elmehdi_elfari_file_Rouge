@@ -12,7 +12,7 @@
 <body class="container mx-auto">
 
 <!-- component -->
-<header class="bg-gray-25 bg-opacity-20">
+<header class="bg-blueGray-200">
     <nav class="container mx-auto py-2">
         <div class="flex items-center justify-between">
             <div class="flex text-black-50 font-bold text-xl">
@@ -21,7 +21,6 @@
             <div class="hidden md:block">
                 <ul class="flex items-center space-x-8">
                     <li><a href="{{ url('/') }}" class="text-black-50">Home</a></li>
-                    <li><a href="{{ route('dashboard') }}" class="text-black-50">Dashboard</a></li>
                     <li><a href="#" class="text-black-50">About</a></li>
                     <li><a href="#" class="text-black-50">Services</a></li>
                     <li><a href="{{ route('Form-register') }}" class="block px-4 py-2 text-white bg-gray-700 rounded">Contact</a></li>
