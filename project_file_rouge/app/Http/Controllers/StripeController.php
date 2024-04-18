@@ -10,7 +10,7 @@ class StripeController extends Controller
 {
     public function checkout()
     {
-        return view('pages.welcome');
+        return view('pages.home');
     }
 
     public function createSession(Request $request)
