@@ -13,9 +13,9 @@ class ParcoursController extends Controller
 {
     public function index()
     {
-      $parcours = Parcours::with('City_depart','City_arrive')->get();
-      $cities = City::all();
-        return view('pages.Parcours', compact('parcours','cities'));
+        $parcours = Parcours::with('City_depart', 'City_arrive')->get();
+        $cities = City::all();
+        return view('pages.Parcours', compact('parcours', 'cities'));
     }
 
     public function create()
@@ -32,6 +32,8 @@ class ParcoursController extends Controller
             'Prix_Parcour' => 'required|integer|max:255',
             'nbr_place' => 'required|integer|max:255',
             'time_depart' => 'required|date_format:H:i',
+            'depart_date' => 'required|date_format:Y-m-d',
+            'arrive_date' => 'required|date_format:Y-m-d|after:depart_date',
             'arrive_time' => 'required|date_format:H:i|after:time_depart',
         ]);
 
@@ -39,6 +41,11 @@ class ParcoursController extends Controller
         $arrive_time = \Carbon\Carbon::createFromFormat('H:i', $request->arrive_time);
 
         $duree = $time_depart->diff($arrive_time)->format('%Hh %Im');
+
+
+        $depart_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->depart_date)->toDateString();
+        $arrive_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->arrive_date)->toDateString();
+
 
         $validated = [
             'depart_id' => $request->depart_id,
@@ -48,6 +55,8 @@ class ParcoursController extends Controller
             'nbr_place' => $request->nbr_place,
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
+            'depart_date' => $depart_date,
+            'arrive_date' => $arrive_date,
             'duree' => $duree,
         ];
 
@@ -55,8 +64,6 @@ class ParcoursController extends Controller
 
         return redirect()->back()->with('success', 'Parcours created successfully.');
     }
-
-
 
     public function edit($id)
     {
@@ -74,11 +81,16 @@ class ParcoursController extends Controller
             'Prix_Parcour' => 'required|integer|max:255',
             'nbr_place' => 'required|integer|max:255',
             'time_depart' => 'required|date_format:H:i',
+            'depart_date' => 'required|date_format:Y-m-d',
+            'arrive_date' => 'required|date_format:Y-m-d|after:depart_date',
             'arrive_time' => 'required|date_format:H:i|after:time_depart',
         ]);
 
         $time_depart = \Carbon\Carbon::createFromFormat('H:i', $request->time_depart);
         $arrive_time = \Carbon\Carbon::createFromFormat('H:i', $request->arrive_time);
+
+        $depart_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->depart_date);
+        $arrive_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->arrive_date);
 
         $duree = $time_depart->diff($arrive_time)->format('%Hh %Im');
 
@@ -90,6 +102,8 @@ class ParcoursController extends Controller
             'nbr_place' => $request->nbr_place,
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
+            'depart_date' => $depart_date,
+            'arrive_date' => $arrive_date,
             'duree' => $duree,
         ]);
 
