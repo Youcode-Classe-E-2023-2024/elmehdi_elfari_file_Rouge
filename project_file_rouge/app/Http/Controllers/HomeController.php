@@ -19,13 +19,25 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $searchQuery = $request->input('query');
         $departId = $request->input('depart_id');
         $arriveId = $request->input('arrive_id');
         $depart_date = $request->input('depart_date');
         $arrive_date = $request->input('arrive_date');
-
         $cities = City::all();
         $parcours = Parcours::query()->with('City_depart', 'City_arrive');
+
+        if ($searchQuery) {
+            $parcours->where(function ($query) use ($searchQuery) {
+                $query->where('title', 'LIKE', '%' . $searchQuery . '%')
+                    ->orWhereHas('City_depart', function ($query) use ($searchQuery) {
+                        $query->where('name', 'LIKE', '%' . $searchQuery . '%');
+                    })
+                    ->orWhereHas('City_arrive', function ($query) use ($searchQuery) {
+                        $query->where('name', 'LIKE', '%' . $searchQuery . '%');
+                    });
+            });
+        }
 
         if ($departId) {
             $parcours->where('depart_id', $departId);
@@ -35,10 +47,17 @@ class HomeController extends Controller
             $parcours->where('arrive_id', $arriveId);
         }
 
-        $parcours->whereDate('depart_date', $depart_date);
+        if ($depart_date) {
+            $parcours->whereDate('depart_date', $depart_date);
+        }
+
+        if ($arrive_date) {
+            $parcours->whereDate('arrive_date', $arrive_date);
+        }
 
         $parcours = $parcours->get();
 
         return view('pages.home', compact('parcours', 'cities'));
     }
+
 }
