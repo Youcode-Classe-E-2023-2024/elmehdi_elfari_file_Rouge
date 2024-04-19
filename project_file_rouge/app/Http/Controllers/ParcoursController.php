@@ -33,7 +33,6 @@ class ParcoursController extends Controller
             'nbr_place' => 'required|integer|max:255',
             'time_depart' => 'required|date_format:H:i',
             'depart_date' => 'required|date_format:Y-m-d',
-            'arrive_date' => 'required|date_format:Y-m-d|after:depart_date',
             'arrive_time' => 'required|date_format:H:i|after:time_depart',
         ]);
 
@@ -44,8 +43,6 @@ class ParcoursController extends Controller
 
 
         $depart_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->depart_date)->toDateString();
-        $arrive_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->arrive_date)->toDateString();
-
 
         $validated = [
             'depart_id' => $request->depart_id,
@@ -56,7 +53,6 @@ class ParcoursController extends Controller
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
             'depart_date' => $depart_date,
-            'arrive_date' => $arrive_date,
             'duree' => $duree,
         ];
 
@@ -82,7 +78,6 @@ class ParcoursController extends Controller
             'nbr_place' => 'required|integer|max:255',
             'time_depart' => 'required|date_format:H:i',
             'depart_date' => 'required|date_format:Y-m-d',
-            'arrive_date' => 'required|date_format:Y-m-d|after:depart_date',
             'arrive_time' => 'required|date_format:H:i|after:time_depart',
         ]);
 
@@ -90,7 +85,6 @@ class ParcoursController extends Controller
         $arrive_time = \Carbon\Carbon::createFromFormat('H:i', $request->arrive_time);
 
         $depart_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->depart_date);
-        $arrive_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->arrive_date);
 
         $duree = $time_depart->diff($arrive_time)->format('%Hh %Im');
 
@@ -103,7 +97,6 @@ class ParcoursController extends Controller
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
             'depart_date' => $depart_date,
-            'arrive_date' => $arrive_date,
             'duree' => $duree,
         ]);
 
