@@ -19,7 +19,6 @@ class Parcours extends Model
         'duree',
         'time_depart',
         'arrive_time',
-        'arrive_date',
         'depart_date'
     ];
 
