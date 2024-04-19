@@ -19,7 +19,6 @@ class CreateParcoursTable extends Migration
             $table->time('time_depart');
             $table->time('arrive_time');
             $table->date('depart_date');
-            $table->date('arrive_date');
             $table->string('duree');
             $table->softDeletes();
             $table->timestamps();
