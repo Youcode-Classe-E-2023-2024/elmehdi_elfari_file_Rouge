@@ -243,7 +243,6 @@
                             <th class="border-b p-2">time_depart</th>
                             <th class="border-b p-2">time_d'arrive</th>
                             <th class="border-b p-2">depart_date</th>
-                            <th class="border-b p-2">arrive_date</th>
                             <th class="border-b p-2">Nbr_Place</th>
                             <th class="border-b p-2">Action</th>
                         </tr>
@@ -291,7 +290,6 @@
                                 <td class="border-b p-2">{{ $parcour->time_depart }}</td>
                                 <td class="border-b p-2">{{ $parcour->arrive_time }}</td>
                                 <td class="border-b p-2">{{ $parcour->depart_date }}</td>
-                                <td class="border-b p-2">{{ $parcour->arrive_date }}</td>
                                 <td class="border-b p-2">{{ $parcour->nbr_place }}</td>
                                 <td class="border-b p-2">
                                     <!-- Edit Button -->
@@ -389,13 +387,6 @@
                                                 @enderror
 
                                                 <label class="block mb-2">Arrive Date:</label>
-                                                <input type="time" name="arrive_date"
-                                                    class="w-full border p-2 mb-4"
-                                                    value="{{ $parcour->arrive_date ?? '' }}" step="60"
-                                                    required>
-                                                @error('arrive_date')
-                                                    {{ $message }}
-                                                @enderror
                                                 <!-- Champ pour le nombre de places -->
                                                 <label class="block mb-2">Nombre de Places:</label>
                                                 <input type="number" name="nbr_place" class="w-full border p-2 mb-4"
@@ -479,13 +470,6 @@
                             @error('depart_date')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
-
-                            <label class="block mb-2">Arrive Date:</label>
-                            <input type="date" name="arrive_date" class="w-full border p-2 mb-4" required>
-                            @error('arrive_date')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-
 
                             <label class="block mb-2">nbr_place:</label>
                             <input type="number" name="nbr_place" class="w-full border p-2 mb-4"
