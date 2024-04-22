@@ -119,16 +119,17 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-blue-600 font-bold font-medium mb-2" for="departure-date">Date de départ</label>
-                    <input name="depart_date" class="form-input rounded-2xl w-48 border p-3" type="date" id="departure-date">
+                    <label class="block text-blue-600 font-bold font-medium mb-2">Date de départ</label>
+                    <input name="depart_date" class="form-input rounded-2xl w-48 border p-3" type="date">
                 </div>
             </div>
             <div class="flex justify-between items-center w-full mt-8">
-                <div class="flex">
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-4 rounded-full uppercase font-bold text-sm">1ère classe</button>
-                    <button class="bg-gray-200 hover:bg-gray-400 text-gray-700 px-5 py-4 rounded-full uppercase font-bold text-sm ml-5">2ème classe</button>
-                </div>
-                <div class="w-20">
+                <div class="flex gap-6">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
+                            value="1Class" name="premier_class">1ère classe</button>
+                    <button type="submit" class="bg-gray-400 hover:bg-gray-600 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
+                            value="2Class" name="deuxieme_class">2ère classe</button>                </div>
+                <div class="w-20 gap-6">
                     <div class="relative flex items-center w-3/12">
                         <button type="button" id="decrement-button" data-input-counter-decrement="bedrooms-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                             <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
@@ -153,7 +154,7 @@
     </div>
 </section>
 
-<section>
+<section class="parcours_section">
     <div class="container flex flex-wrap justify-center justify-center mx-auto">
         @foreach ($parcours as $parcour)
             <div class="flex w-4/12 md:w-1/2 lg:w-1/2 xl:w-1/2 px-3 mb-6">
@@ -199,12 +200,13 @@
                                 <span class="flex text-xs font-semibold"> <img src="{{ asset('img/train.png') }}"
                                                                                alt=""> TL <br> {{ $parcour->City_arrive->name }}  </span>
                             </div>
+
                             <div>
                                 <form action="/session" method="POST">
                                     @csrf
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit"
-                                            class="bg-purple-600 text-bold rounded-lg text-white hover:bg-purple-700 px-5 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 ...">
+                                            class="bg-blue-600 text-bold rounded-lg text-white hover:bg-blue-700 px-5 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 ...">
                                         Reservation
                                     </button>
                                 </form>
@@ -228,5 +230,6 @@
 
 @include('layouts.footer')
 </body>
+<script src="{{ asset('js/parcours.js') }}"></script>
 
 </html>
