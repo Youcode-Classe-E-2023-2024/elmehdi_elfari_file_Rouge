@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -16,6 +15,7 @@
 
 <body class="bg-blueGray-600">
 @include('layouts.nav')
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet"
       href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
@@ -44,50 +44,44 @@
     </div>
 </div>
 
-<section class="pb-10 bg-blueGray-600 ">
+<section class="pb-10 bg-blueGray-600">
     <div class="container mx-auto px-4">
-        <div class="flex flex-wrap">
-            <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                    <div class="px-4 py-5 flex-auto">
-                        <div
-                            class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+        <div class="flex flex-wrap justify-center">
+            <div class="card w-full md:w-4/12 px-4 text-center">
+                <div class="card-content relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                    <div class="card-body px-4 py-5 flex-auto">
+                        <div class="icon-container text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                             <i class="fas fa-award"></i>
                         </div>
-                        <h6 class="text-xl font-semibold">Awarded Agency</h6>
-                        <p class="mt-2 mb-4 text-blueGray-500">
-                            Divide details about your product or agency work into parts.
-                            A paragraph describing a feature will be enough.
+                        <h6 class="card-title text-xl font-semibold">Awarded Agency</h6>
+                        <p class="card-text mt-2 mb-4 text-blueGray-500">
+                            Divide details about your product or agency work into parts. A paragraph describing a feature will be enough.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-4/12 px-4 text-center">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                    <div class="px-4 py-5 flex-auto">
-                        <div
-                            class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
+            <div class="card w-full md:w-4/12 px-4 text-center">
+                <div class="card-content relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                    <div class="card-body px-4 py-5 flex-auto">
+                        <div class="icon-container text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
                             <i class="fas fa-retweet"></i>
                         </div>
-                        <h6 class="text-xl font-semibold">Free Revisions</h6>
-                        <p class="mt-2 mb-4 text-blueGray-500">
-                            Keep you user engaged by providing meaningful information.
-                            Remember that by this time, the user is curious.
+                        <h6 class="card-title text-xl font-semibold">Free Revisions</h6>
+                        <p class="card-text mt-2 mb-4 text-blueGray-500">
+                            Keep your user engaged by providing meaningful information. Remember that by this time, the user is curious.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="pt-6 w-full md:w-4/12 px-4 text-center">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                    <div class="px-4 py-5 flex-auto">
-                        <div
-                            class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
+            <div class="card w-full md:w-4/12 px-4 text-center">
+                <div class="card-content relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                    <div class="card-body px-4 py-5 flex-auto">
+                        <div class="icon-container text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                             <i class="fas fa-fingerprint"></i>
                         </div>
-                        <h6 class="text-xl font-semibold">Verified Company</h6>
-                        <p class="mt-2 mb-4 text-blueGray-500">
-                            Write a few lines about each one. A paragraph describing a
-                            feature will be enough. Keep you user engaged!
+                        <h6 class="card-title text-xl font-semibold">Verified Company</h6>
+                        <p class="card-text mt-2 mb-4 text-blueGray-500">
+                            Write a few lines about each one. A paragraph describing a feature will be enough. Keep your user engaged!
                         </p>
                     </div>
                 </div>
@@ -98,8 +92,8 @@
 
 <section>
     <div class="container mx-auto stroke-2 rounded-full flex justify-center shadow-lg py-2 px-20 mb-4 h-32 bg-gray-50 w-10/12">
-        <form method="GET" action="/search" class="flex justify-around items-center gap-20">
-            <div class="flex justify-center w-3/6 gap-10">
+        <form method="GET" action="/search" class="flex justify-between items-center gap-16">
+            <div class="flex justify-center w-3/6 gap-5">
                 <div>
                     <label class="block text-blue-600 font-bold font-medium mb-2" for="departure-date">Départ</label>
                     <select name="depart_id" class="form-select rounded-2xl w-48 border p-3">
@@ -123,34 +117,95 @@
                     <input name="depart_date" class="form-input rounded-2xl w-48 border p-3" type="date">
                 </div>
             </div>
-            <div class="flex justify-between items-center w-full mt-8">
-                <div class="flex gap-6">
+            <div class="flex justify-between items-center w-full">
+                <div>
+                    <label class="block text-blue-600 font-bold font-medium mb-2" for="arrival-date">Classes</label>
                     <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
                             value="1Class" name="premier_class">1ère classe</button>
                     <button type="submit" class="bg-gray-400 hover:bg-gray-600 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
-                            value="2Class" name="deuxieme_class">2ère classe</button>                </div>
-                <div class="w-20 gap-6">
-                    <div class="relative flex items-center w-3/12">
-                        <button type="button" id="decrement-button" data-input-counter-decrement="bedrooms-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                            <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                            value="2Class" name="deuxieme_class">2ère classe</button>
+                </div>
+
+                <div class="mx-auto">
+                    <label class="block text-blue-600 font-bold font-medium mb-2" for="arrival-date">VOYAGEURS</label>
+                    <div class="relative border-2 px-3 py-1.5 rounded-2xl flex items-center">
+                        <button type="button" id="decrement-button" data-input-counter-decrement="counter-input" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                            <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
                             </svg>
                         </button>
-                        <input type="text" id="bedrooms-input" data-input-counter data-input-counter-min="1" data-input-counter-max="5" aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="3" required/>
-                        <button type="button" id="increment-button" data-input-counter-increment="bedrooms-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                            <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <input type="text" id="counter-input" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 w-12 text-center" placeholder="" value="12" required />
+                        <button type="button" id="increment-button" data-input-counter-increment="counter-input" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                            <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div>
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 hover:text-black text-white font-bold px-10 py-2 rounded-full text-lg">
-                        <i class="fas fa-search"></i>
+
+                <div class="flex gap-6 mt-8">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 hover:text-black text-white font-bold px-5 py-3 rounded-full text-lg">
+                        search <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
         </form>
+    </div>
+</section>
+
+<section>
+    <div>
+        <div class="carousel">
+            <ul class="slides">
+                <input type="radio" name="radio-buttons" id="img-1" checked />
+                <li class="slide-container">
+                    <div class="slide-image">
+                        <img src="{{ asset('img/123.jpg') }}">
+                    </div>
+                    <div class="carousel-controls">
+                        <label for="img-3" class="prev-slide">
+                            <span>&lsaquo;</span>
+                        </label>
+                        <label for="img-2" class="next-slide">
+                            <span>&rsaquo;</span>
+                        </label>
+                    </div>
+                </li>
+                <input type="radio" name="radio-buttons" id="img-2" />
+                <li class="slide-container">
+                    <div class="slide-image">
+                        <img src="{{ asset('img/321.jpg') }}">
+                    </div>
+                    <div class="carousel-controls">
+                        <label for="img-1" class="prev-slide">
+                            <span>&lsaquo;</span>
+                        </label>
+                        <label for="img-3" class="next-slide">
+                            <span>&rsaquo;</span>
+                        </label>
+                    </div>
+                </li>
+                <input type="radio" name="radio-buttons" id="img-3" />
+                <li class="slide-container">
+                    <div class="slide-image">
+                        <img src="{{ asset('img/213.jpg') }}">
+                    </div>
+                    <div class="carousel-controls">
+                        <label for="img-2" class="prev-slide">
+                            <span>&lsaquo;</span>
+                        </label>
+                        <label for="img-1" class="next-slide">
+                            <span>&rsaquo;</span>
+                        </label>
+                    </div>
+                </li>
+                <div class="carousel-dots">
+                    <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+                    <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+                    <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+                </div>
+            </ul>
+        </div>
     </div>
 </section>
 
