@@ -238,8 +238,9 @@
                             <th class="border-b p-2">ID</th>
                             <th class="border-b p-2">Care_depart</th>
                             <th class="border-b p-2">Gare_arrive</th>
-                            <th class="border-b p-2">Longeur_Parcour</th>
+                            <th class="border-b p-2">distance_Parcour</th>
                             <th class="border-b p-2">Prix_Parcour</th>
+                            <th class="border-b p-2">classes</th>
                             <th class="border-b p-2">time_depart</th>
                             <th class="border-b p-2">time_d'arrive</th>
                             <th class="border-b p-2">depart_date</th>
@@ -285,8 +286,9 @@
                                 <td class="border-b p-2">{{ $parcour->id }}</td>
                                 <td class="border-b p-2">{{ $parcour->City_depart->name }}</td>
                                 <td class="border-b p-2">{{ $parcour->City_arrive->name }}</td>
-                                <td class="border-b p-2">{{ $parcour->longeur_Parcour }}</td>
+                                <td class="border-b p-2">{{ $parcour->distance_Parcour }}</td>
                                 <td class="border-b p-2">{{ $parcour->Prix_Parcour }}</td>
+                                <td class="border-b p-2">{{ $parcour->classes }}</td>
                                 <td class="border-b p-2">{{ $parcour->time_depart }}</td>
                                 <td class="border-b p-2">{{ $parcour->arrive_time }}</td>
                                 <td class="border-b p-2">{{ $parcour->depart_date }}</td>
@@ -339,12 +341,12 @@
                                                 </select>
 
                                                 <!-- Champ pour la longueur du parcours -->
-                                                <label class="block mb-2">Longueur du Parcours:</label>
-                                                <input type="number" name="longeur_Parcour"
+                                                <label class="block mb-2">Distance du Parcours:</label>
+                                                <input type="number" name="distance_Parcour"
                                                     class="w-full border p-2 mb-4"
                                                     placeholder="Entrez la longueur du parcours"
-                                                    value="{{ $parcour->longeur_Parcour ?? '' }}" required>
-                                                @error('longeur_Parcour')
+                                                    value="{{ $parcour->distance_Parcour ?? '' }}" required>
+                                                @error('distance_Parcour')
                                                     {{ $message }}
                                                 @enderror
 
@@ -356,6 +358,15 @@
                                                     value="{{ $parcour->Prix_Parcour ?? '' }}" required>
                                                 @error('Prix_Parcour')
                                                     {{ $message }}
+                                                @enderror
+
+                                                <label class="block mb-2">Classes:</label>
+                                                <input type="number" name="classes"
+                                                       class="w-full border p-2 mb-4"
+                                                       placeholder="classes"
+                                                       value="{{ $parcour->classes }}" required>
+                                                @error('classes')
+                                                {{ $message }}
                                                 @enderror
 
                                                 <label class="block mb-2">Time de depart:</label>
@@ -436,10 +447,10 @@
                                 @endforeach
                             </select>
 
-                            <label class="block mb-2">longeur_Parcour:</label>
-                            <input type="number" name="longeur_Parcour" class="w-full border p-2 mb-4"
+                            <label class="block mb-2">Distance Parcour:</label>
+                            <input type="number" name="distance_Parcour" class="w-full border p-2 mb-4"
                                 placeholder="Enter station name" required>
-                            @error('longeur_Parcour')
+                            @error('distance_Parcour')
                                 {{ $message }}
                             @enderror
 
@@ -448,6 +459,13 @@
                                 placeholder="Enter station name" required>
                             @error('Prix_Parcour')
                                 {{ $message }}
+                            @enderror
+
+                            <label class="block mb-2">Classes:</label>
+                            <input type="number" name="classes" class="w-full border p-2 mb-4"
+                                   placeholder="Enter le class" required>
+                            @error('classes')
+                            {{ $message }}
                             @enderror
 
                             <label class="block mb-2">Time de depart:</label>
