@@ -13,9 +13,10 @@ class CreateParcoursTable extends Migration
     {
         Schema::create('parcours', function (Blueprint $table) {
             $table->id();
-            $table->integer('longeur_Parcour');
+            $table->integer('distance_Parcour');
             $table->integer('Prix_Parcour');
             $table->integer('nbr_place');
+            $table->enum('classes',['1Class' , '2Class'])->default('2class');
             $table->time('time_depart');
             $table->time('arrive_time');
             $table->date('depart_date');
