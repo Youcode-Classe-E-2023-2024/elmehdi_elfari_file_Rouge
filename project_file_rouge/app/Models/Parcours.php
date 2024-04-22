@@ -13,16 +13,18 @@ class Parcours extends Model
     protected $fillable = [
         'depart_id',
         'arrive_id',
-        'longeur_Parcour',
+        'distance_Parcour',
         'Prix_Parcour',
         'nbr_place',
         'duree',
         'time_depart',
         'arrive_time',
-        'depart_date'
+        'depart_date',
+        'classes'
     ];
 
     protected $dates = [
+        'depart_date',
         'time_depart',
         'arrive_time',
     ];
@@ -37,3 +39,5 @@ class Parcours extends Model
         return $this->belongsTo(City::class, 'arrive_id');
     }
 }
+
+
