@@ -22,8 +22,9 @@ class HomeController extends Controller
         $searchQuery = $request->input('query');
         $departId = $request->input('depart_id');
         $arriveId = $request->input('arrive_id');
+        $premierClass = $request->input('premier_class');
+        $deuxiemeclass = $request->input('deuxieme_class');
         $depart_date = $request->input('depart_date');
-        $arrive_date = $request->input('arrive_date');
         $cities = City::all();
         $parcours = Parcours::query()->with('City_depart', 'City_arrive');
 
@@ -39,6 +40,15 @@ class HomeController extends Controller
             });
         }
 
+
+        if ($premierClass) {
+            $parcours->where('classes', $premierClass);
+        }
+
+        if ($deuxiemeclass) {
+            $parcours->where('classes', $deuxiemeclass);
+        }
+
         if ($departId) {
             $parcours->where('depart_id', $departId);
         }
@@ -51,11 +61,8 @@ class HomeController extends Controller
             $parcours->whereDate('depart_date', $depart_date);
         }
 
-        if ($arrive_date) {
-            $parcours->whereDate('arrive_date', $arrive_date);
-        }
-
         $parcours = $parcours->get();
+
 
         return view('pages.home', compact('parcours', 'cities'));
     }
