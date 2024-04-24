@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carousel</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<!-- component -->
-<header class="navbar bg-blueGray-400 fixed z-10 w-full bg-opacity-25">
+<header class="navbar bg-blueGray-400 top-0 fixed z-10 w-full bg-opacity-25">
     <nav class="container mx-auto py-2 ">
         <div class="flex items-center justify-between">
             <div class="flex text-black-50 font-bold text-xl">
@@ -59,6 +45,4 @@
         }
     });
 </script>
-</body>
 
-</html>

@@ -64,7 +64,9 @@ class HomeController extends Controller
         $parcours = $parcours->get();
 
 
-        return view('pages.home', compact('parcours', 'cities'));
+        return view('pages.ticket', compact('parcours', 'cities'));
     }
+
+
 
 }

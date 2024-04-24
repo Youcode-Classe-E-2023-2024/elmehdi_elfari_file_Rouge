@@ -20,7 +20,7 @@ class Parcours extends Model
         'time_depart',
         'arrive_time',
         'depart_date',
-        'classes'
+        /*'classes'*/
     ];
 
     protected $dates = [

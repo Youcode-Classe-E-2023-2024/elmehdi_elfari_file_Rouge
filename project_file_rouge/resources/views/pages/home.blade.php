@@ -1,55 +1,46 @@
-<!doctype html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-          integrity="sha512-xxxxxx" crossorigin="anonymous"/>
+@extends('layouts.homeLayout')
 
-    <title>Document</title>
-</head>
+@section('title' , 'Home')
 
-<body class="bg-blueGray-600">
-@include('layouts.nav')
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-<link rel="stylesheet"
-      href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
-<div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75"
-     style="background-image: url('{{ asset('img/14.jpg') }}'); height: 100%; background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
-    <div class="container relative mb-20 mx-auto bg-gray-50 bg-opacity-50 rounded-lg shadow-lg p-8 md:w-1/2">
-        <div class="items-center">
-            <div class="m-auto text-center">
-                <h1 class="text-black-50 font-semibold text-5xl">
-                    Your story starts with us.
-                </h1>
-                <p class="mt-4 text-lg text-blueGray-900">
-                    This is a simple example of a Landing Page you can build using Notus JS.
-                    <br>It features multiple CSS components based on the Tailwind CSS design <br> system.
-                </p>
+@section('main')
+
+<section>
+    <div class="relative pt-16 pb-28 flex content-center items-center justify-center min-h-screen-75"
+         style="background-image: url('{{ asset('img/14.jpg') }}'); height: 100%; background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
+        <div class="container relative mb-20 mx-auto bg-gray-100 bg-opacity-50 rounded-lg shadow-lg py-8 md:w-1/2">
+            <div class="items-center">
+                <div class="m-auto text-center">
+                    <h1 class="text-black font-semibold text-5xl">
+                        Your story starts with us.
+                    </h1>
+                    <p class="mt-4 text-lg text-blueGray-900">
+                        This is a simple example of a Landing Page you can build using Notus JS.
+                        <br>It features multiple CSS components based on the Tailwind CSS design
+                        <br> system.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
-         style="transform: translateZ(0px)">
-        <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-             version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-            <polygon class="text-blueGray-600 fill-current" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-    </div>
-</div>
 
-<section class="pb-10 bg-blueGray-600">
-    <div class="container mx-auto px-4">
+        <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
+             style="transform: translateZ(0px)">
+            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                 version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+                <polygon class="text-blueGray-600 fill-current" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
+
+</section>
+
+<section class="pb-10 bg-white">
+    <div class="container mx-auto px-8">
         <div class="flex flex-wrap justify-center">
             <div class="card w-full md:w-4/12 px-4 text-center">
                 <div class="card-content relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                    <div class="card-body px-4 py-5 flex-auto">
+                    <div class="card-body px-2 py-5 flex-auto">
                         <div class="icon-container text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                             <i class="fas fa-award"></i>
                         </div>
@@ -91,9 +82,9 @@
 </section>
 
 <section>
-    <div class="container mx-auto stroke-2 rounded-full flex justify-center shadow-lg py-2 px-20 mb-4 h-32 bg-gray-50 w-10/12">
+    <div class="container mx-auto border-2 border-orange-500 rounded-full flex justify-center shadow-lg mb-4 h-32 bg-gray-50 w-9/12">
         <form method="GET" action="/search" class="flex justify-between items-center gap-16">
-            <div class="flex justify-center w-3/6 gap-5">
+            <div class="flex justify-center ml-10 w-3/6 gap-10">
                 <div>
                     <label class="block text-blue-600 font-bold font-medium mb-2" for="departure-date">Départ</label>
                     <select name="depart_id" class="form-select rounded-2xl w-48 border p-3">
@@ -117,33 +108,15 @@
                     <input name="depart_date" class="form-input rounded-2xl w-48 border p-3" type="date">
                 </div>
             </div>
-            <div class="flex justify-between items-center w-full">
+            <div class="flex justify-around items-center w-full">
                 <div>
-                    <label class="block text-blue-600 font-bold font-medium mb-2" for="arrival-date">Classes</label>
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
-                            value="1Class" name="premier_class">1ère classe</button>
-                    <button type="submit" class="bg-gray-400 hover:bg-gray-600 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
-                            value="2Class" name="deuxieme_class">2ère classe</button>
+                    <label class="block text-blue-600 font-bold font-medium mb-2" for="arrival-date">Mon confort</label>
+                    <button id="premier_class" type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
+                            {{--value="1Class"--}} name="premier_class">1ère classe</button>
+                    <button id="deuxieme_class" type="submit" class="bg-gray-400 hover:bg-gray-600 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
+                            {{--value="2Class"--}} name="deuxieme_class">2ème classe</button>
                 </div>
-
-                <div class="mx-auto">
-                    <label class="block text-blue-600 font-bold font-medium mb-2" for="arrival-date">VOYAGEURS</label>
-                    <div class="relative border-2 px-3 py-1.5 rounded-2xl flex items-center">
-                        <button type="button" id="decrement-button" data-input-counter-decrement="counter-input" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                            <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
-                            </svg>
-                        </button>
-                        <input type="text" id="counter-input" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 w-12 text-center" placeholder="" value="12" required />
-                        <button type="button" id="increment-button" data-input-counter-increment="counter-input" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                            <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="flex gap-6 mt-8">
+                <div class="flex mt-8">
                     <button type="submit" class="bg-blue-600 hover:bg-blue-700 hover:text-black text-white font-bold px-5 py-3 rounded-full text-lg">
                         search <i class="fas fa-search"></i>
                     </button>
@@ -153,138 +126,123 @@
     </div>
 </section>
 
-<section>
-    <div>
-        <div class="carousel">
-            <ul class="slides">
-                <input type="radio" name="radio-buttons" id="img-1" checked />
-                <li class="slide-container">
-                    <div class="slide-image">
-                        <img src="{{ asset('img/123.jpg') }}">
-                    </div>
-                    <div class="carousel-controls">
-                        <label for="img-3" class="prev-slide">
-                            <span>&lsaquo;</span>
-                        </label>
-                        <label for="img-2" class="next-slide">
-                            <span>&rsaquo;</span>
-                        </label>
-                    </div>
-                </li>
-                <input type="radio" name="radio-buttons" id="img-2" />
-                <li class="slide-container">
-                    <div class="slide-image">
-                        <img src="{{ asset('img/321.jpg') }}">
-                    </div>
-                    <div class="carousel-controls">
-                        <label for="img-1" class="prev-slide">
-                            <span>&lsaquo;</span>
-                        </label>
-                        <label for="img-3" class="next-slide">
-                            <span>&rsaquo;</span>
-                        </label>
-                    </div>
-                </li>
-                <input type="radio" name="radio-buttons" id="img-3" />
-                <li class="slide-container">
-                    <div class="slide-image">
-                        <img src="{{ asset('img/213.jpg') }}">
-                    </div>
-                    <div class="carousel-controls">
-                        <label for="img-2" class="prev-slide">
-                            <span>&lsaquo;</span>
-                        </label>
-                        <label for="img-1" class="next-slide">
-                            <span>&rsaquo;</span>
-                        </label>
-                    </div>
-                </li>
-                <div class="carousel-dots">
-                    <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
-                    <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
-                    <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+
+<section class="flex justify-center items-center">
+    <div class="content">
+        <div>
+            <div class="flex mb-10">
+                <h1 class="title1 border-b-2 font-medium border-orange-500">Les promos</h1>
+                <h1 class="title2 font-medium"> reKlam</h1>
+            </div>
+            <p class="text-xl">
+                Nos offres exclusives sont disponibles pour une durée limitée. Soyez parmi les <br> premiers à profiter de ces tarifs imbattables.
+                Ne manquez pas cette occasion <br> de voyager à prix réduit et réservez dès maintenant pour garantir votre place à train !
+            </p>
+            <form action="{{ url('Promos') }}" method="POST" >
+                @csrf
+                <button type="submit"
+                        class="botton m-3 px-5 py-2">Découvrez les offres >
+                </button>
+            </form>
+
+        </div>
+        <div class="pic-ctn">
+            <img src="https://picsum.photos/200/300?t=1" alt="" class="pic">
+            <img src="https://picsum.photos/200/300?t=2" alt="" class="pic">
+            <img src="https://picsum.photos/200/300?t=3" alt="" class="pic">
+            <img src="https://picsum.photos/200/300?t=4" alt="" class="pic">
+            <img src="https://picsum.photos/200/300?t=5" alt="" class="pic">
+        </div>
+    </div>
+
+</section>
+<hr class="w-75">
+<section class="mt-10">
+    <div class="flex w-68 ml-56 gap-20">
+        <h1 class="text-3xl font-medium">Réserver en 3 étapes</h1>
+        <p class="flex items-center text-xl gap-4"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.66699 9.41666L8.16699 11.9167L12.3337 6.91666" stroke="#61B61F" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M9.00033 17.3333C13.6027 17.3333 17.3337 13.6024 17.3337 9C17.3337 4.39762 13.6027 0.666664 9.00033 0.666664C4.39795 0.666664 0.666992 4.39762 0.666992 9C0.666992 13.6024 4.39795 17.3333 9.00033 17.3333Z" stroke="#61B61F"></path>
+            </svg>Simple</p>
+        <p class="flex items-center text-xl gap-4"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.66699 9.41666L8.16699 11.9167L12.3337 6.91666" stroke="#61B61F" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M9.00033 17.3333C13.6027 17.3333 17.3337 13.6024 17.3337 9C17.3337 4.39762 13.6027 0.666664 9.00033 0.666664C4.39795 0.666664 0.666992 4.39762 0.666992 9C0.666992 13.6024 4.39795 17.3333 9.00033 17.3333Z" stroke="#61B61F"></path>
+            </svg>Rapide</p>
+        <p class="flex items-center text-xl gap-4"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.66699 9.41666L8.16699 11.9167L12.3337 6.91666" stroke="#61B61F" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M9.00033 17.3333C13.6027 17.3333 17.3337 13.6024 17.3337 9C17.3337 4.39762 13.6027 0.666664 9.00033 0.666664C4.39795 0.666664 0.666992 4.39762 0.666992 9C0.666992 13.6024 4.39795 17.3333 9.00033 17.3333Z" stroke="#61B61F"></path>
+            </svg>Sécurisé</p>
+    </div>
+    <div class="my-10 ml-56">
+        <p class="text-xl">Grâce à notre plateforme de réservation en ligne, réservez votre ticket de Train n'a jamais été aussi facile.</p>
+    </div>
+    <div class="flex justify-around items-center my-20">
+        <div class="flex flex-col justify-center items-center gap-3">
+            <svg class="absolute rtl:-scale-x-100 ltr:scale-x-100 -top-1 ltr:-left-20 rtl:-right-20" width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1130_247)">
+                    <path d="M13.9082 19.6751C10.8383 18.7274 7.77101 17.7893 4.68955 16.8757C3.80931 16.6043 3.65588 17.5771 3.83187 18.234C4.05963 19.084 4.67552 20.2234 5.58285 20.5186C8.66569 21.5147 11.7434 22.4914 14.8281 23.4559C15.7425 23.7388 15.8997 22.7029 15.7237 22.046C15.4908 21.1767 14.8445 19.9626 13.9082 19.6751Z" fill="orangered"></path>
+                    <path d="M16.5213 13.9332C14.6388 11.6216 12.7494 9.32231 10.8502 7.02558C10.4986 6.60215 9.51967 5.65319 9.03038 6.41581C8.54108 7.17843 9.23633 8.42083 9.67502 8.97621C11.5433 11.3123 13.4186 13.6361 15.3062 15.9669C15.5714 16.2997 15.9564 16.6934 16.3759 16.8295C16.6588 16.9193 17.0369 16.9008 17.197 16.6095C17.6347 15.8089 17.0315 14.5626 16.5264 13.9525L16.5213 13.9332Z" fill="#FF6900"></path>
+                    <path d="M23.4092 8.53658C22.6402 6.51678 21.8686 4.48732 21.09 2.47011C20.9001 1.99301 20.5787 1.48902 20.2066 1.14356C19.9847 0.933826 19.5398 0.587158 19.1985 0.62686C18.2981 0.743887 18.6171 1.9732 18.8156 2.5205C19.5555 4.54806 20.3148 6.57045 21.0838 8.59025C21.2667 9.07959 21.6126 9.59772 21.9969 9.95026C22.2188 10.16 22.6785 10.5234 23.0392 10.4785C23.9589 10.3563 23.6417 9.09543 23.4311 8.54106L23.4092 8.53658Z" fill="#FF6900"></path>
+                </g>
+                <defs>
+                    <clipPath id="clip0_1130_247">
+                        <rect width="21.08" height="21.44" fill="orangered" transform="translate(5.91309 26) rotate(-105)"></rect>
+                    </clipPath>
+                </defs>
+            </svg>
+            <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center w-14 h-14 rounded-full bg-gray-900 border-2 border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="30" viewBox="0 0 24 24">
+                        <path fill="white" d="M10 5c-4.42 0-8 .5-8 4v10c0 .85.37 1.66 1 2.22V23c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.63-.56 1-1.37 1-2.22V9c0-3.5-3.58-4-8-4M5.5 20c-.83 0-1.5-.67-1.5-1.5S4.67 17 5.5 17s1.5.67 1.5 1.5S6.33 20 5.5 20m9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5m1.5-6H4V9h12v5m6-9v10c0 .85-.37 1.66-1 2.22V19c0 .55-.45 1-1 1h-.12c.07-.32.12-.65.12-1V9c0-6-7-6-10-6c-.91 0-2.2 0-3.54.17C7.55 1.32 10.5 1 14 1c4.42 0 8 .5 8 4Z"></path>
+                    </svg>
                 </div>
-            </ul>
+                <div>
+                    <p class="text-lg">Etape 1</p>
+                    <h1 class="text-xl font-bold">Choisir</h1>
+                </div>
+            </div>
+            <div >
+                <p class="text-lg text-center">Trouvez l'offre qui vous convient et <br> sélectionnez les sièges de votre choix.</p>
+            </div>
+        </div>
+        <div class="flex flex-col justify-center items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center w-14 h-14 rounded-full bg-gray-900 border-2 border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24">
+                        <path fill="white" fill-rule="evenodd" d="M16 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a1 1 0 1 1 2 0h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2a1 1 0 1 1-2 0zm1 5.001a1 1 0 0 0 1-1V8a1 1 0 1 0-2 0v.001a1 1 0 0 0 1 1zm1 3a1 1 0 1 1-2 0V12a1 1 0 1 1 2 0v.001zm-1 5a1 1 0 0 0 1-1V16a1 1 0 1 0-2 0v.001a1 1 0 0 0 1 1zm-3.168-7.446a1 1 0 0 0-1.664-1.11L8.845 13.43l-1.138-1.137a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.54-.152l4-6z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-lg">Etape 2</p>
+                    <h1 class="text-xl font-bold">Réserver</h1>
+                </div>
+            </div>
+            <div>
+                <p class="text-lg text-center">Choisissez parmi nos différents moyens de <br> paiements (par carte ou espèces) et payer en
+                    <br> toute sécurité. Vous recevrez une confirmation
+                    <br> de votre réservation par e-mail.</p>
+            </div>
+        </div>
+        <div class="flex flex-col justify-center items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center w-14 h-14 rounded-full bg-gray-900 border-2 border-gray-300">
+                    <svg class="rtl:-scale-x-100 ltr:scale-x-100" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 576 512">
+                        <path fill="white" d="M432 96a48 48 0 1 0 0-96a48 48 0 1 0 0 96zm-84.3 104.5c1-.4 1.9-.8 2.9-1.2l-16.9 63.5c-5.6 21.1-.1 43.6 14.7 59.7l70.7 77.1l22 88.1c4.3 17.1 21.7 27.6 38.8 23.3s27.6-21.7 23.3-38.8l-23-92.1c-1.9-7.8-5.8-14.9-11.2-20.8l-49.5-54l19.3-65.5l9.6 23c4.4 10.6 12.5 19.3 22.8 24.5l26.7 13.3c15.8 7.9 35 1.5 42.9-14.3s1.5-35-14.3-42.9L505 232.7l-15.3-36.8c-17.2-41.1-57.4-67.9-102-67.9c-22.8 0-45.3 4.8-66.1 14l-8 3.5c-32.9 14.6-58.1 42.4-69.4 76.5l-2.6 7.8c-5.6 16.8 3.5 34.9 20.2 40.5s34.9-3.5 40.5-20.2l2.6-7.8c5.7-17.1 18.3-30.9 34.7-38.2l8-3.5zm-30 135.1l-25 62.4l-59.4 59.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l61.7-61.7c4.6-4.6 8.2-10.1 10.6-16.1l14.5-36.2l-40.7-44.4c-2.5-2.7-4.8-5.6-7-8.6zM256 274.1c-7.7-4.4-17.4-1.8-21.9 5.9l-32 55.4l-54.4-31.4c-15.3-8.8-34.9-3.6-43.7 11.7L40 426.6c-8.8 15.3-3.6 34.9 11.7 43.7l55.4 32c15.3 8.8 34.9 3.6 43.7-11.7l64-110.9c1.5-2.6 2.6-5.2 3.3-8l43.8-75.7c4.4-7.7 1.8-17.4-5.9-21.9z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-lg">Etape 3</p>
+                    <h1 class="text-xl font-bold">Embarquer</h1>
+                </div>
+            </div>
+            <div>
+                <p class="text-lg text-center">Rendez-vous à l’adresse de départ avec votre <br> code du ticket, présentez le à l'embarquement
+                    <br> et montez à bord du bus en toute tranquillité.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="parcours_section">
-    <div class="container flex flex-wrap justify-center justify-center mx-auto">
-        @foreach ($parcours as $parcour)
-            <div class="flex w-4/12 md:w-1/2 lg:w-1/2 xl:w-1/2 px-3 mb-6">
-                <!-- Left side content -->
-                <div class="mr-4 flex-grow">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-sm font-semibold text-red-600 bg-red-100 rounded-full px-3 py-1">Départ imminent</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <div class="text-xs text-gray-500">Départ</div>
-                                <div
-                                    class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->time_depart)->format('H:i') }}</div>
-                                <div class="text-xs text-gray-500">{{ $parcour->City_depart->name }}</div>
-                            </div>
-                            <div>
-                                <div class="text-xs text-gray-500">Durée</div>
-                                <div class="text-lg font-semibold text-gray-800">{{ $parcour->duree }}</div>
-                            </div>
-                            <div>
-                                <div class="text-xs text-gray-500">Arrivée</div>
-                                <div
-                                    class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->arrive_time)->format('H:i') }}</div>
-                                <div class="text-xs text-gray-500">{{ $parcour->City_arrive->name }}</div>
-                            </div>
-                            <div class="ml-4 flex-shrink-0">
-                                <div>
-                                    <p class="font-bold text-xl mb-3">
-                                        A partir de :
-                                    </p>
-                                    <span class="text-lg ml-5 font-semibold font-bold bg-gray-200 rounded-2xl p-2 text-gray-800">{{ $parcour->Prix_Parcour }}DH</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4">
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex justify-center items-center">
-                                <span class="flex text-xs font-semibold"> <img src="{{ asset('img/train.png') }}"
-                                                                               alt=""> TL <br> {{ $parcour->City_depart->name }} </span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="flex text-xs font-semibold"> <img src="{{ asset('img/train.png') }}"
-                                                                               alt=""> TL <br> {{ $parcour->City_arrive->name }}  </span>
-                            </div>
+@endsection
 
-                            <div>
-                                <form action="/session" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit"
-                                            class="bg-blue-600 text-bold rounded-lg text-white hover:bg-blue-700 px-5 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 ...">
-                                        Reservation
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
 
-                        <div class="flex justify-center mt-4">
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        @endforeach
-
-    </div>
-
-</section>
-
-@include('layouts.footer')
-</body>
-<script src="{{ asset('js/parcours.js') }}"></script>
-
-</html>

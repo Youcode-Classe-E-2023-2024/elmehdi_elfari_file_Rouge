@@ -1,131 +1,99 @@
-.carousel {
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 2rem;
-}
-
-ul.slides {
-    display: block;
-    position: relative;
-    height: 600px;
+html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    list-style: none;
-    border-radius: 1.5rem;
 }
 
-.slides * {
-    user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
+.pic-ctn {
+    width: 50%;
+    height: 200px;
 }
 
-ul.slides input {
-    display: none;
+@keyframes display {
+    0% {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    30% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
 }
 
-
-.slide-container {
-    display: block;
+.pic-ctn {
+    position: relative;
+    width: 50%;
+    height: 300px;
+    margin-top: 10vh;
+    margin-bottom: 20vh;
 }
 
-.slide-image {
-    display: block;
+.pic-ctn > img {
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0;
+    border-radius: 20px;
+    width: 18rem;
+    right: 3rem;
     opacity: 0;
-    transition: all .7s ease-in-out;
+    animation: display 10s infinite;
 }
 
-.slide-image img {
-    width: auto;
-    min-width: 100%;
-    height: 100%;
+img:nth-child(2) {
+    animation-delay: 2s;
+}
+img:nth-child(3) {
+    animation-delay: 4s;
+}
+img:nth-child(4) {
+    animation-delay: 6s;
+}
+img:nth-child(5) {
+    animation-delay: 8s;
 }
 
-.carousel-controls {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    font-size: 100px;
-    line-height: 600px;
-    color: #fff;
-}
-
-.carousel-controls label {
-    display: none;
-    position: absolute;
-    padding: 0 20px;
-    opacity: 0;
-    transition: opacity .2s;
-    cursor: pointer;
-}
-
-.slide-image:hover + .carousel-controls label{
-    opacity: 0.5;
-}
-
-.carousel-controls label:hover {
-    opacity: 1;
-}
-
-.carousel-controls .prev-slide {
-    width: 49%;
-    text-align: left;
-    left: 0;
-}
-
-.carousel-controls .next-slide {
-    width: 49%;
-    text-align: right;
-    right: 0;
-}
-
-.carousel-dots {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 20px;
-    z-index: 999;
-    text-align: center;
-}
-
-.carousel-dots .carousel-dot {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #fff;
-    opacity: 0.5;
-    margin: 10px;
-}
-
-input:checked + .slide-container .slide-image {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 1s ease-in-out;
-}
-
-input:checked + .slide-container .carousel-controls label {
-    display: block;
-}
-
-input#img-1:checked ~ .carousel-dots label#img-dot-1,
-input#img-2:checked ~ .carousel-dots label#img-dot-2,
-input#img-3:checked ~ .carousel-dots label#img-dot-3,
-input#img-4:checked ~ .carousel-dots label#img-dot-4,
-input#img-5:checked ~ .carousel-dots label#img-dot-5,
-input#img-6:checked ~ .carousel-dots label#img-dot-6 {
-    opacity: 1;
+.content {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
-input:checked + .slide-container .nav label { display: block; }
+.title1 {
+    color: black;
+    padding-right: 6px;
+    font-size: 3rem;
+}
+
+.title2 {
+    color: orangered;
+    padding-right: 6px;
+    font-size: 3rem;
+}
+
+.botton {
+    background-color: white;
+    color: orangered;
+    font-size: large;
+    border-radius: 50px;
+    border: orangered solid 1px;
+}
+
+.botton:hover {
+    color: white;
+    border: white solid 1px;
+    background-color: orangered;
+}
+

@@ -240,7 +240,7 @@
                             <th class="border-b p-2">Gare_arrive</th>
                             <th class="border-b p-2">distance_Parcour</th>
                             <th class="border-b p-2">Prix_Parcour</th>
-                            <th class="border-b p-2">classes</th>
+                  {{--          <th class="border-b p-2">classes</th>--}}
                             <th class="border-b p-2">time_depart</th>
                             <th class="border-b p-2">time_d'arrive</th>
                             <th class="border-b p-2">depart_date</th>
@@ -288,7 +288,7 @@
                                 <td class="border-b p-2">{{ $parcour->City_arrive->name }}</td>
                                 <td class="border-b p-2">{{ $parcour->distance_Parcour }}</td>
                                 <td class="border-b p-2">{{ $parcour->Prix_Parcour }}</td>
-                                <td class="border-b p-2">{{ $parcour->classes }}</td>
+                                {{--<td class="border-b p-2">{{ $parcour->classes }}</td>--}}
                                 <td class="border-b p-2">{{ $parcour->time_depart }}</td>
                                 <td class="border-b p-2">{{ $parcour->arrive_time }}</td>
                                 <td class="border-b p-2">{{ $parcour->depart_date }}</td>
@@ -360,14 +360,14 @@
                                                     {{ $message }}
                                                 @enderror
 
-                                                <label class="block mb-2">Classes:</label>
+                                               {{-- <label class="block mb-2">Classes:</label>
                                                 <input type="number" name="classes"
                                                        class="w-full border p-2 mb-4"
                                                        placeholder="classes"
                                                        value="{{ $parcour->classes }}" required>
                                                 @error('classes')
                                                 {{ $message }}
-                                                @enderror
+                                                @enderror--}}
 
                                                 <label class="block mb-2">Time de depart:</label>
                                                 <input type="time" name="time_depart"
@@ -461,12 +461,12 @@
                                 {{ $message }}
                             @enderror
 
-                            <label class="block mb-2">Classes:</label>
+                          {{--  <label class="block mb-2">Classes:</label>
                             <input type="number" name="classes" class="w-full border p-2 mb-4"
                                    placeholder="Enter le class" required>
                             @error('classes')
                             {{ $message }}
-                            @enderror
+                            @enderror--}}
 
                             <label class="block mb-2">Time de depart:</label>
                             <input type="time" name="time_depart" class="w-full border p-2 mb-4" step="60"

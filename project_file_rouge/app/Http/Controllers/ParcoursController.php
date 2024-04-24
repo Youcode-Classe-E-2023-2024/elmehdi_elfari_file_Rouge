@@ -31,7 +31,7 @@ class ParcoursController extends Controller
             'distance_Parcour' => 'required|integer|max:255',
             'Prix_Parcour' => 'required|integer|max:255',
             'nbr_place' => 'required|integer|max:255',
-            'classes' => 'required|integer|in:1,2',
+            /*'classes' => 'required|integer|in:1,2',*/
             'time_depart' => 'required|date_format:H:i',
             'depart_date' => 'required|date|after_or_equal:today',
             'arrive_time' => 'required|date_format:H:i|after:time_depart',
@@ -49,7 +49,7 @@ class ParcoursController extends Controller
             'arrive_id' => $request->arrive_id,
             'distance_Parcour' => $request->distance_Parcour,
             'Prix_Parcour' => $request->Prix_Parcour,
-            'classes' => $request->classes,
+            /*'classes' => $request->classes,*/
             'nbr_place' => $request->nbr_place,
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
