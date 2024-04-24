@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use App\Models\Parcours;
+use App\Models\Promos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 
-class ParcoursController extends Controller
+class PromosController extends Controller
 {
     public function index()
     {
-        $parcours = Parcours::with('City_depart', 'City_arrive')->get();
+        $Promos = Promos::with('City_depart', 'City_arrive')->get();
         $cities = City::all();
-        return view('pages.Parcours', compact('parcours', 'cities'));
+        return view('pages.Promos', compact('Promos', 'cities'));
     }
 
     public function create()
     {
-        return view('pages.Parcours');
+        return view('pages.Promos');
     }
 
     public function store(Request $request)
@@ -55,20 +55,20 @@ class ParcoursController extends Controller
             'duree' => $duree,
         ];
 
-        Parcours::create($validated);
+        Promos::create($validated);
 
-        return redirect()->back()->with('success', 'Parcours created successfully.');
+        return redirect()->back()->with('success', 'Promos created successfully.');
     }
 
     public function edit($id)
     {
-        $parcour = Parcours::findOrFail($id);
-        return view('pages.Parcours', compact('parcour'));
+        $Promo = Promos::findOrFail($id);
+        return view('pages.Parcours', compact('Promo'));
     }
 
     public function update(Request $request, $id)
     {
-        $parcour = Parcours::findOrFail($id);
+        $Promo = Promos::findOrFail($id);
         $request->validate([
             'depart_id' => 'required',
             'arrive_id' => 'required',
@@ -83,13 +83,11 @@ class ParcoursController extends Controller
         $time_depart = \Carbon\Carbon::createFromFormat('H:i', $request->time_depart);
         $arrive_time = \Carbon\Carbon::createFromFormat('H:i', $request->arrive_time);
 
-        $depart_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->depart_date);
-
         $duree = $time_depart->diff($arrive_time)->format('%Hh %Im');
 
+        $depart_date = \Carbon\Carbon::createFromFormat('Y-m-d', $request->depart_date)->toDateString();
 
-
-        $parcour->fill([
+        $Promo->fill([
             'depart_id' => $request->depart_id,
             'arrive_id' => $request->arrive_id,
             'distance_Parcour' => $request->distance_Parcour,
@@ -97,34 +95,28 @@ class ParcoursController extends Controller
             'nbr_place' => $request->nbr_place,
             'time_depart' => $time_depart,
             'arrive_time' => $arrive_time,
-            'depart_date' => $depart_date,
+            'depart_date' =>$depart_date,
             'duree' => $duree,
         ]);
 
-        $parcour->save();
+        $Promo->save();
 
-        return redirect()->back()->with('success', 'Parcours updated successfully.');
+        return redirect()->back()->with('success', 'Promos updated successfully.');
     }
 
 
-    public function destroy(Parcours $parcours)
+    public function destroy(Promos $Promos)
     {
-        $parcours->delete();
+        $Promos->delete();
 
-        return redirect()->back()->with('success', 'Parcours deleted successfully.');
+        return redirect()->back()->with('success', 'Promos deleted successfully.');
     }
 
-    public function parcours($class)
+    public function Promos()
     {
-        $parcours = Parcours::where('classes', $class)->get();
-
-        if(is_null($parcours))
-            return response()->json(['status'=> 'no data'], 302);
-
-        return response()->json([
-            'status' => 'data founded',
-            'parcours' => $parcours
-        ]);
-
+        $Promos = Promos::with('City_depart', 'City_arrive')->get();
+        $cities = City::all();
+        return view('pages.promo', compact('Promos', 'cities'));
     }
+
 }

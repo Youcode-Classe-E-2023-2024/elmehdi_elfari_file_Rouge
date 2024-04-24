@@ -21,4 +21,14 @@ class City extends Model
     {
         return $this->hasMany(Parcours::class, 'arrive_id');
     }
+
+    public function Promos_depart()
+    {
+        return $this->hasMany(Promos::class, 'depart_id');
+    }
+
+    public function Promos_arrive()
+    {
+        return $this->hasMany(Promos::class, 'arrive_id');
+    }
 }

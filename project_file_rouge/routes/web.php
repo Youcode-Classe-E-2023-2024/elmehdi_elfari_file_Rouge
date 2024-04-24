@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\PromosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ParcoursController;
@@ -52,10 +53,20 @@ Route::middleware('auth')->group(function (){
 
     Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
 
+    Route::get('/Promo', [PromosController::class, 'index'])->name('Promos');
 
+    Route::post('/Promo', [PromosController::class, 'store'])->name('Promos.store');
+
+    Route::get('/dashboard/Promos/create', [PromosController::class, 'create'])->name('create.Promos');
+
+    Route::get('/Promos/{id}/edit', [PromosController::class, 'edit'])->name('Promos.edit');
+
+    Route::put('/Promos/{id}', [PromosController::class, 'update'])->name('Promos.update');
+
+    Route::delete('/Promos/{Promos}', [PromosController::class, 'destroy'])->name('Promos.destroy');
 
 });
-
+Route::get('/Promos', [PromosController::class, 'Promos'])->name('promos');
 
 Route::get("register", [RegisterController::class, 'create'])->name('Form-register');
 

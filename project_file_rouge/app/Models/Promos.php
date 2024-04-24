@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Parcours extends Model
+class Promos extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -38,5 +38,3 @@ class Parcours extends Model
         return $this->belongsTo(City::class, 'arrive_id');
     }
 }
-
-

@@ -138,12 +138,11 @@
                 Nos offres exclusives sont disponibles pour une durée limitée. Soyez parmi les <br> premiers à profiter de ces tarifs imbattables.
                 Ne manquez pas cette occasion <br> de voyager à prix réduit et réservez dès maintenant pour garantir votre place à train !
             </p>
-            <form action="{{ url('Promos') }}" method="POST" >
-                @csrf
-                <button type="submit"
-                        class="botton m-3 px-5 py-2">Découvrez les offres >
-                </button>
-            </form>
+            <div class=" m-3">
+                <a href="{{route('promos')}}"
+                   class="botton px-5 py-2">Découvrez les offres >
+                </a>
+            </div>
 
         </div>
         <div class="pic-ctn">
