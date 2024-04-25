@@ -69,9 +69,9 @@ Ticket
     </div>
 </section>
 <section class="parcours_section">
-    <div class="container grid grid-cols-1 gap-4 mt-20 mx-auto">
+    <div class="container flex flex-wrap justify-center gap-4 mt-20 mx-auto">
         @forelse($parcours as $parcour)
-            <form method="POST" action="/session"  class="flex w-4/12 md:w-1/2 lg:w-1/2 xl:w-1/2 px-3 mb-6">
+            <form method="POST" action="{{ route('ticket') }}" class="flex w-7/12 px-3 mb-6">
                 @csrf
                 <div class="mr-4 flex-grow">
                     <div class="bg-gray-100 rounded-lg shadow-md p-6">
@@ -81,8 +81,7 @@ Ticket
                         <div class="flex justify-between items-center">
                             <div>
                                 <div class="text-xs text-gray-500">Départ</div>
-                                <div
-                                    class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->time_depart)->format('H:i') }}</div>
+                                <div class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->time_depart)->format('H:i') }}</div>
                                 <div class="text-xs text-gray-500">{{ $parcour->City_depart->name }}</div>
                             </div>
                             <div>
@@ -91,15 +90,12 @@ Ticket
                             </div>
                             <div>
                                 <div class="text-xs text-gray-500">Arrivée</div>
-                                <div
-                                    class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->arrive_time)->format('H:i') }}</div>
+                                <div class="text-xl font-bold text-gray-800">{{ \Carbon\Carbon::parse($parcour->arrive_time)->format('H:i') }}</div>
                                 <div class="text-xs text-gray-500">{{ $parcour->City_arrive->name }}</div>
                             </div>
                             <div class="ml-4 flex-shrink-0">
                                 <div>
-                                    <p class="font-bold text-xl mb-3">
-                                        A partir de :
-                                    </p>
+                                    <p class="font-bold text-xl mb-3">A partir de :</p>
                                     <input type="hidden" id="ticketPriceHidden">
                                     <span class="text-lg ml-5 font-semibold font-bold bg-gray-200 rounded-2xl p-2 text-gray-800" id="ticketPrice" ticketPrice="{{ $parcour->Prix_Parcour }}">{{ $parcour->Prix_Parcour }}</span>MAD
                                 </div>
@@ -108,22 +104,20 @@ Ticket
                         <hr class="my-4">
                         <div class="flex justify-between items-center mb-4">
                             <div class="flex justify-center items-center">
-                            <span class="flex text-xs font-semibold"> <img src="{{ asset('img/train.png') }}"
-                                                                           alt=""> TL <br> {{ $parcour->City_depart->name }} </span>
+                            <span class="flex text-xs font-semibold">
+                                <img src="{{ asset('img/train.png') }}" alt=""> TL <br> {{ $parcour->City_depart->name }}
+                            </span>
                             </div>
                             <div class="flex items-center">
-                            <span class="flex text-xs font-semibold"> <img src="{{ asset('img/train.png') }}"
-                                                                           alt=""> TL <br> {{ $parcour->City_arrive->name }}  </span>
+                            <span class="flex text-xs font-semibold">
+                                <img src="{{ asset('img/train.png') }}" alt=""> TL <br> {{ $parcour->City_arrive->name }}
+                            </span>
                             </div>
-
                             <div>
-                                <div>
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit"
-                                            class="bg-blue-600 text-bold rounded-lg text-white hover:bg-blue-700 px-5 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 ...">
-                                        Reservation
-                                    </button>
-                                </div>
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="bg-blue-600 text-bold rounded-lg text-white hover:bg-blue-700 px-5 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                                    Reservation
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -133,6 +127,7 @@ Ticket
             <p class="text-center text-xl mb-40 text-dark">Aucun parcours disponible actuellement.</p>
         @endforelse
     </div>
+
 
     <script>
         const ticketPriceHidden = document.getElementById('ticketPriceHidden');

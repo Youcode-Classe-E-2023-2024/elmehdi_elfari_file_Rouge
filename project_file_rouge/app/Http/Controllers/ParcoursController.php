@@ -114,17 +114,4 @@ class ParcoursController extends Controller
         return redirect()->back()->with('success', 'Parcours deleted successfully.');
     }
 
-    public function parcours($class)
-    {
-        $parcours = Parcours::where('classes', $class)->get();
-
-        if(is_null($parcours))
-            return response()->json(['status'=> 'no data'], 302);
-
-        return response()->json([
-            'status' => 'data founded',
-            'parcours' => $parcours
-        ]);
-
-    }
 }

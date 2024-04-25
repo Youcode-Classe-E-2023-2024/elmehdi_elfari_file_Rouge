@@ -28,11 +28,11 @@
              style="transform: translateZ(0px)">
             <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
                  version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-                <polygon class="text-blueGray-600 fill-current" points="2560 0 2560 100 0 100"></polygon>
+                <polygon class="text-white fill-current" points="2560 0 2560 100 0 100"></polygon>
             </svg>
         </div>
     </div>
-
+    <hr>
 </section>
 
 <section class="pb-10 bg-white">
@@ -82,9 +82,9 @@
 </section>
 
 <section>
-    <div class="container mx-auto border-2 border-orange-500 rounded-full flex justify-center shadow-lg mb-4 h-32 bg-gray-50 w-9/12">
+    <div class="container mx-auto border-2 border-orange-500 rounded-full flex justify-center shadow-lg mb-4 h-32 bg-gray-50 w-7/12">
         <form method="GET" action="/search" class="flex justify-between items-center gap-16">
-            <div class="flex justify-center ml-10 w-3/6 gap-10">
+            <div class="flex justify-between ml-10 w-3/6 gap-10">
                 <div>
                     <label class="block text-blue-600 font-bold font-medium mb-2" for="departure-date">Départ</label>
                     <select name="depart_id" class="form-select rounded-2xl w-48 border p-3">
@@ -107,18 +107,10 @@
                     <label class="block text-blue-600 font-bold font-medium mb-2">Date de départ</label>
                     <input name="depart_date" class="form-input rounded-2xl w-48 border p-3" type="date">
                 </div>
-            </div>
-            <div class="flex justify-around items-center w-full">
-                <div>
-                    <label class="block text-blue-600 font-bold font-medium mb-2" for="arrival-date">Mon confort</label>
-                    <button id="premier_class" type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
-                            {{--value="1Class"--}} name="premier_class">1ère classe</button>
-                    <button id="deuxieme_class" type="submit" class="bg-gray-400 hover:bg-gray-600 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
-                            {{--value="2Class"--}} name="deuxieme_class">2ème classe</button>
-                </div>
+
                 <div class="flex mt-8">
                     <button type="submit" class="bg-blue-600 hover:bg-blue-700 hover:text-black text-white font-bold px-5 py-3 rounded-full text-lg">
-                        search <i class="fas fa-search"></i>
+                        <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\googleAuthController;
 use App\Http\Controllers\PromosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -16,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class ,'welcome'])->name('home');
-Route::get('/ticket', [TicketController::class ,'ticket'])->name('ticket');
 
 Route::middleware('auth')->group(function (){
     Route::post('logout', [LogoutController::class, 'destroy']);
@@ -53,9 +53,9 @@ Route::middleware('auth')->group(function (){
 
     Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
 
-    Route::get('/Promo', [PromosController::class, 'index'])->name('Promos');
+    Route::get('/dashboard/Promos', [PromosController::class, 'index'])->name('Promos');
 
-    Route::post('/Promo', [PromosController::class, 'store'])->name('Promos.store');
+    Route::post('/dashboard/Promos', [PromosController::class, 'store'])->name('Promos.store');
 
     Route::get('/dashboard/Promos/create', [PromosController::class, 'create'])->name('create.Promos');
 
@@ -66,7 +66,6 @@ Route::middleware('auth')->group(function (){
     Route::delete('/Promos/{Promos}', [PromosController::class, 'destroy'])->name('Promos.destroy');
 
 });
-Route::get('/Promos', [PromosController::class, 'Promos'])->name('promos');
 
 Route::get("register", [RegisterController::class, 'create'])->name('Form-register');
 
@@ -84,10 +83,16 @@ Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create']
 
 Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 
+Route::get('/auth/google/utilisateur', [googleAuthController::class, 'redirect'])->name('googleAuthentication');
+
+Route::get('/auth/google/call-back', [googleAuthController::class, 'handleGoogleCallback'])->name('googleAuthenticationCallback');
+
 
 
 
 Route::get('/search', [HomeController::class, 'search']);
+
+Route::get('/searcTicket', [HomeController::class, 'searcTicket']);
 
 Route::get('/filter',[HomeController::class,'filter']);
 
@@ -96,3 +101,10 @@ Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout')
 Route::post('/session', [StripeController::class, 'createSession']);
 
 Route::get('/success', [StripeController::class,'success'])->name('success');
+
+Route::get('/Promos', [PromosController::class, 'Promos'])->name('promos');
+
+Route::get('/ticket', [TicketController::class ,'ticket'])->name('ticket');
+
+Route::get('/Ticket/Promos/{id}', [TicketController::class, 'ticketPromos'])->name('ticketPromos');
+

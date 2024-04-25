@@ -119,4 +119,5 @@ class PromosController extends Controller
         return view('pages.promo', compact('Promos', 'cities'));
     }
 
+
 }
