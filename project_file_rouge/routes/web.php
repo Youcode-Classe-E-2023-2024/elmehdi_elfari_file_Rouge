@@ -83,7 +83,7 @@ Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create']
 
 Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 
-Route::get('/auth/google/utilisateur', [googleAuthController::class, 'redirect'])->name('googleAuthentication');
+Route::get('/auth/google/user', [googleAuthController::class, 'redirect'])->name('googleAuthentication');
 
 Route::get('/auth/google/call-back', [googleAuthController::class, 'handleGoogleCallback'])->name('googleAuthenticationCallback');
 
@@ -92,9 +92,7 @@ Route::get('/auth/google/call-back', [googleAuthController::class, 'handleGoogle
 
 Route::get('/search', [HomeController::class, 'search']);
 
-Route::get('/searcTicket', [HomeController::class, 'searcTicket']);
-
-Route::get('/filter',[HomeController::class,'filter']);
+Route::get('/searchTicket', [HomeController::class, 'searchTicket']);
 
 Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
 

@@ -9,8 +9,8 @@ class CityController extends Controller
 {
     public function index()
     {
-        $ville = City::all();
-        return view('pages.city', ['ville' => $ville]);
+        $cities = City::all();
+        return view('pages.city', compact('cities'));
     }
 
 
@@ -32,25 +32,26 @@ class CityController extends Controller
 
     public function edit($id)
     {
-        $ville = City::find($id);
-
-        if (!$ville) {
+        $wantedCity = City::find($id);
+        $cities = City::all();
+        $edit = true;
+        if (!$wantedCity) {
             return redirect()->back()->with('error', 'City not found.');
         }
 
-        return view('pages.city', compact('ville'));
+        return view('pages.city', compact('wantedCity', 'cities', 'edit'));
     }
 
 
-
-    public function update(Request $request, City $cities)
+    public function update(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'id' => 'required|string|exists:cities'
         ]);
-
-        $cities->update($request->all());
-
+        $city = City::find($request->id);
+        $city->name = $request->name;
+        $city->save();
         return redirect()->back()->with('success', 'City updated successfully.');
     }
 

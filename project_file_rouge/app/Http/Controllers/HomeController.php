@@ -58,7 +58,7 @@ class HomeController extends Controller
         return view('pages.ticket', compact('parcours', 'cities'));
     }
 
-    public function searcTicket(Request $request)
+    public function searchTicket(Request $request)
     {
         $searchQuery = $request->input('query');
         $departId = $request->input('depart_id');

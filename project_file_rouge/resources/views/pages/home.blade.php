@@ -167,20 +167,8 @@
     <div class="my-10 ml-56">
         <p class="text-xl">Grâce à notre plateforme de réservation en ligne, réservez votre ticket de Train n'a jamais été aussi facile.</p>
     </div>
-    <div class="flex justify-around items-center my-20">
+    <div class="flex justify-around my-20">
         <div class="flex flex-col justify-center items-center gap-3">
-            <svg class="absolute rtl:-scale-x-100 ltr:scale-x-100 -top-1 ltr:-left-20 rtl:-right-20" width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1130_247)">
-                    <path d="M13.9082 19.6751C10.8383 18.7274 7.77101 17.7893 4.68955 16.8757C3.80931 16.6043 3.65588 17.5771 3.83187 18.234C4.05963 19.084 4.67552 20.2234 5.58285 20.5186C8.66569 21.5147 11.7434 22.4914 14.8281 23.4559C15.7425 23.7388 15.8997 22.7029 15.7237 22.046C15.4908 21.1767 14.8445 19.9626 13.9082 19.6751Z" fill="orangered"></path>
-                    <path d="M16.5213 13.9332C14.6388 11.6216 12.7494 9.32231 10.8502 7.02558C10.4986 6.60215 9.51967 5.65319 9.03038 6.41581C8.54108 7.17843 9.23633 8.42083 9.67502 8.97621C11.5433 11.3123 13.4186 13.6361 15.3062 15.9669C15.5714 16.2997 15.9564 16.6934 16.3759 16.8295C16.6588 16.9193 17.0369 16.9008 17.197 16.6095C17.6347 15.8089 17.0315 14.5626 16.5264 13.9525L16.5213 13.9332Z" fill="#FF6900"></path>
-                    <path d="M23.4092 8.53658C22.6402 6.51678 21.8686 4.48732 21.09 2.47011C20.9001 1.99301 20.5787 1.48902 20.2066 1.14356C19.9847 0.933826 19.5398 0.587158 19.1985 0.62686C18.2981 0.743887 18.6171 1.9732 18.8156 2.5205C19.5555 4.54806 20.3148 6.57045 21.0838 8.59025C21.2667 9.07959 21.6126 9.59772 21.9969 9.95026C22.2188 10.16 22.6785 10.5234 23.0392 10.4785C23.9589 10.3563 23.6417 9.09543 23.4311 8.54106L23.4092 8.53658Z" fill="#FF6900"></path>
-                </g>
-                <defs>
-                    <clipPath id="clip0_1130_247">
-                        <rect width="21.08" height="21.44" fill="orangered" transform="translate(5.91309 26) rotate(-105)"></rect>
-                    </clipPath>
-                </defs>
-            </svg>
             <div class="flex items-center gap-3">
                 <div class="flex items-center justify-center w-14 h-14 rounded-full bg-gray-900 border-2 border-gray-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="30" viewBox="0 0 24 24">

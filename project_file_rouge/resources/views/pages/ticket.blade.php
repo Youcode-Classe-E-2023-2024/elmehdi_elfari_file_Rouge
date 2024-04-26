@@ -114,79 +114,77 @@ Ticket
                             </span>
                             </div>
                             <div>
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="bg-blue-600 text-bold rounded-lg text-white hover:bg-blue-700 px-5 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
-                                    Reservation
-                                </button>
+                                <form action="/session" method="POST">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <button type="submit" id="checkout-live-button" class="btn btn-success">Checkout (LIVE)</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
+
         @empty
             <p class="text-center text-xl mb-40 text-dark">Aucun parcours disponible actuellement.</p>
         @endforelse
     </div>
-
-
     <script>
         const ticketPriceHidden = document.getElementById('ticketPriceHidden');
-        const ticketPrice = document.getElementById('ticketPrice');
-        const p_class = document.getElementById('premier_class');
+        const ticketPriceElement = document.getElementById('ticketPrice');
+        const premierClass = document.getElementById('premier_class');
+        const secondClass = document.getElementById('deuxieme_class');
         const counterInput = document.getElementById('counter-input');
         const decrementButton = document.getElementById('decrement-button');
         const incrementButton = document.getElementById('increment-button');
 
-        const init = Number(ticketPrice.textContent);
+        const initialPrice = parseFloat(ticketPriceElement.textContent);
+        let premierClassSelected = false;
+        let secondClassSelected = false;
 
         counterInput.value = 1;
 
-        let premierClassClicked = false;
+        function updatePrice() {
+            let currentCount = Number(counterInput.value);
+            let price = initialPrice;
 
-        p_class.addEventListener('click', function(event) {
+            if (premierClassSelected) {
+                price += 30;
+            }
 
+            ticketPriceElement.textContent = (price * currentCount);
+            localStorage.setItem('ticketPrice', ticketPriceElement.textContent);
+        }
+
+        premierClass.addEventListener('click', function(event) {
             event.preventDefault();
+            premierClassSelected = true;
+            secondClassSelected = false;
+            updatePrice();
+        });
 
-            const increment = 30;
-            ticketPrice.textContent = init + increment;
-
-            premierClassClicked = true;
-
-            localStorage.setItem('ticketPrice', ticketPrice.textContent);
+        secondClass.addEventListener('click', function(event) {
+            event.preventDefault();
+            premierClassSelected = false;
+            secondClassSelected = true;
+            updatePrice();
         });
 
         incrementButton.addEventListener('click', function(event) {
             event.preventDefault();
-
-            if (Number(counterInput.value) < 7) {
+            if (counterInput.value < 7) {
                 counterInput.value = Number(counterInput.value) + 1;
-
-                if (premierClassClicked) {
-                    ticketPrice.textContent = (init + 30) * Number(counterInput.value);
-                } else {
-                    ticketPrice.textContent = init * Number(counterInput.value);
-                }
-
-                localStorage.setItem('ticketPrice', ticketPrice.textContent);
+                updatePrice();
             }
         });
 
         decrementButton.addEventListener('click', function(event) {
             event.preventDefault();
-
-            if (Number(counterInput.value) > 1) {
+            if (counterInput.value > 1) {
                 counterInput.value = Number(counterInput.value) - 1;
-
-                if (premierClassClicked) {
-                    ticketPrice.textContent = (init + 30) * Number(counterInput.value);
-                } else {
-                    ticketPrice.textContent = init * Number(counterInput.value);
-                }
-
-                localStorage.setItem('ticketPrice', ticketPrice.textContent);
+                updatePrice();
             }
         });
-    </script>
 
+    </script>
 </section>
 @endsection

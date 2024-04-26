@@ -130,81 +130,63 @@
                 </div>
             </form>
         </div>
-
         <script>
             const ticketPriceHidden = document.getElementById('ticketPriceHidden');
-            const ticketPrice = document.getElementById('ticketPrice');
-            const p_class = document.getElementById('premier_class');
-            const d_class = document.getElementById('deuxieme_class');
+            const ticketPriceElement = document.getElementById('ticketPrice');
+            const premierClass = document.getElementById('premier_class');
+            const secondClass = document.getElementById('deuxieme_class');
             const counterInput = document.getElementById('counter-input');
             const decrementButton = document.getElementById('decrement-button');
             const incrementButton = document.getElementById('increment-button');
 
-            const init = Number(ticketPrice.textContent);
+            const initialPrice = parseFloat(ticketPriceElement.textContent);
+            let premierClassSelected = false;
+            let secondClassSelected = false;
 
             counterInput.value = 1;
 
-            let premierClassClicked = false;
-            let deuxiemeClassClicked = false;
+            function updatePrice() {
+                let currentCount = Number(counterInput.value);
+                let price = initialPrice;
 
-            p_class.addEventListener('click', function(event) {
+                if (premierClassSelected) {
+                    price += 30;
+                }
 
+                ticketPriceElement.textContent = (price * currentCount);
+                localStorage.setItem('ticketPrice', ticketPriceElement.textContent);
+            }
+
+            premierClass.addEventListener('click', function(event) {
                 event.preventDefault();
-
-                const increment = 30;
-                ticketPrice.textContent = init + increment;
-
-                premierClassClicked = true;
-
-                localStorage.setItem('ticketPrice', ticketPrice.textContent);
+                premierClassSelected = true;
+                secondClassSelected = false;
+                updatePrice();
             });
-            d_class.addEventListener('click', function(event) {
 
+            secondClass.addEventListener('click', function(event) {
                 event.preventDefault();
-
-                ticketPrice.textContent = init ;
-
-                deuxiemeClassClicked = true;
-
-                localStorage.setItem('ticketPrice', ticketPrice.textContent);
+                premierClassSelected = false;
+                secondClassSelected = true;
+                updatePrice();
             });
 
             incrementButton.addEventListener('click', function(event) {
                 event.preventDefault();
-
-                if (Number(counterInput.value) < 7) {
+                if (counterInput.value < 7) {
                     counterInput.value = Number(counterInput.value) + 1;
-
-                    if (premierClassClicked) {
-                        ticketPrice.textContent = (init + 30) * Number(counterInput.value);
-                    } else if (deuxiemeClassClicked){
-                        ticketPrice.textContent = (premierClassClicked - 30) * Number(counterInput.value);
-                    }else {
-                        ticketPrice.textContent = init * Number(counterInput.value);
-                    }
-
-                    localStorage.setItem('ticketPrice', ticketPrice.textContent);
+                    updatePrice();
                 }
             });
 
             decrementButton.addEventListener('click', function(event) {
                 event.preventDefault();
-
-                if (Number(counterInput.value) > 1) {
+                if (counterInput.value > 1) {
                     counterInput.value = Number(counterInput.value) - 1;
-
-                    if (premierClassClicked) {
-                        ticketPrice.textContent = (init + 30) * Number(counterInput.value);
-                    } else if (deuxiemeClassClicked){
-                        ticketPrice.textContent = (premierClassClicked - 30) * Number(counterInput.value);
-                    }else {
-                        ticketPrice.textContent = init * Number(counterInput.value);
-                    }
-
-                    localStorage.setItem('ticketPrice', ticketPrice.textContent);
+                    updatePrice();
                 }
             });
-        </script>
 
+        </script>
     </section>
 @endsection

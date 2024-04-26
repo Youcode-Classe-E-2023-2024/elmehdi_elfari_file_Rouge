@@ -42,11 +42,4 @@ class DashboardController extends Controller
         return redirect()->back()->with('message', $message);
     }
 
-
-    public function reservation(){
-
-        return view('pages.reservation');
-    }
-
-
 }
