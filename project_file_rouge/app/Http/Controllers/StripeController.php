@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Parcours;
+use App\Models\PromoResarvation;
+use App\Models\Promos;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Checkout\Session;
 
 class StripeController extends Controller
@@ -13,16 +19,15 @@ class StripeController extends Controller
         return view('pages.ticket');
     }
 
-    public function createSession(Request $request)
+    public function createSession(Request $request, Parcours $parcours)
     {
-        $parcours = Parcours::all();
-        $totalAmount = 0;
-        foreach ($parcours as $parcour) {
-            $totalAmount += $parcour->Prix_Parcour;
+        $reservation = Reservation::where('parcour_id' , $parcours->id )->where('user_id' , Auth::id())->where('date' , $request->date)->first();
+        if($reservation) {
+            return redirect()->back()->with('error' , 'error');
         }
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
 
-        $session = Session::create([
+        $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [
                 [
@@ -31,21 +36,25 @@ class StripeController extends Controller
                         'product_data' => [
                             'name' => 'gimme money!!!!',
                         ],
-                        'unit_amount' => $totalAmount * 100,
+                        'unit_amount' => 100,
                     ],
                     'quantity' => 1,
                 ],
             ],
             'mode' => 'payment',
-            'success_url' => route('success'),
+            'success_url' => route('Reservation', ['parcours' => $parcours->id,'classes'=>$request->Classes, 'number_of_reservations' => $request->number_of_reservations, 'date' => $request->date]),
             'cancel_url' => route('checkout'),
         ]);
 
+        // Redirect the user to the Stripe session URL
         return redirect()->away($session->url);
     }
 
+
     public function success()
     {
-        return "Yay, It works!!!";
+
+        return view('pages.success');
+
     }
 }

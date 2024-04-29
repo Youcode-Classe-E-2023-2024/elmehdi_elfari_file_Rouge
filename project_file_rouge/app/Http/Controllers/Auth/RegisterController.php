@@ -26,6 +26,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the incoming request data
         $request->validate([
             "name" => 'required|min:3',
             "email" => ['required', 'email', 'unique:users,email'],
@@ -47,21 +48,12 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        // Assign the role to the user
+        // Assign the role to the user and save the user
         $user->role = $role;
         $user->save();
 
-        // Log in the user
-        Auth::login($user);
-
-        // Redirect the user based on their role
-        if ($role === 'user') {
-            // Redirect users to a specific route if needed
-        } elseif ($role === 'admin') {
-            // Redirect admins to a specific route if needed
-        }
-
-        return redirect('login');
+        // Redirect the user to the login page
+        return redirect()->route('register')->with('success', 'Registration successful! Please log in.');
     }
 
 

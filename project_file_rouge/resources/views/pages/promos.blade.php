@@ -67,14 +67,9 @@
                 <thead>
                 <tr>
                     <th class="border-b p-2">ID</th>
-                    <th class="border-b p-2">Care_depart</th>
-                    <th class="border-b p-2">Gare_arrive</th>
-                    <th class="border-b p-2">distance_Parcour</th>
-                    <th class="border-b p-2">Prix_Parcour</th>
-                    <th class="border-b p-2">time_depart</th>
-                    <th class="border-b p-2">time_d'arrive</th>
-                    <th class="border-b p-2">depart_date</th>
-                    <th class="border-b p-2">Nbr_Place</th>
+                    <th class="border-b p-2">Parcour</th>
+                    <th class="border-b p-2">Discount</th>
+                    <th class="border-b p-2">New Price</th>
                     <th class="border-b p-2">Action</th>
                 </tr>
                 </thead>
@@ -112,123 +107,24 @@
                 @endif
                 <br>
                 @foreach ($Promos as $Promo)
-                    <tr>
+                    <tr class="ml-5">
                         <td class="border-b p-2">{{ $Promo->id }}</td>
-                        <td class="border-b p-2">{{ $Promo->City_depart->name }}</td>
-                        <td class="border-b p-2">{{ $Promo->City_arrive->name }}</td>
-                        <td class="border-b p-2">{{ $Promo->distance_Parcour }}</td>
+                        <td class="border-b p-2">{{ $Promo->Parcours->City_depart->name }}/{{ $Promo->Parcours->City_arrive->name }}</td>
+                        <td class="border-b p-2">{{ $Promo->discount }}</td>
                         <td class="border-b p-2">{{ $Promo->Prix_Parcour }}</td>
-                        <td class="border-b p-2">{{ $Promo->time_depart }}</td>
-                        <td class="border-b p-2">{{ $Promo->arrive_time }}</td>
-                        <td class="border-b p-2">{{ $Promo->depart_date }}</td>
-                        <td class="border-b p-2">{{ $Promo->nbr_place }}</td>
+
                         <td class="border-b p-2">
-                            <!-- Edit Button -->
-                            <button onclick="openEditModal({{ $Promo->id }}, 'parcour_name')"
-                                    class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Edit</button>
-                            <!-- Delete Form -->
+
                             <form action="{{ route('Promos.destroy', $Promo->id) }}" method="POST"
                                   class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                        class="bg-red-500 text-white p-2 rounded-full hover:bg-red-600 focus:outline-none focus:ring focus:border-red-300">Delete</button>
+                                        class="bg-red-500 text-white px-5 py-2 rounded-full hover:bg-red-600 focus:outline-none focus:ring focus:border-red-300">Delete</button>
                             </form>
                             <div id="editModal-{{ $Promo->id }}"
                                  class="fixed inset-0 z-50 flex items-center justify-center hidden">
                                 <div class="bg-white p-8 w-96 mx-auto rounded-md shadow-lg">
-                                    <h2 class="text-2xl font-semibold mb-4">Edit Promos</h2>
-                                    <form action="{{ route('Promos.update', $Promo) }}" method="POST"
-                                          enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PUT')
-                                        <!-- Selecteur pour la ville de départ -->
-                                        <select id="city" name="depart_id"
-                                                class="form-select w-full border p-2 mb-4">
-                                            <option value="" selected disabled>Choisissez une ville
-                                            </option>
-                                            @foreach ($cities as $city)
-                                                <option value="{{ $city->id }}">{{ $city->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="text-red-500">
-                                            @error('depart_id')
-                                            {{ $message }}
-                                            @enderror
-                                        </div>
-
-                                        <!-- Selecteur pour la ville d'arrivée -->
-                                        <select id="city" name="arrive_id"
-                                                class="form-select w-full border p-2 mb-4">
-                                            <option value="" selected disabled>Choisissez une ville
-                                            </option>
-                                            @foreach ($cities as $city)
-                                                <option value="{{ $city->id }}">{{ $city->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
-                                        <!-- Champ pour la longueur du parcours -->
-                                        <label class="block mb-2">Distance du Promos:</label>
-                                        <input type="number" name="distance_Parcour"
-                                               class="w-full border p-2 mb-4"
-                                               placeholder="Entrez la longueur du Promos"
-                                               value="{{ $Promo->distance_Parcour ?? '' }}" required>
-                                        @error('distance_Parcour')
-                                        {{ $message }}
-                                        @enderror
-
-                                        <!-- Champ pour le prix du parcours -->
-                                        <label class="block mb-2">Prix du Promos:</label>
-                                        <input type="number" name="Prix_Parcour"
-                                               class="w-full border p-2 mb-4"
-                                               placeholder="Entrez le prix du Promos"
-                                               value="{{ $Promo->Prix_Parcour ?? '' }}" required>
-                                        @error('Prix_Parcour')
-                                        {{ $message }}
-                                        @enderror
-
-                                        <label class="block mb-2">Time de depart:</label>
-                                        <input type="time" name="time_depart"
-                                               class="w-full border p-2 mb-4"
-                                               value="{{ $Promo->time_depart ?? '' }}" step="60"
-                                               required>
-
-                                        @error('time_depart')
-                                        {{ $message }}
-                                        @enderror
-
-                                        <label class="block mb-2">Time d'arrivée:</label>
-                                        <input type="time" name="arrive_time"
-                                               class="w-full border p-2 mb-4"
-                                               value="{{ $Promo->arrive_time ?? '' }}" step="60"
-                                               required>
-                                        @error('arrive_time')
-                                        {{ $message }}
-                                        @enderror
-
-                                        <label class="block mb-2">Depart Date:</label>
-                                        <input type="date" name="depart_date"
-                                               class="w-full border p-2 mb-4"
-                                               value="{{ $Promo->depart_date ?? '' }}"
-                                               required>
-                                        @error('depart_date')
-                                        {{ $message }}
-                                        @enderror
-
-                                        <label class="block mb-2">Number Place:</label>
-                                        <input type="number" name="nbr_place"
-                                               class="w-full border p-2 mb-4"
-                                               value="{{ $Promo->nbr_place ?? '' }}"
-                                               required>
-                                        @error('nbr_place')
-                                        {{ $message }}
-                                        @enderror
-                                        <br>
-                                        <button type="submit"
-                                                class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Update</button>
-                                    </form>
                                     <button onclick="closeEditModal({{ $Promo->id }})"
                                             class="mt-4 bg-gray-500 text-white p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-300">Close</button>
                                 </div>
@@ -252,59 +148,18 @@
                     <form action="{{ route('Promos') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <select id="city" name="depart_id" class="form-select w-full border p-2 mb-4">
+                       <select name="parcour_id" class="form-select w-full border p-2 mb-4">
                             <option value="" selected disabled>Choisissez une ville</option>
-                            @foreach ($cities as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @foreach ($parcours as $parcour)
+                                <option value="{{ $parcour->id }}">{{ $parcour->City_depart->name }} , {{ $parcour->City_arrive->name }}</option>
                             @endforeach
                         </select>
 
-                        <select id="city" name="arrive_id" class="form-select w-full border p-2 mb-4">
-                            <option value="" selected disabled>Choisissez une ville</option>
-                            @foreach ($cities as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
 
-                        <label class="block mb-2">Distance Parcour:</label>
-                        <input type="number" name="distance_Parcour" class="w-full border p-2 mb-4"
+                        <label class="block mb-2">Discount :</label>
+                        <input type="number" name="discount" class="w-full border p-2 mb-4"
                                placeholder="Enter station name" required>
-                        @error('distance_Parcour')
-                        {{ $message }}
-                        @enderror
-
-                        <label class="block mb-2">Prix_Parcour:</label>
-                        <input type="number" name="Prix_Parcour" class="w-full border p-2 mb-4"
-                               placeholder="Enter station name" required>
-                        @error('Prix_Parcour')
-                        {{ $message }}
-                        @enderror
-
-                        <label class="block mb-2">Time de depart:</label>
-                        <input type="time" name="time_depart" class="w-full border p-2 mb-4" step="60"
-                               required>
-
-                        @error('time_depart')
-                        {{ $message }}
-                        @enderror
-
-                        <label class="block mb-2">Time d'arrivée:</label>
-                        <input type="time" name="arrive_time" class="w-full border p-2 mb-4" step="60"
-                               required>
-                        @error('arrive_time')
-                        {{ $message }}
-                        @enderror
-
-                        <label class="block mb-2">Depart Date:</label>
-                        <input type="date" name="depart_date" class="w-full border p-2 mb-4" required>
-                        @error('depart_date')
-                        <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block mb-2">nbr_place:</label>
-                        <input type="number" name="nbr_place" class="w-full border p-2 mb-4"
-                               placeholder="Enter station name" required>
-                        @error('nbr_place')
+                        @error('discount')
                         {{ $message }}
                         @enderror
 
@@ -317,30 +172,8 @@
             </div>
         </div>
     </div>
-    <!-- Edit Category Modal -->
-
-
-
-    <!-- JavaScript -->
 
     <script>
-        // Function to open the edit modal and populate data
-        function openEditModal(id, name) {
-            console.log(id)
-            let elm = `editModal-${id}`;
-            console.log(elm)
-
-            document.getElementById(elm).classList.remove('hidden');
-            document.getElementById('editCategoryName').value = name;
-            document.getElementById('editCategoryId').value = id;
-        }
-
-        // Function to close the edit modal
-        function closeEditModal(id) {
-            let elm = `editModal-${id}`;
-            document.getElementById(elm).classList.add('hidden');
-        }
-
         // Function to open the add modal
         function openModal() {
             document.getElementById('modal').classList.remove('hidden');
@@ -351,76 +184,7 @@
             document.getElementById('modal').classList.add('hidden');
         }
 
-        // Function to handle form submission in the edit modal
-        function saveEditModalForm() {
-            // Get the form element
-            const form = document.getElementById('editForm');
-
-            // Add an event listener to the form submission
-            form.addEventListener('submit', function(event) {
-                // Prevent the default form submission
-                console.log('ndifso');
-                event.preventDefault();
-
-                // Perform any client-side validation here if needed
-
-                // Submit the form asynchronously using JavaScript's Fetch API or other method
-                // Replace the URL with your form submission endpoint
-                fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                })
-                    .then(response => {
-                        // Handle the response here (e.g., show success message, close modal, etc.)
-                        console.log('Form submitted successfully');
-                        // Optionally, close the modal after successful submission
-                        closeEditModal();
-                    })
-                    .catch(error => {
-                        // Handle any errors here
-                        console.error('Error submitting form:', error);
-                        // Optionally, display an error message to the user
-                    });
-            });
-        }
     </script>
-
-    <script>
-        // Function to handle form submission in the edit modal
-        function saveEditModalForm() {
-            // Get the form element
-            const form = document.getElementById('editForm');
-
-            // Add an event listener to the form submission
-            form.addEventListener('submit', function(event) {
-                // Prevent the default form submission
-                event.preventDefault();
-
-                // Submit the form asynchronously using JavaScript's Fetch API or other method
-                fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                })
-                    .then(response => {
-                        // Check if the response indicates a successful update
-                        if (response.ok) {
-                            // Handle success response here (e.g., show success message)
-                            console.log('Form submitted successfully');
-                            // Optionally, close the modal after successful submission
-                            closeEditModal();
-                        } else {
-                            // Handle error response here (e.g., display error message)
-                            console.error('Error submitting form:', response.statusText);
-                        }
-                    })
-                    .catch(error => {
-                        // Handle any network errors here
-                        console.error('Error submitting form:', error);
-                    });
-            });
-        }
-    </script>
-
 
 </body>
 

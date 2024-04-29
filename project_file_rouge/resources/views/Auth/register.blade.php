@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.register')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>register</title>
-</head>
+@section('title' , 'Register')
 
-<body>
+
+@section('content')
 <div class="flex justify-center items-center font-[sans-serif] text-[#333] h-full min-h-screen p-4"
      style="background-image: url(https://readymadeui.com/background-image.webp); background-repeat: no-repeat; background-size: cover;">
     <div class="max-w-md w-full mx-auto">
+        @if (!empty(session('success')))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-2xl relative"
+                 role="alert">
+                <strong class="font-bold">Successfully:)</strong>
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+        @endif
+            <br>
         <div class="bg-opacity-70 bg-white rounded-2xl p-6 shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]">
             <div class="mb-10">
                 <h3 class="text-3xl font-extrabold">Sign Up</h3>
             </div>
-            <!-- Display success message if registration is successful -->
-            @if (!empty(session('success')))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
-                     role="alert">
-                    <strong class="font-bold">Successfully:)</strong>
-                    <span class="block sm:inline">{{ session('success') }}</span>
-                </div>
-            @endif
             <!-- Form starts here -->
             <form class="space-y-4 md:space-y-6" action="{{ route('register') }}" method="post">
                 @csrf
@@ -101,19 +96,8 @@
                     <p class="text-sm text-center mt-6">Don't have an account <a href="{{ route('Form-login') }}"
                                                                                  class="font-semibold hover:underline ml-1 whitespace-nowrap">Login here</a></p>
                 </div>
-                <hr class="my-6 border-gray-500" />
-
             </form>
-            <div class="space-x-8 flex mt-5 justify-center">
-                <form action="{{route('googleAuthentication')}}">
-                    @csrf
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">continue with google</button>
-                </form>
-            </div>
         </div>
     </div>
 </div>
-
-</body>
-
-</html>
+@endsection

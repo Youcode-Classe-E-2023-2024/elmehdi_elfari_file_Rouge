@@ -55,8 +55,8 @@
                         <tr>
                             <td colspan="5" style="text-align:right;">
                                 <form action="/session" method="POST">
+                                    @csrf
                                     <a href="{{ url('/') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
-                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <input type='hidden' name="total" value="6">
                                     <input type='hidden' name="productname" value="Asus Vivobook 17 Laptop - Intel Core 10th">
                                     <button class="btn btn-success" type="submit" id="checkout-live-button"><i class="fa fa-money"></i> Checkout</button>

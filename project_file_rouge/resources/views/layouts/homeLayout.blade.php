@@ -24,7 +24,7 @@
 
 @include('layouts.nav')
 
-@yield('main')
+@yield('content')
 
 @include('layouts.footer')
 

@@ -27,7 +27,12 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user = User::where('id', Auth::id())->first();
 
-            // Rediriger l'utilisateur en fonction de son rôle
+            if ($user->status === 'ban') {
+                Auth::logout();
+
+                return redirect()->route('login')->with('error', 'Your email is banned.');
+            }
+
             if ($user->role === 'admin') {
                 return redirect()->route('dashboard');
             } else {

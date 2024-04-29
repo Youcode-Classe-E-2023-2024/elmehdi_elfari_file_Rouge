@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('promos', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('discount');
-            $table->integer('Prix_Parcour');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('parcour_id')->constrained('parcours')->onDelete('cascade')->onUpdate('cascade');
-            $table->softDeletes();
+            $table->unsignedBigInteger('number_de_reservation');
+            $table->enum( 'Classes' ,['premier', 'deuxieme']);
+            $table->date('date');
+            $table->unique(['user_id','parcour_id','date']);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('promos');
+        Schema::dropIfExists('reservations');
     }
 };

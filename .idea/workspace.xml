@@ -2,14 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="495b24d2-fc1a-4977-8fd9-ea48928f87b6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/Mail/ticketMail.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/login.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/register.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/reservations.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/success.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/CityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/CityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/PromosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/PromosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/StripeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/StripeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/TicketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/googleAuthController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Mail/SendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Mail/SendMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/Promos.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/Promos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_04_24_101513_create_promos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_04_24_101513_create_promos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/homeLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/homeLayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/side.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/side.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/city.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/checkout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promo.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/reservation.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticket.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticket.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticketPromo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticketPromo.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/routes/web.php" afterDir="false" />
@@ -58,11 +76,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\project_file_rouge\resources\views\Mail" />
+      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\project_file_rouge\resources\views\pages" />
+      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\project_file_rouge\resources\views" />
+      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\project_file_rouge\resources\views\pages\Mail" />
       <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\project_file_rouge\public\js" />
-      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\train\app\Models" />
-      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\train\public\image\img" />
-      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\train\app\Http\Controllers\Auth" />
-      <recent name="C:\xampp\htdocs\elmehdi_elfari_file_Rouge\train\resources\views\pages" />
     </key>
   </component>
   <component name="RunManager">
@@ -106,7 +124,9 @@
       <workItem from="1713773418519" duration="13767000" />
       <workItem from="1713802905100" duration="35729000" />
       <workItem from="1713953663246" duration="20577000" />
-      <workItem from="1714037169320" duration="18717000" />
+      <workItem from="1714037169320" duration="43190000" />
+      <workItem from="1714302074904" duration="47702000" />
+      <workItem from="1714358018991" duration="5979000" />
     </task>
     <servers />
   </component>
@@ -131,6 +151,11 @@
           <url>file://$PROJECT_DIR$/project_file_rouge/resources/views/layouts/dash.blade.php</url>
           <line>38</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/sendMailController.php</url>
+          <line>79</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

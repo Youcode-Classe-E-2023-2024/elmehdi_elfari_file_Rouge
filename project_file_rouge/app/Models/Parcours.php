@@ -37,6 +37,11 @@ class Parcours extends Model
     {
         return $this->belongsTo(City::class, 'arrive_id');
     }
+
+    public function Resarvation()
+    {
+        return $this->hasMany(Reservation::class, 'parcour_id');
+    }
 }
 
 

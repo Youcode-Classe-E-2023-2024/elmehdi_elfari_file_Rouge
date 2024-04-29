@@ -7,14 +7,13 @@
 
     <div class=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 my-32">
         @forelse($Promos as $Promo)
-            <a href=" {{ route('ticketPromos' , $Promo->id) }}" class="block mx-auto max-w-sm mb-10 p-6 bg-gray-100 border border-gray-400 rounded-lg shadow-lg transition-transform duration-300 transform-gpu hover:scale-105 hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                <!-- Train Ticket SVG -->
+            <a href=" {{ route('ticket.Promos' , $Promo->id) }}" class="block mx-auto max-w-sm mb-10 p-6 bg-gray-100 border border-gray-400 rounded-lg shadow-lg transition-transform duration-300 transform-gpu hover:scale-105 ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="350" height="150">
 
                     <text x="175" y="30" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle"
                           stroke="orange" stroke-width="1"
                     >
-                        {{$Promo->City_depart->name}} >>> {{$Promo->City_arrive->name}}
+                        {{$Promo->parcours ->City_depart->name}} >>> {{$Promo->parcours->City_arrive->name}}
                     </text>
                     <text x="280" y="100" font-family="Arial" font-size="14" font-weight="bold" fill="#FF4500">{{ $Promo->Prix_Parcour }} MAD</text>
                     <text x="25" y="100" font-family="Arial" font-size="14">Date: {{ $Promo->depart_date }}</text>

@@ -4,21 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Promos extends Model
+class Reservation extends Model
 {
-    use HasFactory, SoftDeletes;
-
+    use HasFactory;
     protected $fillable = [
+        'number_de_reservation',
+        'Classes',
+        'date',
         'parcour_id',
-        'Prix_Parcour',
-        'discount',
+        'user_id'
     ];
-
-
     public function Parcours()
     {
         return $this->belongsTo(Parcours::class, 'parcour_id');
     }
+
+
+
 }

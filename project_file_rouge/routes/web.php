@@ -6,11 +6,13 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CityController;
-use App\Http\Controllers\googleAuthController;
+use App\Http\Controllers\PromoResarvationController;
 use App\Http\Controllers\PromosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ParcoursController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
@@ -35,10 +37,6 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/dashboard/parcour/create', [ParcoursController::class, 'create'])->name('create.parcours');
 
-    Route::get('/parcours/{id}/edit', [ParcoursController::class, 'edit'])->name('parcours.edit');
-
-    Route::put('/parcours/{id}', [ParcoursController::class, 'update'])->name('parcours.update');
-
     Route::delete('/parcours/{parcours}', [ParcoursController::class, 'destroy'])->name('parcours.destroy');
 
     Route::get('/cities', [CityController::class, 'index'])->name('city');
@@ -59,11 +57,17 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/dashboard/Promos/create', [PromosController::class, 'create'])->name('create.Promos');
 
-    Route::get('/Promos/{id}/edit', [PromosController::class, 'edit'])->name('Promos.edit');
-
-    Route::put('/Promos/{id}', [PromosController::class, 'update'])->name('Promos.update');
-
     Route::delete('/Promos/{Promos}', [PromosController::class, 'destroy'])->name('Promos.destroy');
+
+    Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+
+    Route::post('/session/{parcours}', [StripeController::class, 'createSession'])->name('session');
+
+    Route::get('/success', [StripeController::class, 'success'])->name('success');
+
+    Route::get('/dashboard/Reservation', [ReservationController::class ,'index'])->name('Reservation.show');
+
+    Route::get('/dashboardReservation/{parcours}', [ReservationController::class ,'store'])->name('Reservation');
 
 });
 
@@ -71,9 +75,11 @@ Route::get("register", [RegisterController::class, 'create'])->name('Form-regist
 
 Route::post("register", [RegisterController::class, 'store'])->name('register');
 
-Route::get("login", [LoginController::class, 'create'])->name('Form-login');
+Route::middleware(['guest'])->group(function () {
+    Route::get('login', [LoginController::class, 'create'])->name('Form-login');
+    Route::post('login', [LoginController::class, 'authenticate'])->name('login');
+});
 
-Route::post("login", [LoginController::class, 'authenticate'])->name('login');
 
 Route::get('/request', [ForgotPasswordLinkController::class, 'create']);
 
@@ -83,26 +89,18 @@ Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create']
 
 Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 
-Route::get('/auth/google/user', [googleAuthController::class, 'redirect'])->name('googleAuthentication');
-
-Route::get('/auth/google/call-back', [googleAuthController::class, 'handleGoogleCallback'])->name('googleAuthenticationCallback');
-
-
-
-
 Route::get('/search', [HomeController::class, 'search']);
 
 Route::get('/searchTicket', [HomeController::class, 'searchTicket']);
 
-Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
-
-Route::post('/session', [StripeController::class, 'createSession']);
-
-Route::get('/success', [StripeController::class,'success'])->name('success');
+Route::post('/send-email', [SendMailController::class, 'store'])->name('send-email');
 
 Route::get('/Promos', [PromosController::class, 'Promos'])->name('promos');
 
 Route::get('/ticket', [TicketController::class ,'ticket'])->name('ticket');
 
-Route::get('/Ticket/Promos/{id}', [TicketController::class, 'ticketPromos'])->name('ticketPromos');
+Route::get('/Ticket_Promos/{id}', [TicketController::class, 'ticketPromos'])->name('ticket.Promos');
+
+
+
 
