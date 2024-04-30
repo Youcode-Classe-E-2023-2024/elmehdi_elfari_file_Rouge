@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <div class=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 my-32">
+    <div class=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 my-52">
         @forelse($Promos as $Promo)
             <a href=" {{ route('ticket.Promos' , $Promo->id) }}" class="block mx-auto max-w-sm mb-10 p-6 bg-gray-100 border border-gray-400 rounded-lg shadow-lg transition-transform duration-300 transform-gpu hover:scale-105 ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="350" height="150">

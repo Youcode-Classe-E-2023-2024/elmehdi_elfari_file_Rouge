@@ -1,59 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Your Train Ticket</title>
+    <title>Votre Billet de Train</title>
+    <style>
+        /* Styles for the reservation ticket */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            font-size: 14px;
+            color: #f44336;
+            background-color: #ffeeee;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .ticket-details {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+        .ticket-details > div {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .ticket-details > div:last-child {
+            margin-right: 0;
+        }
+        .ticket-details div p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .ticket-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            background-color: #e1e1e1;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .route {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .route > span {
+            text-align: center;
+            font-size: 14px;
+        }
+        .route img {
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
 
+<div class="container">
 
-<div class="container flex flex-wrap justify-center gap-4 mt-20 mx-auto">
+    <!-- Header -->
+    <div class="header">
+        Départ imminent
+    </div>
 
-    <div class="mr-4 flex-grow">
-        <div class="bg-gray-100 rounded-lg shadow-md p-6">
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-sm font-semibold text-red-600 bg-red-100 rounded-full px-3 py-1">Départ imminent</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <div>
-                    <div class="text-xs text-gray-500">Départ</div>
-                    <div class="text-xl font-bold text-gray-800">{{--{{ \Carbon\Carbon::parse($parcours->time_depart)->format('H:i') }}--}}</div>
-                    <div class="text-xs text-gray-500">{{--{{ $parcours->City_depart->name }}--}}</div>
-                </div>
-                <div>
-                    <div class="text-xs text-gray-500">Durée</div>
-                    <div class="text-lg font-semibold text-gray-800">{{--{{ $parcours->duree }}--}}</div>
-                </div>
-                <div>
-                    <div class="text-xs text-gray-500">Arrivée</div>
-                    <div class="text-xl font-bold text-gray-800">{{--{{ \Carbon\Carbon::parse($parcours->arrive_time)->format('H:i') }}--}}</div>
-                    <div class="text-xs text-gray-500">{{--{{ $parcours->City_arrive->name }}--}}</div>
-                </div>
-                <div class="ml-4 flex-shrink-0">
-                    <div>
-                        <p class="font-bold text-xl mb-3">Prix :</p>
-                        <input type="hidden" id="ticketPriceHidden">
-                        <span class="text-lg ml-5 font-semibold font-bold bg-gray-200 rounded-2xl p-2 text-gray-800" id="ticketPrice" >{{--{{ $parcours->Prix_Parcour }}--}}</span>MAD
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="flex justify-between items-center mb-4">
-                <div class="flex justify-center items-center">
-                    <span class="flex text-xs font-semibold">
-                        <img src="{{ asset('img/train.png') }}" alt=""> TL <br> {{--{{ $parcours->City_depart->name }}--}}
-                    </span>
-                </div>
-                <div class="flex items-center">
-                    <span class="flex text-xs font-semibold">
-                        <img src="{{ asset('img/train.png') }}" alt=""> TL <br> {{--{{ $parcours->City_arrive->name }}--}}
-                    </span>
-                </div>
+    <!-- Ticket Details -->
+    <div class="ticket-details">
+        <div>
+            <p>Départ:</p>
+            <p><strong>{{ \Carbon\Carbon::parse($parcours->time_depart)->format('H:i') }}</strong></p>
+            <p>{{ $parcours->City_depart->name }}</p>
+        </div>
+        <div>
+            <p>Durée:</p>
+            <p><strong>{{ $parcours->duree }}</strong></p>
+        </div>
+        <div>
+            <p>Arrivée:</p>
+            <p><strong>{{ \Carbon\Carbon::parse($parcours->arrive_time)->format('H:i') }}</strong></p>
+            <p>{{ $parcours->City_arrive->name }}</p>
+        </div>
+        <div>
+            <p>Prix:</p>
+            <div class="ticket-price">
+                <span>{{ $parcours->Prix_Parcour }}</span> MAD
             </div>
         </div>
     </div>
 
-</div>
+    <!-- Route Information -->
+    <div class="route">
+        <span>
+            <img src="{{ asset('img/train.png') }}" alt="Train Icon">
+            <p>TL <br> {{ $parcours->City_depart->name }}</p>
+        </span>
+        <span>
+            <img src="{{ asset('img/train.png') }}" alt="Train Icon">
+            <p>TL <br> {{ $parcours->City_arrive->name }}</p>
+        </span>
+    </div>
 
+</div>
 
 </body>
 </html>

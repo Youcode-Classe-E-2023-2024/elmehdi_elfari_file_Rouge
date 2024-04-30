@@ -54,4 +54,16 @@ class User extends Authenticatable
         $this->save();
     }
 
+    public function isAdmin()
+    {
+
+        return $this->role === 'admin';
+    }
+
+    public function isUser()
+    {
+
+        return $this->role === 'User';
+    }
+
 }

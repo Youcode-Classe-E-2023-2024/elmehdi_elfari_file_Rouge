@@ -2,35 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="495b24d2-fc1a-4977-8fd9-ea48928f87b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/Mail/ticketMail.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/register.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/reservations.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/success.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/PromosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/PromosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/StripeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/StripeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/TicketController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Http/Controllers/googleAuthController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Mail/SendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Mail/SendMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/Parcours.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/Promos.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/Promos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_04_24_101513_create_promos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/database/migrations/2024_04_24_101513_create_promos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/Auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/homeLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/homeLayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/Mail/ticketMail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/Mail/ticketMail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/side.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/layouts/side.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/checkout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/promos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/reservation.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticket.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticket.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticketPromo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/resources/views/pages/ticketPromo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_file_rouge/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/project_file_rouge/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +108,7 @@
       <workItem from="1713953663246" duration="20577000" />
       <workItem from="1714037169320" duration="43190000" />
       <workItem from="1714302074904" duration="47702000" />
-      <workItem from="1714358018991" duration="5979000" />
+      <workItem from="1714358018991" duration="16661000" />
     </task>
     <servers />
   </component>

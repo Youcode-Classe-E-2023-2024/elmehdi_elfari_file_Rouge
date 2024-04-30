@@ -125,7 +125,7 @@
                             </div>
                             <div>
                                 @auth
-                                    <form action="{{ route('promo',$Promo) }}" method="POST">
+                                    <form action="{{ route('session',$Promo->id) }}" method="POST">
                                         @csrf
                                         <input type="text" name="number_of_reservations" id="counter-input" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-lg font-normal focus:outline-none focus:ring-0 w-12 text-center" placeholder=""  required />
                                         <select name="Classes" hidden id="class-selection">

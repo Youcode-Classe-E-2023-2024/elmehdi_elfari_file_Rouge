@@ -5,17 +5,20 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Content;
+
 
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public array $parcours;
+    public   $parcours;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(array $parcours)
+    public function __construct($parcours)
     {
         $this->parcours = $parcours;
     }
@@ -23,13 +26,20 @@ class SendMail extends Mailable
     /**
      * Build the message.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this->subject('Voila Monsieur Le Ticket')
-            ->view('Mail.ticketMail')
-            ->with([
-                'parcours' => $this->parcours,
-            ]);
+        return new Envelope(
+            subject: 'Ticket de Reservations',
+        );
+    }
+
+
+    public function content(): Content
+    {
+        return new Content(
+            view: 'Mail.ticketMail',
+            with: [$this->parcours]
+        );
     }
 }
 
