@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum( 'Classes' ,['premier', 'deuxieme']);
             $table->date('date');
             $table->unique(['user_id','parcour_id','date']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

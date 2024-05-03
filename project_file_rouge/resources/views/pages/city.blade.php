@@ -37,11 +37,13 @@
             </div>
         </nav>
         <div class="max-w-3xl mt-8 mx-auto bg-white p-6 rounded-lg shadow-md" x-data="categoryModal()">
-            <h1 class="text-2xl font-semibold mb-4">City List</h1>
+        <h1 class="text-4xl font-bold mb-4">City List</h1>
+            <hr>
 
             <table class="min-w-full border border-gray-300">
                 <thead>
                 <tr>
+
                     <th class="border-b p-2">ID</th>
                     <th class="border-b p-2">Name</th>
                     <th class="border-b p-2">Action</th>

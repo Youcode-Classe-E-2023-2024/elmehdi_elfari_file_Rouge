@@ -65,9 +65,9 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/success', [StripeController::class, 'success'])->name('success');
 
-    Route::get('/dashboard/Reservation', [ReservationController::class ,'index'])->name('Reservation.show');
+        Route::get('/dashboard/Reservation', [ReservationController::class ,'index'])->name('Reservation.show');
 
-    Route::get('/dashboardReservation/{parcours}', [ReservationController::class ,'store'])->name('Reservation');
+    Route::get('/dashboard/Reservation/{parcours}', [ReservationController::class ,'store'])->name('Reservation');
 
 });
 
@@ -77,17 +77,18 @@ Route::post("register", [RegisterController::class, 'store'])->name('register');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('login', [LoginController::class, 'create'])->name('Form-login');
+
     Route::post('login', [LoginController::class, 'authenticate'])->name('login');
+
+    Route::get('/request', [ForgotPasswordLinkController::class, 'create']);
+
+    Route::post('/request/store', [ForgotPasswordLinkController::class, 'store'])->name('request.store');
+
+    Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create'])->name('password.reset');
+
+    Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
+
 });
-
-
-Route::get('/request', [ForgotPasswordLinkController::class, 'create']);
-
-Route::post('/request/store', [ForgotPasswordLinkController::class, 'store'])->name('request.store');
-
-Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create'])->name('password.reset');
-
-Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 
 Route::get('/search', [HomeController::class, 'search']);
 

@@ -21,7 +21,6 @@ class StripeController extends Controller
 
     public function createSession(Request $request, Parcours $parcours)
     {
-        // Check if the reservation already exists
         $reservation = Reservation::where('parcour_id', $parcours->id)
             ->where('user_id', Auth::id())
             ->where('date', $request->date)
@@ -31,15 +30,9 @@ class StripeController extends Controller
             return redirect()->back()->with('error', 'error');
         }
 
-        // Set the Stripe API key
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
 
-        // Calculate the total price for the reservation
-        $pricePerReservation = $parcours->Prix_Parcour;
-        $numberOfReservations = $request->number_of_reservations;
-        $totalPrice = $pricePerReservation * $numberOfReservations;
-
-        $totalPriceInCents = $totalPrice * 100;
+        $totalPriceInCents = $request->price * 100;
 
         // Create the Stripe Checkout session
         $session = \Stripe\Checkout\Session::create([
@@ -51,18 +44,18 @@ class StripeController extends Controller
                         'product_data' => [
                             'name' => 'Réservation pour ' . $parcours->City_depart->name . ' à ' . $parcours->City_arrive->name,
                         ],
-                        'unit_amount' => $totalPriceInCents, // Total price in cents
+                        'unit_amount' => $totalPriceInCents,
                     ],
                     'quantity' => 1,
                 ],
             ],
             'mode' => 'payment',
-            'success_url' => route('Reservation', ['parcours' => $parcours->id, 'classes' => $request->Classes, 'number_of_reservations' => $request->number_of_reservations, 'date' => $request->date]),
+            'success_url' => route('Reservation', ['parcours' => $parcours->id, 'classes' => $request->Classes, 'number_of_reservations' => $request->number_of_reservations, 'date' => $request->date, 'price' => $totalPriceInCents]),
             'cancel_url' => route('checkout'),
         ]);
 
         // Send reservation email
-        Mail::to(Auth::user()->email)->send(new SendMail($parcours));
+
 
         // Redirect the user to the Stripe session URL
         return redirect()->away($session->url);

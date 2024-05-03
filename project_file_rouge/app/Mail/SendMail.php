@@ -13,14 +13,14 @@ class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public   $parcours;
+    public   $reservations;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($parcours)
+    public function __construct($reservations)
     {
-        $this->parcours = $parcours;
+        $this->reservations = $reservations;
     }
 
     /**
@@ -38,7 +38,7 @@ class SendMail extends Mailable
     {
         return new Content(
             view: 'Mail.ticketMail',
-            with: [$this->parcours]
+            with: [$this->reservations]
         );
     }
 }

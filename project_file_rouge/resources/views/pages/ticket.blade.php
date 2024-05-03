@@ -126,24 +126,30 @@ Ticket
                         <div>
                     </div>
             </form>
-                    @auth
-                        <form action="{{ route('session',$parcour) }}" method="POST">
-                            @csrf
-                            <input type="text" name="number_of_reservations" id="counter-input" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-lg font-normal focus:outline-none focus:ring-0 w-12 text-center" placeholder=""  required />
-                            <select name="Classes" hidden id="class-selection">
-                                <option value="deuxieme">Second Class</option>
-                                <option value="premier">Premier Class</option>
-                            </select>
-                            <input id="depart_date" name="date" hidden type="date">
+            @auth
+                @if (!Auth::user()->isAdmin())
+                <form action="{{ route('session', $parcour) }}" method="POST">
+                    @csrf
+                    <input type="text" name="number_of_reservations" id="counter-input" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-lg font-normal focus:outline-none focus:ring-0 w-12 text-center" placeholder="" required />
+                    <select name="Classes" hidden id="class-selection">
+                        <option value="deuxieme">Second Class</option>
+                        <option value="premier">Premier Class</option>
+                    </select>
+                    <input id="depart_date" name="date" hidden type="date">
+                    <input type="hidden" name="price" id="priceprice" >
 
-                            <button type="submit" id="checkout-live-button" class="px-6 py-2 rounded-full text-black text-sm tracking-wider font-medium outline-none border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">Reservation</button>
-                        </form>
-                    @endauth
-                </div>
+                    <button type="submit" id="checkout-live-button" class="px-6 py-2 rounded-full text-black text-sm tracking-wider font-medium outline-none border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">Reservation</button>
+                </form>
+                @else
+                    <p class="text-gray-600 dark:text-gray-400">Admins cannot make reservations.</p>
+                @endif
+            @endauth
+
+    </div>
             </div>
         </div>
     @empty
-        <p class="text-center text-xl mb-40 text-dark">Aucun parcours disponible actuellement.</p>
+        <p class="text-center text-xl my-28 text-dark">Aucun parcours disponible actuellement.</p>
     @endforelse
 </div>
 
@@ -158,6 +164,7 @@ Ticket
         const classSelection = document.getElementById('class-selection');
         const timeDepart = document.getElementById('time_depart');
         const departTime = document.getElementById('depart_date');
+        const pricePrice = document.getElementById('priceprice');
 
         const initialPrice = parseFloat(ticketPriceElement.textContent);
         let premierClassSelected = false;
@@ -165,6 +172,7 @@ Ticket
 
         counterInput.value = 1;
         departTime.value = timeDepart.textContent;
+        pricePrice.value = ticketPriceElement.textContent;
         classSelection.value = 'deuxieme';
         function updatePrice() {
             let currentCount = Number(counterInput.value);
@@ -176,6 +184,7 @@ Ticket
 
             ticketPriceElement.textContent = (price * currentCount);
             localStorage.setItem('ticketPrice', ticketPriceElement.textContent);
+            pricePrice.value = ticketPriceElement.textContent;
         }
 
         premierClass.addEventListener('click', function(event) {

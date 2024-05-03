@@ -61,7 +61,8 @@
         @endif
 
         <div class="max-w-8xl mt-8 mx-auto bg-white p-6 rounded-lg shadow-md">
-            <h1 class="text-2xl font-semibold mb-4">Promos List</h1>
+            <h1 class="text-5xl font-bold mb-4">Promos List</h1>
+            <hr>
 
             <table class="min-w-full border border-gray-300">
                 <thead>

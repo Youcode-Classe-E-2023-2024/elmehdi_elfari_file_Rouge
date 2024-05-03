@@ -6,9 +6,9 @@
 
 @section('content')
     <section>
-        <div class="container mx-auto stroke-2 rounded-full flex justify-center mt-40 shadow-lg py-2 px-20 mb-4 h-32 bg-gray-50 w-10/12">
+        <div class="container mx-auto stroke-2 rounded-full flex justify-center mt-40 shadow-lg py-2 px-20 mb-4 h-32 bg-gray-50 w-6/12">
             <form method="GET" action="/searcTicket" class="flex justify-between items-center gap-16">
-                <div class="flex justify-center w-3/6 gap-5">
+                <div class="flex hidden justify-center w-3/6 gap-5">
                     <div>
                         <label class="block text-blue-600 font-bold font-medium mb-2" for="departure-date">Départ</label>
                         <select name="depart_id" class="form-select rounded-2xl w-48 border p-3">
@@ -32,7 +32,7 @@
                         <input name="depart_date" class="form-input rounded-2xl w-48 border p-3" type="date">
                     </div>
                 </div>
-                <div class="flex justify-between items-center w-full">
+                <div class="flex justify-between items-center gap-6 w-full">
                     <div>
                         <label class="block text-blue-600 font-bold font-medium mb-2" for="arrival-date">Classes</label>
                         <button id="premier_class" type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-4 rounded-full uppercase font-bold text-sm"
@@ -125,7 +125,7 @@
                             </div>
                             <div>
                                 @auth
-                                    <form action="{{ route('session',$Promo->id) }}" method="POST">
+                                    <form action="{{ route('session',['parcours' => $Promo->Parcours]) }}" method="POST">
                                         @csrf
                                         <input type="text" name="number_of_reservations" id="counter-input" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-lg font-normal focus:outline-none focus:ring-0 w-12 text-center" placeholder=""  required />
                                         <select name="Classes" hidden id="class-selection">
@@ -133,6 +133,7 @@
                                             <option value="premier">Premier Class</option>
                                         </select>
                                         <input id="depart_date" name="date" hidden type="date">
+                                        <input type="hidden" name="price" id="priceprice" >
 
                                         <button type="submit" id="checkout-live-button" class="px-6 py-2 rounded-full text-black text-sm tracking-wider font-medium outline-none border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">Reservation Promo</button>
                                     </form>
@@ -154,6 +155,8 @@
             const classSelection = document.getElementById('class-selection');
             const timeDepart = document.getElementById('time_depart');
             const departTime = document.getElementById('depart_date');
+            const pricePrice = document.getElementById('priceprice');
+
 
             const initialPrice = parseFloat(ticketPriceElement.textContent);
             let premierClassSelected = false;
@@ -161,6 +164,7 @@
 
             counterInput.value = 1;
             departTime.value = timeDepart.textContent;
+            pricePrice.value = ticketPriceElement.textContent;
             classSelection.value = 'deuxieme';
             function updatePrice() {
                 let currentCount = Number(counterInput.value);
@@ -172,6 +176,7 @@
 
                 ticketPriceElement.textContent = (price * currentCount);
                 localStorage.setItem('ticketPrice', ticketPriceElement.textContent);
+                pricePrice.value = ticketPriceElement.textContent;
             }
 
             premierClass.addEventListener('click', function(event) {

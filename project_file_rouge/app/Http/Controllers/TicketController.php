@@ -22,10 +22,7 @@ class TicketController extends Controller
     {
         $Promo = Promos::findOrFail($id);
         $cities = City::all();
-        /*dd($Promo);*/
         return view('pages.ticketPromo', compact('Promo', 'cities',));
     }
-
-
 
 }

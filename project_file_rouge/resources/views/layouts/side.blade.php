@@ -1,10 +1,10 @@
 <aside
     class="bg-gradient-to-br from-gray-800 to-gray-900 -translate-x-80 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
     <div class="relative border-b border-white/20">
-        <a class="flex items-center gap-4 py-6 px-8" href="#/">
+        <a class="flex items-center gap-4 py-6 px-8" href="{{ url('/') }}">
             <h6
-                class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
-                Material Tailwind Dashboard</h6>
+                class="block antialiased tracking-normal ml-10 font-sans text-base font-semibold leading-relaxed text-white">
+                Admin Dashboard</h6>
         </a>
         <button
             class="middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[32px] h-8 max-h-[32px] rounded-lg text-xs text-white hover:bg-white/10 active:bg-white/30 absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
@@ -109,7 +109,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="{{ url('Reservation') }}">
+                <a class="" href="{{ route('Reservation.show') }}">
                     <button
                         class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
                         type="button">
@@ -122,23 +122,6 @@
                         <p
                             class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
                             Reservation</p>
-                    </button>
-                </a>
-            </li>
-            <li>
-                <a class="" href="#">
-                    <button
-                        class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
-                        type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                             aria-hidden="true" class="w-5 h-5 text-inherit">
-                            <path fill-rule="evenodd"
-                                  d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
-                                  clip-rule="evenodd"></path>
-                        </svg>
-                        <p
-                            class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
-                            notifactions</p>
                     </button>
                 </a>
             </li>
